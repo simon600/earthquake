@@ -1,0 +1,5 @@
+C:\DEV\PROJECTS\EARTHQUAKE\Logic\obj\Release\ResolveAssemblyReference.cache
+C:\DEV\PROJECTS\EARTHQUAKE\Logic\bin\Release\Logic.dll
+C:\DEV\PROJECTS\EARTHQUAKE\Logic\bin\Release\Logic.pdb
+C:\DEV\PROJECTS\EARTHQUAKE\Logic\obj\Release\Logic.dll
+C:\DEV\PROJECTS\EARTHQUAKE\Logic\obj\Release\Logic.pdb
