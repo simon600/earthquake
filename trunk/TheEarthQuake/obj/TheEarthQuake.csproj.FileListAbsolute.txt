@@ -5,3 +5,10 @@ C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\TheEarthQuake\bin\Release\TheEarthQuake
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\TheEarthQuake\bin\Release\TheEarthQuake.pdb
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\TheEarthQuake\obj\Release\TheEarthQuake.exe
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\TheEarthQuake\obj\Release\TheEarthQuake.pdb
+C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\bin\Release\TheEarthQuake.exe
+C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\bin\Release\TheEarthQuake.pdb
+C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\ResolveAssemblyReference.cache
+C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.Properties.Resources.resources
+C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.csproj.GenerateResource.Cache
+C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.exe
+C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.pdb
