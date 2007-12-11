@@ -1,13 +1,13 @@
-/* Authors:
- *  Michal Anglart
- *  Karol Stosiek
- */
-
 using System;
-
+using System.Collections.Generic;
+using System.Text;
 
 namespace Maps
 {
-    class Wall : Field
+    /*
+     * Representing both destroyable, and
+     * non-destroyable walls;
+     */
+    abstract class Wall : Field
     {   }
 }

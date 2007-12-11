@@ -11,9 +11,12 @@ namespace Maps.tests
     [TestFixture]
     public class MapTests
     {
+        Map testedMap;
+
         [SetUp]
         public void SetUp()
         {
+            testedMap = new Map();
             Console.WriteLine("Setting up...");
         }
 
@@ -24,9 +27,22 @@ namespace Maps.tests
         }
 
         [Test]
-        public void Test1()
+        public void TestFilledMap()
         {
+            Console.WriteLine("Test whether map was fully filled");
+            bool result = true;
+            Field[,] fields = testedMap.Fields;
+            Assert.AreEqual(true, fields != null);
 
+            for(int i = 0; i < Map.MapWidth; i++)
+            {
+                for (int j = 0; j < Map.MapHeight; j++)
+                {
+                    if (fields[i, j] == null)
+                        result = false;
+                }
+            }
+            Assert.AreEqual(true, result);
         }
     }
 }

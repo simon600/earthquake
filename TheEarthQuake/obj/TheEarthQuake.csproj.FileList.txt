@@ -7,3 +7,7 @@ obj\Release\TheEarthQuake.Properties.Resources.resources
 obj\Release\TheEarthQuake.csproj.GenerateResource.Cache
 bin\Release\nunit.framework.dll
 bin\Release\nunit.framework.xml
+bin\Release\Maps.dll
+bin\Release\Bonuses.dll
+bin\Release\Bonuses.pdb
+bin\Release\Maps.pdb
