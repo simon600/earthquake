@@ -8,6 +8,7 @@ using NUnit.Framework;
 
 namespace Maps.tests
 {
+    /// nothing to test yet
     class WaterTest
     {
     }

@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="H:\Zajecia\ETO\Projekt\Map\bin\Release\Map.dll" total="1" failures="0" not-run="0" date="2007-12-10" time="16:19:36">
-  <environment nunit-version="2.4.3.0" clr-version="2.0.50727.832" os-version="Microsoft Windows NT 5.1.2600 Service Pack 2" platform="Win32NT" cwd="H:\Zajecia\ETO\Projekt\Map\bin\Release" machine-name="ASGAROTH-LAPTOP" user="Asgaroth" user-domain="ASGAROTH-LAPTOP" />
+<test-results name="C:\Documents and Settings\Asgaroth\Desktop\Projekt\Maps\bin\Release\Maps.dll" total="1" failures="0" not-run="0" date="2007-12-11" time="16:35:21">
+  <environment nunit-version="2.4.3.0" clr-version="2.0.50727.832" os-version="Microsoft Windows NT 5.1.2600 Service Pack 2" platform="Win32NT" cwd="C:\Documents and Settings\Asgaroth\Desktop\Projekt\Maps\bin\Release" machine-name="ASGAROTH-LAPTOP" user="Asgaroth" user-domain="ASGAROTH-LAPTOP" />
   <culture-info current-culture="pl-PL" current-uiculture="en-US" />
-  <test-suite name="H:\Zajecia\ETO\Projekt\Map\bin\Release\Map.dll" success="True" time="0.172" asserts="0">
+  <test-suite name="C:\Documents and Settings\Asgaroth\Desktop\Projekt\Maps\bin\Release\Maps.dll" success="True" time="0.078" asserts="0">
     <results>
-      <test-suite name="Map" success="True" time="0.141" asserts="0">
+      <test-suite name="Maps" success="True" time="0.063" asserts="0">
         <results>
-          <test-suite name="tests" success="True" time="0.141" asserts="0">
+          <test-suite name="tests" success="True" time="0.063" asserts="0">
             <results>
               <test-suite name="MapTests" success="True" time="0.031" asserts="0">
                 <results>
-                  <test-case name="Map.tests.MapTests.Test1" executed="True" success="True" time="0.016" asserts="0" />
+                  <test-case name="Maps.tests.MapTests.TestFilledMap" executed="True" success="True" time="0.016" asserts="2" />
                 </results>
               </test-suite>
             </results>

@@ -1,13 +1,10 @@
-/* Authors:
- *  Michal Anglart
- *  Karol Stosiek
- */
-
 using System;
-using NUnit.Framework;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Maps.tests
 {
+    /// nothing to test yet
     class WallTest
     {
     }
