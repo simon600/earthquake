@@ -37,17 +37,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StartForm.cs">
+    <Compile Include="GameOptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StartForm.Designer.cs">
-      <DependentUpon>StartForm.cs</DependentUpon>
+    <Compile Include="GameOptionsForm.Designer.cs">
+      <DependentUpon>GameOptionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameStartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameStartForm.Designer.cs">
+      <DependentUpon>GameStartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WelcomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WelcomeForm.Designer.cs">
+      <DependentUpon>WelcomeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="StartForm.resx">
+    <EmbeddedResource Include="GameOptionsForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>StartForm.cs</DependentUpon>
+      <DependentUpon>GameOptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameStartForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GameStartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WelcomeForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WelcomeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
