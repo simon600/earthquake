@@ -16,7 +16,7 @@ namespace TheEarthQuake.GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StartForm());
+            Application.Run(new WelcomeForm());
         }
     }
 }
