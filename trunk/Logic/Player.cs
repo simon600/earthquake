@@ -6,14 +6,15 @@ namespace TheEarthQuake.Logic
 {
     public class Player
     {
-        private int speed;
-        private int minePower;
-        private int mineRange;
+        private int speed;//
+        private int minePower;//
+        private int mineRange;//
         private int mineType;
         private int shield;
         private int lifes;
         private int currentHealth;
-        private int simultanousMines;
+        private int maxHealth;//
+        private int simultanousMines;//
         private int mineDetonationTimeOffset;
 
         private bool triggeredMines;
@@ -145,6 +146,18 @@ namespace TheEarthQuake.Logic
             set
             {
                 this.mineDetonationTimeOffset = value;
+            }
+        }
+
+        public int MaxHealth
+        {
+            get
+            { 
+                return maxHealth;
+            }
+            set
+            {
+                maxHealth = value;
             }
         }
 
