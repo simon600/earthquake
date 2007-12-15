@@ -4,9 +4,10 @@
  */
 
 using System;
-using Bonuses;
+using TheEarthQuake.Logic.Bonuses;
 
-namespace Maps
+namespace TheEarthQuake.Logic.Maps
+
 {
     /*
      * Abstract class representing field. Field may

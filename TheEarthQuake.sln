@@ -1,11 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheEarthQuake", "TheEarthQuake\TheEarthQuake.csproj", "{F11CB95C-24A8-48BA-A980-EA31132415B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheEarthQuake.GUI", "TheEarthQuake\TheEarthQuake.GUI.csproj", "{F11CB95C-24A8-48BA-A980-EA31132415B0}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{F252B448-3A7A-4937-81F7-700D5FB257F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheEarthQuake.Logic", "Logic\TheEarthQuake.Logic.csproj", "{F252B448-3A7A-4937-81F7-700D5FB257F2}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csproj", "{6EC1672D-BFFE-49C6-8323-B6369889C0D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheEarthQuake.Engine", "Engine\TheEarthQuake.Engine.csproj", "{6EC1672D-BFFE-49C6-8323-B6369889C0D9}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

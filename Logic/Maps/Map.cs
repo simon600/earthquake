@@ -19,7 +19,7 @@
 
 using System;
 
-namespace Maps
+namespace TheEarthQuake.Logic.Maps
 {
     public class Map
     {

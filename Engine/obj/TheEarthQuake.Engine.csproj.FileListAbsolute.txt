@@ -1,0 +1,9 @@
+C:\DEV\PROJECTS\EARTHQUAKE\Engine\obj\Release\ResolveAssemblyReference.cache
+C:\DEV\PROJECTS\EARTHQUAKE\Engine\bin\Release\TheEarthQuake.Engine.dll
+C:\DEV\PROJECTS\EARTHQUAKE\Engine\bin\Release\TheEarthQuake.Engine.pdb
+C:\DEV\PROJECTS\EARTHQUAKE\Engine\bin\Release\csgl.dll
+C:\DEV\PROJECTS\EARTHQUAKE\Engine\bin\Release\TheEarthQuake.Logic.dll
+C:\DEV\PROJECTS\EARTHQUAKE\Engine\bin\Release\TheEarthQuake.Logic.pdb
+C:\DEV\PROJECTS\EARTHQUAKE\Engine\bin\Release\csgl.pdb
+C:\DEV\PROJECTS\EARTHQUAKE\Engine\obj\Release\TheEarthQuake.Engine.dll
+C:\DEV\PROJECTS\EARTHQUAKE\Engine\obj\Release\TheEarthQuake.Engine.pdb
