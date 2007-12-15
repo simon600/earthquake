@@ -2,17 +2,19 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using CsGL.OpenGL;
+using TheEarthQuake.Logic.Maps;
+using TheEarthQuake.Logic;
 
-namespace Engine
+namespace TheEarthQuake.Engine
 {
     public class Engine : OpenGLControl
     {
-        private Map.Map map;
-        private Player.Player[] players;
+        private Map map;
+        private Player[] players;
         private const float width  = 1024;
         private const float height = 768;
 
-        public Engine(Map.Map map,Player.Player[] players)
+        public Engine(Map map, Player[] players)
             : base()
         {
             this.map = map;

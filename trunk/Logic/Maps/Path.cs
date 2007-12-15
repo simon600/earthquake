@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Maps
+namespace TheEarthQuake.Logic.Maps
 {
     /*
      * Simplest field, that player can walk on.

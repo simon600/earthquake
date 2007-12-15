@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Maps
+namespace TheEarthQuake.Logic.Maps
 {
     /*
      * This is non-walkable field, but

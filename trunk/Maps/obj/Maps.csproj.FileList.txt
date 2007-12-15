@@ -1,9 +1,0 @@
-bin\Release\nunit.framework.dll
-bin\Release\nunit.framework.xml
-obj\Release\ResolveAssemblyReference.cache
-bin\Release\Maps.dll
-bin\Release\Maps.pdb
-bin\Release\Bonuses.dll
-bin\Release\Bonuses.pdb
-obj\Release\Maps.dll
-obj\Release\Maps.pdb
