@@ -1,5 +1,5 @@
-C:\DEV\PROJECTS\EARTHQUAKE\Logic\obj\Release\ResolveAssemblyReference.cache
 C:\DEV\PROJECTS\EARTHQUAKE\Logic\bin\Release\TheEarthQuake.Logic.dll
 C:\DEV\PROJECTS\EARTHQUAKE\Logic\bin\Release\TheEarthQuake.Logic.pdb
+C:\DEV\PROJECTS\EARTHQUAKE\Logic\obj\Release\ResolveAssemblyReference.cache
 C:\DEV\PROJECTS\EARTHQUAKE\Logic\obj\Release\TheEarthQuake.Logic.dll
 C:\DEV\PROJECTS\EARTHQUAKE\Logic\obj\Release\TheEarthQuake.Logic.pdb
