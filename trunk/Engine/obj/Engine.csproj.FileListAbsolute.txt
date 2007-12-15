@@ -1,0 +1,1 @@
+C:\DEV\PROJECTS\EARTHQUAKE\Engine\obj\Release\ResolveAssemblyReference.cache
