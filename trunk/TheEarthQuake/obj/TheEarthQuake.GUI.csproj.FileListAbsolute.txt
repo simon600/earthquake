@@ -5,3 +5,4 @@ C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\bin\Release\TheEarthQuake.GUI.exe
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\bin\Release\TheEarthQuake.GUI.pdb
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.GUI.exe
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.GUI.pdb
+C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.GUI.StartForm.resources
