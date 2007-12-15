@@ -2,9 +2,11 @@ C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\bin\Release\TheEarthQuake.GUI.exe
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\bin\Release\TheEarthQuake.GUI.pdb
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\ResolveAssemblyReference.cache
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.GUI.GameOptionsForm.resources
-C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.GUI.GameStartForm.resources
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.GUI.WelcomeForm.resources
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.GUI.Properties.Resources.resources
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.GUI.csproj.GenerateResource.Cache
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.GUI.exe
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.GUI.pdb
+C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.GUI.SelectPlayerForm.resources
+C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\bin\Release\TheEarthQuake.GUI.exe.config
+C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.GUI.MapSelectForm.resources
