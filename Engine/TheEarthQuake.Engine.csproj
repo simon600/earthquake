@@ -28,9 +28,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="csgl, Version=1.4.1.0, Culture=neutral">
+    <Reference Include="csgl, Version=1.4.1.0, Culture=neutral, PublicKeyToken=d8fb3bdb88c36cd4">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Users\marcin\Desktop\csgl.1.4.1.dll\lib\csgl.dll</HintPath>
+      <HintPath>..\..\..\..\Windows\System32\csgl.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
