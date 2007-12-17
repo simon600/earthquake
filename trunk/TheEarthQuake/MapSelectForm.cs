@@ -23,5 +23,13 @@ namespace TheEarthQuake.GUI
             SelectPlayerForm window = new SelectPlayerForm();
             window.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.Visible = false;
+            GameForm gameForm = new GameForm();
+            gameForm.ShowDialog();
+        }
     }
 }

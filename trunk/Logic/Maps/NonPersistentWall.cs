@@ -11,6 +11,6 @@ namespace TheEarthQuake.Logic.Maps
      * Destroyable wall, it is derived from Field, and
      * can contain bonus.
      */
-    class NonPersistentWall : Wall
+    public class NonPersistentWall : Wall
     {  }
 }

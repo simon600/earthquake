@@ -12,6 +12,6 @@ namespace TheEarthQuake.Logic.Maps
      * blows can go through it. It shouldn't
      * contain bonuses.
      */
-    class Water : Field
+    public class Water : Field
     {   }
 }

@@ -23,10 +23,10 @@ namespace TheEarthQuake.Logic.Maps
 {
     public class Map
     {
+        private static int mapHeight = 19;              /// ought to be odd
+        private static int mapWidth = 19;              /// ought to be odd 
+                                                       /// 
         private Field[,] fields;                        /// container for fields
-
-        private static int mapHeight = 49;              /// ought to be odd
-        private static int mapWidth  = 49;              /// ought to be odd                                                                           
 
         private Random floatGenerator;                  /// used to generate some doubles
         private Random intGenerator;                    /// same for ints
@@ -121,7 +121,7 @@ namespace TheEarthQuake.Logic.Maps
 
         private void SetWaterFields()
         { 
-            double fractureOfWalkableFields = floatGenerator.NextDouble() * 0.2;  
+            double fractureOfWalkableFields = floatGenerator.NextDouble() * 0.1;  
             int totalWalkableFields = (mapWidth * mapHeight) - (mapWidth / 2 * mapHeight / 2);
             int fieldsToWater = (int)(totalWalkableFields * fractureOfWalkableFields);
 
@@ -235,7 +235,7 @@ namespace TheEarthQuake.Logic.Maps
 
         private void SetNonPersistentWalls()
         {
-            double fractureOfWalkableFields = floatGenerator.NextDouble() * 0.4;
+            double fractureOfWalkableFields = floatGenerator.NextDouble() * 0.4 + 0.3;
             int totalWalkableFields = (mapWidth * mapHeight) - (mapWidth / 2 * mapHeight / 2);
             int walledFields = (int)(totalWalkableFields * fractureOfWalkableFields);
 

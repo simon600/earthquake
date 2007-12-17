@@ -9,16 +9,27 @@ namespace TheEarthQuake.Engine
 {
     public class Engine : OpenGLControl
     {
+        private StateMachine stateMachine;
         private Map map;
-        private Player[] players;
-        private const float width  = 1024;
-        private const float height = 768;
+        private float width;
+        private float height;
+        private CsGL.OpenGL.OpenGLTexture2D[] textures;
 
-        public Engine(Map map, Player[] players)
+        public Engine(StateMachine stateMachine)
             : base()
         {
-            this.map = map;
-            this.players = players;           
+            this.stateMachine = stateMachine;
+            this.map = this.stateMachine.Map;
+            width = StateMachine.Width;
+            height = StateMachine.Height;
+
+            textures = new OpenGLTexture2D[4];
+
+            textures[0] = new OpenGLTexture2D(@"Textures\\Stone.bmp");
+            textures[1] = new OpenGLTexture2D(@"Textures\\Bricks.bmp");
+            textures[2] = new OpenGLTexture2D(@"Textures\\Path.bmp");
+            textures[3] = new OpenGLTexture2D(@"Textures\\Water.bmp");
+            
         }
 
         public override void glDraw()
@@ -32,6 +43,7 @@ namespace TheEarthQuake.Engine
 
         protected override void InitGLContext()
         {
+            GL.glEnable(GL.GL_TEXTURE_2D); 
             GL.glShadeModel(GL.GL_SMOOTH);
             GL.glClearColor(0.0f, 1.0f, 0.0f, 0.5f);
             GL.glClearDepth(1.0f);		
@@ -53,12 +65,50 @@ namespace TheEarthQuake.Engine
         }
 
         private void DrawMap()
-        {            
-            for (int i = 0; i < 10; i++)
-                for (int j = 0; j < 10; j++)
+        {                        
+            GL.glPushMatrix();
+            GL.glTranslatef(-width / 2, height / 2, 0.0f);
+            GL.glColor3f(1.0f, 1.0f, 1.0f);
+
+            for (int i = 0; i < Map.MapHeight; i++)
+            {
+                for (int j = 0; j < Map.MapWidth; j++)
                 {
-                    //tu bêdzie rozpopznawanie obiektów i ich malowanie
+                    if (map.Fields[i, j] is NonPersistentWall)
+                    {
+                        //GL.glColor3f(0.5f, 0.5f, 0.5f);
+                        textures[1].Bind();
+                    }
+                    else if (map.Fields[i, j] is PersistentWall)
+                    {
+                        //GL.glColor3f(0.0f, 0.0f, 0.0f);
+                        textures[0].Bind();
+                    }
+                    else if (map.Fields[i, j] is Path)
+                    {
+                        //GL.glColor3f(1.0f, 1.0f, 0.0f);
+                        textures[2].Bind();
+                    }
+                    else
+                    {
+                        //GL.glColor3f(0.0f, 0.0f, 1.0f);
+                        textures[3].Bind();
+                    }
+
+                    GL.glBegin(GL.GL_QUADS);
+                    GL.glTexCoord2f(0.0f, 0.0f);
+                    GL.glVertex2f(j * StateMachine.FieldSize, -(i + 1) * StateMachine.FieldSize);
+                    GL.glTexCoord2f(1.0f, 0.0f);
+                    GL.glVertex2f((j + 1) * StateMachine.FieldSize, -(i + 1) * StateMachine.FieldSize);
+                    GL.glTexCoord2f(1.0f, 1.0f);
+                    GL.glVertex2f((j + 1) * StateMachine.FieldSize, -i * StateMachine.FieldSize);
+                    GL.glTexCoord2f(0.0f, 1.0f);
+                    GL.glVertex2f(j * StateMachine.FieldSize, -i * StateMachine.FieldSize);
+                    GL.glEnd();
                 }
+            }
+
+            GL.glPopMatrix();
         }
 
         private void DrawPlayers()
@@ -70,7 +120,7 @@ namespace TheEarthQuake.Engine
         {
             GL.glPushMatrix();
             GL.glLoadIdentity();
-            GL.glColor3f(0.0f, 0.0f, 1.0f);
+            GL.glColor3f(0.0f, 1.0f, 0.0f);
             GL.glBegin(GL.GL_QUADS);
                 GL.glVertex2f(-width / 2, -height / 2);
                 GL.glVertex2f(width / 2, -height / 2);

@@ -1,0 +1,7 @@
+bin\Release\TheEarthQuake.Logic.dll
+bin\Release\TheEarthQuake.Logic.pdb
+bin\Release\nunit.framework.dll
+bin\Release\nunit.framework.xml
+obj\Release\ResolveAssemblyReference.cache
+obj\Release\TheEarthQuake.Logic.dll
+obj\Release\TheEarthQuake.Logic.pdb
