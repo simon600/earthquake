@@ -8,6 +8,6 @@ namespace TheEarthQuake.Logic.Maps
      * Representing both destroyable, and
      * non-destroyable walls;
      */
-    abstract class Wall : Field
+    public abstract class Wall : Field
     {   }
 }

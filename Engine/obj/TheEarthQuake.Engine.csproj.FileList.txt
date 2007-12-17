@@ -1,0 +1,7 @@
+bin\Release\TheEarthQuake.Engine.dll
+bin\Release\TheEarthQuake.Engine.pdb
+bin\Release\TheEarthQuake.Logic.dll
+bin\Release\TheEarthQuake.Logic.pdb
+obj\Release\ResolveAssemblyReference.cache
+obj\Release\TheEarthQuake.Engine.dll
+obj\Release\TheEarthQuake.Engine.pdb
