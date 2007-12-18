@@ -3,3 +3,10 @@ C:\DEV\PROJECTS\EARTHQUAKE\Logic\bin\Release\TheEarthQuake.Logic.pdb
 C:\DEV\PROJECTS\EARTHQUAKE\Logic\obj\Release\ResolveAssemblyReference.cache
 C:\DEV\PROJECTS\EARTHQUAKE\Logic\obj\Release\TheEarthQuake.Logic.dll
 C:\DEV\PROJECTS\EARTHQUAKE\Logic\obj\Release\TheEarthQuake.Logic.pdb
+C:\DEV\PROJECTS\EARTHQUAKE\Logic\bin\Release\Maps.dll
+C:\DEV\PROJECTS\EARTHQUAKE\Logic\bin\Release\TheEarthQuake.Engine.dll
+C:\DEV\PROJECTS\EARTHQUAKE\Logic\bin\Release\TheEarthQuake.GUI.exe
+C:\DEV\PROJECTS\EARTHQUAKE\Logic\bin\Release\nunit.framework.xml
+C:\DEV\PROJECTS\EARTHQUAKE\Logic\bin\Release\TheEarthQuake.GUI.pdb
+C:\DEV\PROJECTS\EARTHQUAKE\Logic\bin\Release\TheEarthQuake.Engine.pdb
+C:\DEV\PROJECTS\EARTHQUAKE\Logic\bin\Release\Maps.pdb
