@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TheEarthQuake.Logic.Maps;
+using TheEarthQuake.Maps;
 
 namespace TheEarthQuake.Logic
 {

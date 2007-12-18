@@ -45,9 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Logic\TheEarthQuake.Logic.csproj">
-      <Project>{F252B448-3A7A-4937-81F7-700D5FB257F2}</Project>
-      <Name>TheEarthQuake.Logic</Name>
+    <ProjectReference Include="..\Maps\TheEarthQuake.Maps.csproj">
+      <Project>{3B33AD3B-FAAB-4EE5-884E-4348F6688E09}</Project>
+      <Name>TheEarthQuake.Maps</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

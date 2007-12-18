@@ -2,26 +2,30 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using CsGL.OpenGL;
-using TheEarthQuake.Logic.Maps;
-using TheEarthQuake.Logic;
+using TheEarthQuake.Maps;
 
 namespace TheEarthQuake.Engine
 {
     public class Engine : OpenGLControl
-    {
-        private StateMachine stateMachine;
-        private Map map;
+    {        
+        private MapWrapper mapWrapper;
         private float width;
         private float height;
         private CsGL.OpenGL.OpenGLTexture2D[] textures;
 
-        public Engine(StateMachine stateMachine)
+        public Engine()
             : base()
-        {
-            this.stateMachine = stateMachine;
-            this.map = this.stateMachine.Map;
-            width = StateMachine.Width;
-            height = StateMachine.Height;
+        {   
+            mapWrapper = null;
+           
+            /*
+             * You can change the values of width and height 
+             * using setters (in StatesMachine); default values are:
+             */
+
+            width = 1024;
+            height = 768;
+            
 
             textures = new OpenGLTexture2D[4];
 
@@ -30,6 +34,27 @@ namespace TheEarthQuake.Engine
             textures[2] = new OpenGLTexture2D(@"Textures\\Path.bmp");
             textures[3] = new OpenGLTexture2D(@"Textures\\Water.bmp");
             
+        }
+
+        public float WindowWidth
+        {
+            set
+            {
+                this.width = value;
+            }
+        }
+
+        public float WindowHeight
+        {
+            set
+            {
+                this.height = value;
+            }
+        }
+
+        public void SetWrapper(MapWrapper mapWrapper)
+        {
+            this.mapWrapper = mapWrapper;
         }
 
         public override void glDraw()
@@ -70,21 +95,21 @@ namespace TheEarthQuake.Engine
             GL.glTranslatef(-width / 2, height / 2, 0.0f);
             GL.glColor3f(1.0f, 1.0f, 1.0f);
 
-            for (int i = 0; i < Map.MapHeight; i++)
+            for (int i = 0; i < mapWrapper.MapHeight; i++)
             {
-                for (int j = 0; j < Map.MapWidth; j++)
+                for (int j = 0; j < mapWrapper.MapWidth; j++)
                 {
-                    if (map.Fields[i, j] is NonPersistentWall)
+                    if (mapWrapper.GetField(i, j) is NonPersistentWall)
                     {
                         //GL.glColor3f(0.5f, 0.5f, 0.5f);
                         textures[1].Bind();
                     }
-                    else if (map.Fields[i, j] is PersistentWall)
+                    else if (mapWrapper.GetField(i, j) is PersistentWall)
                     {
                         //GL.glColor3f(0.0f, 0.0f, 0.0f);
                         textures[0].Bind();
                     }
-                    else if (map.Fields[i, j] is Path)
+                    else if (mapWrapper.GetField(i, j) is Path)
                     {
                         //GL.glColor3f(1.0f, 1.0f, 0.0f);
                         textures[2].Bind();
@@ -97,13 +122,13 @@ namespace TheEarthQuake.Engine
 
                     GL.glBegin(GL.GL_QUADS);
                     GL.glTexCoord2f(0.0f, 0.0f);
-                    GL.glVertex2f(j * StateMachine.FieldSize, -(i + 1) * StateMachine.FieldSize);
+                    GL.glVertex2f(j * mapWrapper.FieldSize, -(i + 1) * mapWrapper.FieldSize);
                     GL.glTexCoord2f(1.0f, 0.0f);
-                    GL.glVertex2f((j + 1) * StateMachine.FieldSize, -(i + 1) * StateMachine.FieldSize);
+                    GL.glVertex2f((j + 1) * mapWrapper.FieldSize, -(i + 1) * mapWrapper.FieldSize);
                     GL.glTexCoord2f(1.0f, 1.0f);
-                    GL.glVertex2f((j + 1) * StateMachine.FieldSize, -i * StateMachine.FieldSize);
+                    GL.glVertex2f((j + 1) * mapWrapper.FieldSize, -i * mapWrapper.FieldSize);
                     GL.glTexCoord2f(0.0f, 1.0f);
-                    GL.glVertex2f(j * StateMachine.FieldSize, -i * StateMachine.FieldSize);
+                    GL.glVertex2f(j * mapWrapper.FieldSize, -i * mapWrapper.FieldSize);
                     GL.glEnd();
                 }
             }
