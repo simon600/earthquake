@@ -8,9 +8,5 @@ C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.GUI.csproj.Ge
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\bin\Release\TheEarthQuake.GUI.exe.config
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\bin\Release\TheEarthQuake.GUI.exe
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\bin\Release\TheEarthQuake.GUI.pdb
-C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\bin\Release\TheEarthQuake.Engine.dll
-C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\bin\Release\TheEarthQuake.Logic.dll
-C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\bin\Release\TheEarthQuake.Logic.pdb
-C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\bin\Release\TheEarthQuake.Engine.pdb
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.GUI.exe
 C:\DEV\PROJECTS\EARTHQUAKE\TheEarthQuake\obj\Release\TheEarthQuake.GUI.pdb
