@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheEarthQuake.Engine", "Eng
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheEarthQuake.Maps", "Maps\TheEarthQuake.Maps.csproj", "{3B33AD3B-FAAB-4EE5-884E-4348F6688E09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{6EC1672D-BFFE-49C6-8323-B6369889C0D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EC1672D-BFFE-49C6-8323-B6369889C0D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EC1672D-BFFE-49C6-8323-B6369889C0D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B33AD3B-FAAB-4EE5-884E-4348F6688E09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B33AD3B-FAAB-4EE5-884E-4348F6688E09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B33AD3B-FAAB-4EE5-884E-4348F6688E09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B33AD3B-FAAB-4EE5-884E-4348F6688E09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

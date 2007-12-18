@@ -6,6 +6,12 @@ namespace TheEarthQuake.Logic
 {
     public class Player
     {
+        private int positionI;    // player position in map fields coordinates
+        private int positionJ;    // player position in map fields coordinates
+
+        private float positionX;  // player position in floating coordinates
+        private float positionY;  // player position in floating coordinates
+        
         private int speed;//
         private int minePower;//
         private int mineRange;//
@@ -22,10 +28,82 @@ namespace TheEarthQuake.Logic
         private bool canWalkMines;
         private bool canShiftMines;
 
+        private static float baseStep = (float)1;
+        private static float playerRadius = (float)12.5;
 
-        public Player()
+        public static float BaseStep
         {
+            get 
+            {
+                return baseStep;
+            }
+        }
 
+        public static float PlayerRadius
+        {
+            get
+            {
+                return playerRadius;
+            }
+        }
+
+        public Player(int i, int j, float x, float y)
+        {   
+            positionI = i;
+            positionJ = j;
+            positionX = x;
+            positionY = y;
+        }
+
+        public int PositionI
+        {
+            get 
+            {
+                return this.positionI;
+            }
+
+            set 
+            {
+                this.positionI = value;
+            }
+        }
+
+        public int PositionJ
+        {
+            get
+            {
+                return this.positionJ;
+            }
+
+            set
+            {
+                this.positionJ = value;
+            }
+        }
+        
+        public float PositionX
+        {
+            get
+            {
+                return this.positionX;
+            }
+
+            set
+            {
+                this.positionX = value;
+            }
+        }
+        public float PositionY
+        {
+            get
+            {
+                return this.positionY;
+            }
+
+            set
+            {
+                this.positionY = value;
+            }
         }
 
         public int Speed

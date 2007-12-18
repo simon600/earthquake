@@ -28,10 +28,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="csgl, Version=1.4.1.0, Culture=neutral, PublicKeyToken=d8fb3bdb88c36cd4">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Windows\System32\csgl.dll</HintPath>
-    </Reference>
+    <Reference Include="csgl, Version=1.4.1.0, Culture=neutral" />
     <Reference Include="nunit.framework, Version=2.4.3.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -123,16 +120,6 @@
     <None Include="Properties\DataSources\GameOptionsForm.datasource" />
     <None Include="Properties\DataSources\GameSettings.datasource" />
     <None Include="Resources\1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Engine\TheEarthQuake.Engine.csproj">
-      <Project>{6EC1672D-BFFE-49C6-8323-B6369889C0D9}</Project>
-      <Name>TheEarthQuake.Engine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Logic\TheEarthQuake.Logic.csproj">
-      <Project>{F252B448-3A7A-4937-81F7-700D5FB257F2}</Project>
-      <Name>TheEarthQuake.Logic</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,7 +10,9 @@ namespace TheEarthQuake.GUI
 {
     public partial class GameForm : Form
     {
-        private Engine.Engine engine;
+        /*
+            private Engine.Engine engine;
+        */
 
         public GameForm()
         {
@@ -20,9 +22,12 @@ namespace TheEarthQuake.GUI
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Name = "EarthQuake";
             this.Text = "EarthQuake";
-            this.engine = new Engine.Engine(new Logic.StateMachine());
-            this.engine.Parent = this;
-            this.engine.Dock = DockStyle.Fill;
+            
+            /*
+                this.engine = new Engine.Engine(new Logic.StateMachine());
+                this.engine.Parent = this;
+                this.engine.Dock = DockStyle.Fill;
+             */
         }
     }
 }
