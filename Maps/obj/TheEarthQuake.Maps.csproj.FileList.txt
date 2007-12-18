@@ -1,0 +1,5 @@
+obj\Release\ResolveAssemblyReference.cache
+bin\Release\Maps.dll
+bin\Release\Maps.pdb
+obj\Release\Maps.dll
+obj\Release\Maps.pdb
