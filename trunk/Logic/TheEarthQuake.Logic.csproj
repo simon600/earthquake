@@ -55,10 +55,6 @@
       <Project>{3B33AD3B-FAAB-4EE5-884E-4348F6688E09}</Project>
       <Name>TheEarthQuake.Maps</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TheEarthQuake\TheEarthQuake.GUI.csproj">
-      <Project>{F11CB95C-24A8-48BA-A980-EA31132415B0}</Project>
-      <Name>TheEarthQuake.GUI</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tests\" />
