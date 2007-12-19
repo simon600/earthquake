@@ -5,7 +5,6 @@ bin\Release\nunit.framework.xml
 obj\Release\ResolveAssemblyReference.cache
 obj\Release\TheEarthQuake.Logic.dll
 obj\Release\TheEarthQuake.Logic.pdb
-bin\Release\csgl.dll
 bin\Release\Maps.dll
 bin\Release\TheEarthQuake.Engine.dll
 bin\Release\TheEarthQuake.GUI.exe
