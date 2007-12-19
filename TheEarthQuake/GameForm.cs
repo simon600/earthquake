@@ -29,6 +29,7 @@ namespace TheEarthQuake.GUI
             // same piece of code (I checked it - see revision 24 at svn).
             // Wtf?
             this.engine = new Engine.Engine();
+            this.engine.Parent = this;
             this.stateMachine = new Logic.StateMachine();
             Maps.MapWrapper mapwr = new Maps.MapWrapper(stateMachine.Map);
             this.engine.SetWrapper(mapwr);
