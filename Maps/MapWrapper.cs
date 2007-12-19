@@ -22,7 +22,7 @@ namespace TheEarthQuake.Maps
         {
             get
             {
-                return this.MapHeight;
+                return map.MapHeight;
             }
         }
 
@@ -30,7 +30,7 @@ namespace TheEarthQuake.Maps
         {
             get
             {
-                return this.MapWidth;
+                return map.MapWidth;
             }
         }
 

@@ -9,6 +9,23 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TheEarthQuake.GUI</RootNamespace>
     <AssemblyName>TheEarthQuake.GUI</AssemblyName>
+    <ManifestCertificateThumbprint>9484D0E4C31F035E5968C51C36B70C7C598CEC88</ManifestCertificateThumbprint>
+    <ManifestKeyFile>TheEarthQuake.GUI_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <PublishUrl>C:\Documents and Settings\Acer\Pulpit\eq\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -120,6 +137,28 @@
     <None Include="Properties\DataSources\GameOptionsForm.datasource" />
     <None Include="Properties\DataSources\GameSettings.datasource" />
     <None Include="Resources\1.jpg" />
+    <None Include="TheEarthQuake.GUI_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Engine\TheEarthQuake.Engine.csproj">
+      <Project>{6EC1672D-BFFE-49C6-8323-B6369889C0D9}</Project>
+      <Name>TheEarthQuake.Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logic\TheEarthQuake.Logic.csproj">
+      <Project>{F252B448-3A7A-4937-81F7-700D5FB257F2}</Project>
+      <Name>TheEarthQuake.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Maps\TheEarthQuake.Maps.csproj">
+      <Project>{3B33AD3B-FAAB-4EE5-884E-4348F6688E09}</Project>
+      <Name>TheEarthQuake.Maps</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

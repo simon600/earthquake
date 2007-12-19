@@ -5,3 +5,10 @@ obj\Release\TheEarthQuake.Engine.dll
 obj\Release\TheEarthQuake.Engine.pdb
 bin\Release\Maps.dll
 bin\Release\Maps.pdb
+bin\Debug\TheEarthQuake.Engine.dll
+bin\Debug\TheEarthQuake.Engine.pdb
+bin\Debug\Maps.dll
+bin\Debug\Maps.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\TheEarthQuake.Engine.dll
+obj\Debug\TheEarthQuake.Engine.pdb

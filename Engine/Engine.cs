@@ -11,10 +11,9 @@ namespace TheEarthQuake.Engine
         private MapWrapper mapWrapper;
         private float width;
         private float height;
-        private CsGL.OpenGL.OpenGLTexture2D[] textures;
+        private OpenGLTexture2D[] textures;
 
-        public Engine()
-            : base()
+        public Engine() : base()
         {   
             mapWrapper = null;
            
@@ -101,22 +100,18 @@ namespace TheEarthQuake.Engine
                 {
                     if (mapWrapper.GetField(i, j) is NonPersistentWall)
                     {
-                        //GL.glColor3f(0.5f, 0.5f, 0.5f);
                         textures[1].Bind();
                     }
                     else if (mapWrapper.GetField(i, j) is PersistentWall)
                     {
-                        //GL.glColor3f(0.0f, 0.0f, 0.0f);
                         textures[0].Bind();
                     }
                     else if (mapWrapper.GetField(i, j) is Path)
                     {
-                        //GL.glColor3f(1.0f, 1.0f, 0.0f);
                         textures[2].Bind();
                     }
                     else
                     {
-                        //GL.glColor3f(0.0f, 0.0f, 1.0f);
                         textures[3].Bind();
                     }
 
