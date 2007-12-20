@@ -8,3 +8,7 @@ bin\Debug\Maps.pdb
 obj\Debug\ResolveAssemblyReference.cache
 obj\Debug\Maps.dll
 obj\Debug\Maps.pdb
+bin\Debug\nunit.framework.dll
+bin\Debug\nunit.framework.xml
+bin\Release\nunit.framework.dll
+bin\Release\nunit.framework.xml
