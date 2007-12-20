@@ -22,18 +22,25 @@ using System;
 
 namespace TheEarthQuake.Maps
 {
+    /// <summary>
+    /// Represents map with container of fields. Map generator is provided
+    /// in constructor.
+    /// </summary>
     public class Map
     {
-        private int mapHeight = 19;                     /// ought to be odd
-        private int mapWidth = 19;                      /// ought to be odd 
+        private int mapHeight = 19;                     // ought to be odd
+        private int mapWidth = 19;                      // ought to be odd 
         
-        private float fieldSize = 35;
+        private float fieldSize = 35;                   // field size for OpenGL
 
-        private Field[,] fields;                        /// container for fields
+        private Field[,] fields;                        // container for fields
 
-        private Random floatGenerator;                  /// used to generate some doubles
-        private Random intGenerator;                    /// same for ints
-                                                        /// 
+        private Random floatGenerator;                  // used to generate some doubles
+        private Random intGenerator;                    // same for ints
+
+        /// <summary>
+        /// Returns number of fields in column.
+        /// </summary>
         public int MapHeight
         {
             get 
@@ -42,6 +49,9 @@ namespace TheEarthQuake.Maps
             }
         }
 
+        /// <summary>
+        /// Returns number of fields in row.
+        /// </summary>
         public int MapWidth
         {
             get
@@ -50,6 +60,9 @@ namespace TheEarthQuake.Maps
             }
         }
 
+        /// <summary>
+        /// Returns fields container.
+        /// </summary>
         public Field[,] Fields
         {
             get
@@ -58,13 +71,27 @@ namespace TheEarthQuake.Maps
             }
         }
 
-        /* Constructor for class
-         * Be careful with order of function calls!
-         * (e.g. SetPlayersLivingSpace() must be called as
-         * a last one *)
-         */
+        /// <summary>
+        /// Returns field size.
+        /// </summary>
+        public float FieldSize
+        {
+            get
+            {
+                return this.fieldSize;
+            }
+        }
+
+        /// <summary>
+        /// Constructor - it generates map. It doesn't assure 
+        /// that graph of walkable fields is connected.
+        /// </summary>
         public Map()
         {
+            /* Be careful with order of function calls!
+             * (e.g. SetPlayersLivingSpace() must be called as
+             * a last one *)
+             */
             fields = new Field[mapHeight, mapWidth];
 
             floatGenerator = new Random();
@@ -77,33 +104,38 @@ namespace TheEarthQuake.Maps
             SetPlayersLivingSpace();
         }
 
-        public float FieldSize
-        {
-            get 
-            {
-                return this.fieldSize;
-            }
-        }
-    
+        /// <summary>
+        /// Returns clone of field (used to access the type of field) from row 'i' and column 'j'.
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        /// <returns></returns>
         public Field GetField(int i, int j) 
         {
             return Fields[i, j].clone();
         }
         
+        /// <summary>
+        /// Blows up bomb on row 'i' and column 'j'
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
         public void BlowUp(int i, int j)
         {
             /* STUB! */
         }
-
-        /*
-         *  Fills the map with fields of type Path
-         *  (fills only those fields, which are empty).
-         *  Path is the simplest field,
-         *  on which player can walk with no limits. 
-         */
-         
+        
+        /// <summary>
+        /// Fills the map with path fields.
+        /// </summary>
         private void FillWithPaths()
-        {
+        {       
+            /*
+             *  Fills the map with fields of type Path
+             *  (fills only those fields, which are empty).
+             *  Path is the simplest field,
+             *  on which player can walk with no limits. 
+             */
             for (int i = 0; i < mapHeight; i++)
             {
                 for (int j = 0; j < mapWidth; j++)
@@ -114,15 +146,17 @@ namespace TheEarthQuake.Maps
             }
         }                 
 
-        /*
-         * Fills the map with persistent walls, which are
-         * non-destroyable by any bomb (except Chuck Norris).
-         * Persistent walls positions are set with 
-         * a check pattern.
-         */
-
+        /// <summary>
+        /// Sets persistent walls on map.
+        /// </summary>
         private void SetPersistentWalls()
-        {
+        {       
+            /*
+             * Fills the map with persistent walls, which are
+             * non-destroyable by any bomb (except Chuck Norris).
+             * Persistent walls positions are set with 
+             * a check pattern.
+             */
             for (int i = 1; i < mapHeight; i += 2)
             {
                 for (int j = 1; j < mapWidth; j += 2)
@@ -131,16 +165,18 @@ namespace TheEarthQuake.Maps
                 }
             }
         }
-
-        /*
-         * This function picks up a number of fields to be watered
-         * (at most 20% of maps total walkable fields). Then it tries
-         * to pick up a place to spill some water (at most 5 fields per try)
-         * and spills it. 
-         */
-
+        
+        /// <summary>
+        /// Sets water fields on map.
+        /// </summary>
         private void SetWaterFields()
-        { 
+        {
+            /*
+             * This function picks up a number of fields to be watered
+             * (at most 20% of maps total walkable fields). Then it tries
+             * to pick up a place to spill some water (at most 5 fields per try)
+             * and spills it. 
+             */
             double fractureOfWalkableFields = floatGenerator.NextDouble() * 0.1;  
             int totalWalkableFields = (mapWidth * mapHeight) - (mapWidth / 2 * mapHeight / 2);
             int fieldsToWater = (int)(totalWalkableFields * fractureOfWalkableFields);
@@ -161,31 +197,38 @@ namespace TheEarthQuake.Maps
             }
         }
 
-        /*
-         * Function responsible for each try of spilling the water.
-         * It picks up a number of fields to water (at most 5 fields),
-         * then, for each field, it picks up a direction, and:
-         *    1. if it is a Path, then it changes it to Water 
-         *       (with checking map boundaries!)
-         *    2. else, if it is already filled with water, it just 
-         *       moves to that field (it does not spill anything!)
-         *    3. to do: check for the coherency of accessible fields
-         *    4. to do: roll back spilling if it spoils coherency
-         */
-
+        /// <summary>
+        /// Method fills few neighbored fields with water.
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
+        /// <param name="fieldsToWater"></param>
+        /// <param name="wateredFieldsYet"></param>
+        /// <returns></returns>
         private int SpillWater(int row, int column, int fieldsToWater, int wateredFieldsYet)
         {
+            /*
+             * Function responsible for each try of spilling the water.
+             * It picks up a number of fields to water (at most 5 fields),
+             * then, for each field, it picks up a direction, and:
+             *    1. if it is a Path, then it changes it to Water 
+             *       (with checking map boundaries!)
+             *    2. else, if it is already filled with water, it just 
+             *       moves to that field (it does not spill anything!)
+             *    3. to do: check for the coherency of accessible fields
+             *    4. to do: roll back spilling if it spoils coherency
+             */
             fields[row, column] = new Water();
             
             int maxSpilledWaterFields = 6;
             int waterFieldsToSpill = intGenerator.Next(maxSpilledWaterFields);
 
-            /// number of total watered fields must not exceed picked up value
+            // number of total watered fields must not exceed picked up value
             
             if (wateredFieldsYet + waterFieldsToSpill >= fieldsToWater)
                 waterFieldsToSpill = fieldsToWater - wateredFieldsYet;
 
-            /// instead of enum type, which had to be declared outside of this function
+            // instead of enum type, which had to be declared outside of this function
 
             const short N = 0;
             const short S = 1;
@@ -249,12 +292,15 @@ namespace TheEarthQuake.Maps
             return waterFieldsToSpill;
         }
 
-        /* This function sets some non-persistent wall (at most 40%
-         * of walkable fields) in simplest way (randomly)
-         */
 
+        /// <summary>
+        /// Sets destroyable walls.
+        /// </summary>
         private void SetNonPersistentWalls()
-        {
+        {    
+            /* This function sets some non-persistent wall (from 30% to 70%
+             * of walkable fields) in simplest way (randomly)
+             */
             double fractureOfWalkableFields = floatGenerator.NextDouble() * 0.4 + 0.3;
             int totalWalkableFields = (mapWidth * mapHeight) - (mapWidth / 2 * mapHeight / 2);
             int walledFields = (int)(totalWalkableFields * fractureOfWalkableFields);
@@ -276,27 +322,29 @@ namespace TheEarthQuake.Maps
 
         }
 
-        /* 
-         *  Each player must have a "minimal" living space around 
-         *  him at start, so he does not to have blow himself up to get out.
-         *  Player 1 is set in (0,0), and Player 2 is set in (mapHeight - 1, mapWidth - 1).
-         *  Both of players neighboring fields must be walkable.
-         */   
-
+        /// <summary>
+        /// Sets three fields neghboring with start field (for both players) to bo walkable.
+        /// </summary>
         private void SetPlayersLivingSpace()
-        {  
+        {
+            /* 
+             *  Each player must have a "minimal" living space around 
+             *  him at start, so he does not to have blow himself up to get out.
+             *  Player 1 is set in (0,0), and Player 2 is set in (mapHeight - 1, mapWidth - 1).
+             *  Both of players neighboring fields must be walkable.
+             */  
 
-                /// Setting up first players living space
+              /// Setting up first players living space
 
-                fields[0, 0] = new Path();
-                fields[0, 1] = new Path();
-                fields[1, 0] = new Path();
+              fields[0, 0] = new Path();
+              fields[0, 1] = new Path();
+              fields[1, 0] = new Path();
 
-                /// Setting up second players living space
+              /// Setting up second players living space
 
-                fields[mapHeight - 1, mapWidth - 1] = new Path();
-                fields[mapHeight - 2, mapWidth - 1] = new Path();
-                fields[mapHeight - 1, mapWidth - 2] = new Path();
+              fields[mapHeight - 1, mapWidth - 1] = new Path();
+              fields[mapHeight - 2, mapWidth - 1] = new Path();
+              fields[mapHeight - 1, mapWidth - 2] = new Path();
          }
     }
 }

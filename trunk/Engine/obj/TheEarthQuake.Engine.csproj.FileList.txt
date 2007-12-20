@@ -12,3 +12,5 @@ bin\Debug\Maps.pdb
 obj\Debug\ResolveAssemblyReference.cache
 obj\Debug\TheEarthQuake.Engine.dll
 obj\Debug\TheEarthQuake.Engine.pdb
+bin\Debug\nunit.framework.dll
+bin\Debug\nunit.framework.xml
