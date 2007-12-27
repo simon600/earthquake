@@ -31,7 +31,7 @@ namespace TheEarthQuake.Maps
         private int mapHeight = 19;                     // ought to be odd
         private int mapWidth = 19;                      // ought to be odd 
         
-        private float fieldSize = 35;                   // field size for OpenGL
+        private float fieldSize;                   // field size for OpenGL
 
         private Field[,] fields;                        // container for fields
 
@@ -92,6 +92,8 @@ namespace TheEarthQuake.Maps
              * (e.g. SetPlayersLivingSpace() must be called as
              * a last one *)
              */
+            fieldSize = 768.0f / mapHeight;      //sets fieldSize so that map's height is equal to screen's height
+
             fields = new Field[mapHeight, mapWidth];
 
             floatGenerator = new Random();
