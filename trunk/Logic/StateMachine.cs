@@ -8,42 +8,64 @@ using System.Text;
  * -> dorobic stan gry (jakis enum, pole, czy cos)  
  * -> dorobic klase playerWrapper na modle mapWrapper i dawac silnikowi zeby sobie 
  *    malowal graczy (kontroler daje, tu tylko zwracamy wrappery funkcyjnie)
+ * -> czy konstruktor maszyny stanow ma byc taki... pustawy?
  */
 
 namespace TheEarthQuake.Logic
 {
+    /// <summary>
+    /// Defines the player we manipulate.
+    /// </summary>
     public enum Players {Player1, Player2};
+    
+    /// <summary>
+    /// Directions pool.
+    /// </summary>
     public enum Directions {Left, Right, Up, Down};
 
+    /// <summary>
+    /// State machine class. It is responsible for
+    /// changin program state, for player collisions, 
+    /// for applying settings, and wrapper creation.
+    /// </summary>
     public class StateMachine
     {
-        private static float width = 1024;
-        private static float height = 768;       
+        private static float width = 1024;      // screen width
+        private static float height = 768;      // screnn height
 
-        private Maps.Map map;
-        private State currentState = null;
-        private GameSettings currentGameSettings = null;
-        private float currentFPS;
+        private Maps.Map map;                               // actual map
+        private State currentState = null;                  // current machine state
+        private GameSettings currentGameSettings = null;    // actual settings
+        private float currentFPS;                           // frames per second
 
-        private Player PlayerOne = null;
-        private Player PlayerTwo = null;
+        private Player PlayerOne = null;                    // player 1 instance
+        private Player PlayerTwo = null;                    // player 2 instance
 
+        /// <summary>
+        /// Accessor to screen height. Only get.
+        /// </summary>
         public static float Height
         {
             get
             {
                 return StateMachine.height;
             }
-        } 
+        }
 
+        /// <summary>
+        /// Accessor to screen width. Only get.
+        /// </summary>
         public static float Width
         {
             get
             {
                 return StateMachine.width;
             }
-        } 
+        }
 
+        /// <summary>
+        /// Accessor to current map. Only get. Redundant?
+        /// </summary>
         public Maps.Map Map
         {
             get
@@ -52,6 +74,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// Accessor to current machine state. Only get.
+        /// </summary>
         public State CurrentState
         {
             get
@@ -60,6 +85,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// Accessor to current game settings. Only get.
+        /// </summary>
         public GameSettings CurrentGameSettings
         {
             get
@@ -68,6 +96,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// Accessor to current frames per second value. Both set and get.
+        /// </summary>
         public float CurrentFPS
         {
             get
@@ -80,6 +111,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// Method responsible for moving player. Called by controller.
+        /// </summary>
         public void MovePlayer(Players playerId, Directions direction)
         {
             Player player = null;
@@ -322,6 +356,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// MEthod responsible for creating (setting up) a new game.
+        /// </summary>
         public void CreateGame()
         {
             map = new Maps.Map();
@@ -331,12 +368,18 @@ namespace TheEarthQuake.Logic
                                    Map.MapWidth * Map.FieldSize - Player.PlayerRadius,
                                    Map.MapHeight * Map.FieldSize - Player.PlayerRadius);
         }
-
+        
+        /// <summary>
+        /// Map wrapper factory.
+        /// </summary>
         public Maps.MapWrapper GetWrapper()
         {
             return new Maps.MapWrapper(map);
         }
 
+        /// <summary>
+        /// State machine constructor. 
+        /// </summary>
         public StateMachine()
         {
             map = new Maps.Map();
