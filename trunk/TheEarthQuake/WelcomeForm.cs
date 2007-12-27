@@ -15,6 +15,62 @@ namespace TheEarthQuake.GUI
             InitializeComponent();
         }
 
+        /* This method handles key pressed event. */
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            switch (keyData)
+            { 
+                /* quit application */
+                case Keys.Escape:
+                case Keys.Q:
+                    Application.Exit();
+                    return true;
+
+                /* invoke options */
+                case Keys.O: 
+                    this.OptionButton.Focus();
+                    this.OptionButton_Click(this, null);
+                    return true;
+
+                /* invoke new game */
+                case Keys.N:
+                    this.startButton.Focus();
+                    this.startButton_Click(this, null);
+                    return true;
+
+                /* invoke exit */
+                case Keys.E:
+                    this.exitButton.Focus();
+                    this.exitButton_Click(this, null);
+                    return true;
+
+                /* invoke the form that is focused */
+                case Keys.Enter:
+                case Keys.Right:
+                    if (this.startButton.Focused)
+                    {
+                        this.startButton_Click(this, null);
+                        return true;
+                    }
+                    if (this.OptionButton.Focused)
+                    {
+                        this.OptionButton_Click(this, null);
+                        return true;
+                    }
+                    if (this.exitButton.Focused)
+                    {
+                        this.exitButton_Click(this, null);
+                        return true;
+                    }
+                    return false;
+                    
+                /* let the base class handle the key */
+                default:
+                    return base.ProcessDialogKey(keyData);
+
+            }
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
