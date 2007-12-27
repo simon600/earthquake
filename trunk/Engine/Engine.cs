@@ -12,6 +12,7 @@ namespace TheEarthQuake.Engine
         private float width;
         private float height;
         private OpenGLTexture2D[] textures;
+        private OpenGLTexture2D[] waterTextures;
 
         public Engine() : base()
         {   
@@ -26,13 +27,33 @@ namespace TheEarthQuake.Engine
             height = 768;
             
 
-            textures = new OpenGLTexture2D[4];
-
+            textures = new OpenGLTexture2D[3];
+            waterTextures = new OpenGLTexture2D[20];
+          
             textures[0] = new OpenGLTexture2D(@"Textures\\Stone.bmp");
             textures[1] = new OpenGLTexture2D(@"Textures\\Bricks.bmp");
             textures[2] = new OpenGLTexture2D(@"Textures\\Path.bmp");
-            textures[3] = new OpenGLTexture2D(@"Textures\\Water.bmp");
-            
+
+            waterTextures[0]  = new OpenGLTexture2D(@"Textures\\Water.bmp");
+            waterTextures[1]  = new OpenGLTexture2D(@"Textures\\Water1Left.bmp");
+            waterTextures[2]  = new OpenGLTexture2D(@"Textures\\Water1Down.bmp");
+            waterTextures[3]  = new OpenGLTexture2D(@"Textures\\Water1Right.bmp");
+            waterTextures[4]  = new OpenGLTexture2D(@"Textures\\Water1Up.bmp");
+            waterTextures[5]  = new OpenGLTexture2D(@"Textures\\Water2DownLeft.bmp");
+            waterTextures[6]  = new OpenGLTexture2D(@"Textures\\Water2DownRight.bmp");
+            waterTextures[7]  = new OpenGLTexture2D(@"Textures\\Water2UpLeft.bmp");
+            waterTextures[8]  = new OpenGLTexture2D(@"Textures\\Water2UpRight.bmp");
+            waterTextures[9]  = new OpenGLTexture2D(@"Textures\\Water2UpDown.bmp");
+            waterTextures[10] = new OpenGLTexture2D(@"Textures\\Water2LeftRight.bmp");
+            waterTextures[11] = new OpenGLTexture2D(@"Textures\\Water3NoLeft.bmp");
+            waterTextures[12] = new OpenGLTexture2D(@"Textures\\Water3NoDown.bmp");
+            waterTextures[13] = new OpenGLTexture2D(@"Textures\\Water3NoRight.bmp");
+            waterTextures[14] = new OpenGLTexture2D(@"Textures\\Water3NoUp.bmp");
+            waterTextures[15] = new OpenGLTexture2D(@"Textures\\Water4.bmp");
+            waterTextures[16] = new OpenGLTexture2D(@"Textures\\WaterCDownLeft.bmp");
+            waterTextures[17] = new OpenGLTexture2D(@"Textures\\WaterCDownRight.bmp");
+            waterTextures[18] = new OpenGLTexture2D(@"Textures\\WaterCUpRight.bmp");
+            waterTextures[19] = new OpenGLTexture2D(@"Textures\\WaterCUpLeft.bmp");
         }
 
         public float WindowWidth
@@ -110,9 +131,114 @@ namespace TheEarthQuake.Engine
                     {
                         textures[2].Bind();
                     }
-                    else
+                    else if (mapWrapper.GetField(i, j) is Water)
                     {
-                        textures[3].Bind();
+                        if (j < mapWrapper.MapWidth-1 && !(mapWrapper.GetField(i, j + 1) is Water)) //no water on right
+                        {
+                            if (i < mapWrapper.MapHeight-1 && !(mapWrapper.GetField(i + 1, j) is Water)) //no water down and right
+                            {
+                                if (j > 0 && !(mapWrapper.GetField(i, j - 1) is Water)) //no water on down, right and left
+                                {
+                                    if (i > 0 && !(mapWrapper.GetField(i - 1, j) is Water)) //no water around
+                                    {
+                                        waterTextures[15].Bind();
+                                    }
+                                    else //water only up
+                                    {
+                                        waterTextures[14].Bind();
+                                    }
+                                }
+                                else //water left and no water down and right
+                                {
+                                    if (i > 0 && !(mapWrapper.GetField(i - 1, j) is Water)) //water only left
+                                    {
+                                        waterTextures[11].Bind();
+                                    }
+                                    else //water left and up and no water right and down
+                                    {
+                                        waterTextures[6].Bind();
+                                    }
+                                }
+                            }
+                            else //water down and no water on right
+                            {
+                                if (j > 0 && !(mapWrapper.GetField(i, j - 1) is Water)) //water down and no water right and left
+                                {
+                                    if (i > 0 && !(mapWrapper.GetField(i - 1, j) is Water)) //water only down
+                                    {
+                                        waterTextures[12].Bind();
+                                    }
+                                    else //water down and up and no water left and right
+                                    {
+                                        waterTextures[10].Bind();
+                                    }
+                                }
+                                else //water down and left and no water on right
+                                {
+                                    if (i > 0 && !(mapWrapper.GetField(i - 1, j) is Water)) //water down and left and no water up and right
+                                    {
+                                        waterTextures[8].Bind();
+                                    }
+                                    else
+                                    {
+                                        waterTextures[3].Bind(); //no water only right
+                                    }
+                                }
+                            }
+                        }
+                        else //water on right
+                        {
+                            if (i <= mapWrapper.MapHeight && !(mapWrapper.GetField(i + 1, j) is Water)) //water on right and no water down
+                            {
+                                if (j > 0 && !(mapWrapper.GetField(i, j - 1) is Water)) //water on right and no water down and left
+                                {
+                                    if (i > 0 && !(mapWrapper.GetField(i - 1, j) is Water)) //water on right only
+                                    {
+                                        waterTextures[13].Bind();
+                                    }
+                                    else //water on right and up, no water down and left
+                                    {
+                                        waterTextures[5].Bind();
+                                    }
+                                }
+                                else //water on right and left and no water down
+                                {
+                                    if (i > 0 && !(mapWrapper.GetField(i - 1, j) is Water)) //water right and left, no water down and up
+                                    {
+                                        waterTextures[9].Bind(); 
+                                    }
+                                    else //water right, left and up and no water down
+                                    {
+                                        waterTextures[2].Bind();
+                                    }
+                                }
+                            }
+                            else //water right and down
+                            {
+                                if (j > 0 && !(mapWrapper.GetField(i, j - 1) is Water)) //water right and down and no water on left
+                                {
+                                    if (i > 0 && !(mapWrapper.GetField(i - 1, j) is Water)) //water right and down, no water on left and up
+                                    {
+                                        waterTextures[7].Bind();
+                                    }
+                                    else //water right, down and up and no water on left
+                                    {
+                                        waterTextures[1].Bind();
+                                    }
+                                }
+                                else //water on right and down and on left
+                                {
+                                    if (i > 0 && !(mapWrapper.GetField(i - 1, j) is Water)) //no water only up
+                                    {
+                                        waterTextures[4].Bind();
+                                    }
+                                    else //water around
+                                    {
+                                        waterTextures[0].Bind();
+                                    }
+                                }
+                            }
+                        }                        
                     }
 
                     GL.glBegin(GL.GL_QUADS);
