@@ -2,8 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+/*
+ *   TODO:
+ *      -> dodac niezmiennik dla klasy gracza. poczatkowo, niech sprawdza,
+ *         czy jego pozycje w odpowiednich systemach wspolrzednych sa zgodne.
+ *      -> uzupelnic komentarze w kodzie (pola klasy)
+ */
+
 namespace TheEarthQuake.Logic
 {
+    /// <summary>
+    /// Player class. Holds every information about the player;
+    /// his position (in both coordinate systems), its speed, its 
+    /// actual mine attributes, etc, etc.
+    /// </summary>
     public class Player
     {
         private int positionI;    // player position in map fields coordinates
@@ -12,14 +24,14 @@ namespace TheEarthQuake.Logic
         private float positionX;  // player position in floating coordinates
         private float positionY;  // player position in floating coordinates
         
-        private int speed;//
-        private int minePower;//
-        private int mineRange;//
+        private int speed;        //
+        private int minePower;    //
+        private int mineRange;    //
         private int mineType;
         private int shield;
-        private int lifes;
+        private int lives;
         private int currentHealth;
-        private int maxHealth;//
+        private int maxHealth;    //
         private int simultanousMines;//
         private int mineDetonationTimeOffset;
 
@@ -28,9 +40,12 @@ namespace TheEarthQuake.Logic
         private bool canWalkMines;
         private bool canShiftMines;
 
-        private static float baseStep = (float)1;
-        private static float playerRadius = (float)12.5;
+        private static float baseStep = (float)1;           // base shift of the player pos. when moving
+        private static float playerRadius = (float)12.5;    // border of the player, for collision detection.
 
+        /// <summary>
+        /// Accessor for base shift of the player position. Only get.
+        /// </summary>
         public static float BaseStep
         {
             get 
@@ -39,6 +54,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// Accessor for the player's border. Only get.
+        /// </summary>
         public static float PlayerRadius
         {
             get
@@ -47,6 +65,17 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// Constructor for a player. 
+        /// Warning: initial parameters must hold
+        /// these inequations:
+        /// 1) i * fieldSize < x < (i+1) * fieldSize
+        /// 2) j * fieldSize < y < (j+1) * fieldSize
+        /// </summary>
+        /// <param name="i">height in discrete coordinate system</param>
+        /// <param name="j">width in discrete coordinate system</param>
+        /// <param name="x">height in floating point coordinate system</param>
+        /// <param name="y">width in floating point coordinate system</param>
         public Player(int i, int j, float x, float y)
         {   
             positionI = i;
@@ -54,7 +83,10 @@ namespace TheEarthQuake.Logic
             positionX = x;
             positionY = y;
         }
-
+        
+        /// <summary>
+        /// Accessor to height in discrete coordinate system. Both get and set.
+        /// </summary>
         public int PositionI
         {
             get 
@@ -68,6 +100,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// Accessor for width in discrete coordinate system. Both get and set.
+        /// </summary>
         public int PositionJ
         {
             get
@@ -81,6 +116,9 @@ namespace TheEarthQuake.Logic
             }
         }
         
+        /// <summary>
+        /// Accessor for heigth in floating point coordinate system. Both get and set.
+        /// </summary>
         public float PositionX
         {
             get
@@ -93,6 +131,10 @@ namespace TheEarthQuake.Logic
                 this.positionX = value;
             }
         }
+
+        /// <summary>
+        /// Accessor for width in floating point coordinate system. Both get and set.
+        /// </summary>
         public float PositionY
         {
             get
@@ -106,6 +148,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// Accessor for player's speed. Both get and set.
+        /// </summary>
         public int Speed
         {
             get
@@ -119,6 +164,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// Accessor for mine power. Both get and set.
+        /// </summary>
         public int MinePower
         {
             get
@@ -132,6 +180,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// Accessor for mine range. Both get and set.
+        /// </summary>
         public int MineRange
         {
             get
@@ -145,6 +196,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// Accessor for mine type. Both get and set.
+        /// </summary>
         public int MineType
         {
             get
@@ -158,7 +212,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
-
+        /// <summary>
+        /// Accessor for shield. Both get and set.
+        /// </summary>
         public int Shield
         {
             get
@@ -172,21 +228,25 @@ namespace TheEarthQuake.Logic
             }
         }
 
-        public int Lifes
+        /// <summary>
+        /// Accessor for lives number that player has left. Both get and set.
+        /// </summary>
+        public int Lives
         {
             get
             {
-                return this.lifes;
+                return this.lives;
             }
 
             set
             {
-                this.lifes = value;
+                this.lives = value;
             }
         }
 
-
-
+        /// <summary>
+        /// Accessor for player's health. Both get and set.
+        /// </summary>
         public int CurrentHealth
         {
             get
@@ -200,7 +260,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
-
+        /// <summary>
+        /// Accessor for a number of mines that player can set simultanously. Both get and set.
+        /// </summary>
         public int SimultanousMines
         {
             get
@@ -214,6 +276,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// Accessor for the time of a mine to blow up. Both get and set.
+        /// </summary>
         public int MineDetonationTimeOffset
         {
             get
@@ -227,6 +292,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// Accessor for player's maximum health amount. Both get and set.
+        /// </summary>
         public int MaxHealth
         {
             get
@@ -239,8 +307,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
-
-
+        /// <summary>
+        /// Accessor for a number of mines already triggered. Both get and set.
+        /// </summary>
         public bool TriggeredMines
         {
             get
@@ -254,7 +323,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
-
+        /// <summary>
+        /// ???. Both get and set.
+        /// </summary>
         public bool CanThrow
         {
             get
@@ -268,6 +339,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// Accessor for option saying: can the player walk on mines?. Both get and set.
+        /// </summary>
         public bool CanWalkMines
         {
             get
@@ -281,7 +355,9 @@ namespace TheEarthQuake.Logic
             }
         }
 
-
+        /// <summary>
+        /// Accessor for option: can player move a set up mine? Both get and set.
+        /// </summary>
         public bool CanShiftMines
         {
             get

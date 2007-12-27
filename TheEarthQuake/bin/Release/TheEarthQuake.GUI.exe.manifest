@@ -27,8 +27,15 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="csgl" version="1.4.1.0" publicKeyToken="D8FB3BDB88C36CD4" language="neutral" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="csgl.dll" size="380928">
+      <assemblyIdentity name="csgl" version="1.4.1.0" language="neutral" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>aBsETGsmK9Lg7+RddpKYMB2DU18=</dsig:DigestValue>
+      </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
@@ -39,7 +46,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>WMQ0osg5XBIJMuw+3w1Qp1jViIw=</dsig:DigestValue>
+        <dsig:DigestValue>g3JnD1FuVO7dxVl1Vudp5tkjkTQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -63,7 +70,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>ErqfFhaeLFH7R6zvY99Uo7D1Ydg=</dsig:DigestValue>
+        <dsig:DigestValue>budBJ/I8RD/Tx2p161tPv/+MxRQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -75,7 +82,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>zgY8opA7/QtgFGMa12/htHpcy1k=</dsig:DigestValue>
+        <dsig:DigestValue>aWw8uCnkiDK3BE3dVy2UNsoOC5Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -87,7 +94,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>O1RfCuD1TyvpaE2oNXCpJqx75nI=</dsig:DigestValue>
+        <dsig:DigestValue>SiBLq8KWUv6QdB1sQ8EtnWLKrBg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
