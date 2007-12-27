@@ -17,6 +17,47 @@ namespace TheEarthQuake.GUI
             this.comboBox3.SelectedIndex = 0;
         }
 
+        /* method for handling key pressed events */
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            switch (keyData)
+            { 
+                /* check/uncheck checkbox, if focused */
+                case Keys.Space:
+                    if (this.checkBox1.Focused)
+                    {
+                        this.checkBox1.Checked = !this.checkBox1.Checked;
+                        return true;
+                    }
+
+                    if (this.checkBox2.Focused)
+                    {
+                        this.checkBox2.Checked = !this.checkBox2.Checked;
+                        return true;
+                    }
+
+                    goto default; 
+         
+                /* apply settings */
+                case Keys.Enter:
+                case Keys.Right:
+                    this.button2.Focus();
+                    this.button2_Click(this, null);
+                    return true;
+
+                /* return without applying */
+                case Keys.Left:
+                case Keys.Escape:
+                    this.button1.Focus();
+                    this.button1_Click(this, null);
+                    return true;
+
+                /* let the base class handle the key event */
+                default:
+                    return base.ProcessDialogKey(keyData);
+            }            
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -26,9 +67,6 @@ namespace TheEarthQuake.GUI
         {
 
         }
-
-       
-      
 
         private void textBox4_KeyDown(object sender, KeyEventArgs e)
         {

@@ -6,12 +6,30 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+/*
+    TODO: napisac obsluge klawiszy. (Karol)
+ */
+
 namespace TheEarthQuake.GUI
 {
     public partial class GameForm : Form
     {
         private Engine.Engine engine;
         private Logic.StateMachine stateMachine;
+
+        /* method for handling key pressed events */
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            switch (keyData)
+            {
+               
+
+
+                default:
+                    return base.ProcessDialogKey(keyData);
+            }
+        }
+
 
         public GameForm()
         {
@@ -22,12 +40,6 @@ namespace TheEarthQuake.GUI
             this.Name = "EarthQuake";
             this.Text = "EarthQuake";
 
-
-            // Something doesn't work correctly: don't know why, but
-            // engine constructor can't find files to load textures
-            // Of course it used to work two days ago with the 
-            // same piece of code (I checked it - see revision 24 at svn).
-            // Wtf?
             this.engine = new Engine.Engine();
             this.engine.Parent = this;
             this.stateMachine = new Logic.StateMachine();

@@ -15,6 +15,34 @@ namespace TheEarthQuake.GUI
             InitializeComponent();
         }
 
+        /* This method handles key pressed event. */
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            switch (keyData)
+            {
+                /* generate map */
+                case Keys.L:
+                    // invoke generate map button_click 
+                    return true;
+
+                /* exit */
+                case Keys.Escape:
+                case Keys.Left:
+                    this.button2_Click(this, null);
+                    return true;    // will it ever be called? 
+
+                /* proceed */
+                case Keys.Enter:
+                case Keys.Right:
+                    this.button1_Click(this, null);
+                    return true;    // will this ever be invoked?
+
+                /* let the base class handle the key */
+                default:
+                    return base.ProcessDialogKey(keyData);
+            }
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();

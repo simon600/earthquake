@@ -15,6 +15,59 @@ namespace TheEarthQuake.GUI
             InitializeComponent();
         }
 
+        /* This method handles key pressed event. */
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            switch (keyData)
+            {
+                /* set first players name to first from the left */
+                case Keys.D1:
+                    this.radioButton1.Checked = true;
+                    return true;
+
+                /* set first players name to second from the left */
+                case Keys.D2:
+                    this.radioButton2.Checked = true;
+                    return true;
+
+                /* set first players name to third from the left */
+                case Keys.D3:
+                    this.radioButton3.Checked = true;
+                    return true;
+
+                /* set second players name to third from the left */
+                case Keys.D3 | Keys.Alt:
+                    this.radioButton4.Checked = true;
+                    return true;
+
+                /* set second players name to second from the left */
+                case Keys.D2 | Keys.Alt:
+                    this.radioButton5.Checked = true;
+                    return true;
+
+                /* set second players name to first from the left */
+                case Keys.D1 | Keys.Alt:
+                    this.radioButton6.Checked = true;
+                    return true;
+
+                /* exit */
+                case Keys.Escape:
+                case Keys.Left:
+                    this.button2_Click(this, null);
+                    return true;    // will it ever be called? 
+
+                /* proceed */
+                case Keys.Enter:
+                case Keys.Right:
+                    this.button1_Click(this, null);
+                    return true;    // will this ever be invoked?
+
+                /* let the base class handle the key */
+                default:
+                    return base.ProcessDialogKey(keyData);
+            }
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 

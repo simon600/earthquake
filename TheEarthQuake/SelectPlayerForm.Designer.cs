@@ -1,6 +1,8 @@
+using System.Windows.Forms;
+
 namespace TheEarthQuake.GUI
 {
-    partial class SelectPlayerForm
+    partial class SelectPlayerForm : Form
     {
         /// <summary>
         /// Required designer variable.
