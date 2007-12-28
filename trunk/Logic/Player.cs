@@ -24,21 +24,21 @@ namespace TheEarthQuake.Logic
         private float positionX;  // player position in floating coordinates
         private float positionY;  // player position in floating coordinates
         
-        private int speed;        //
-        private int minePower;    //
-        private int mineRange;    //
-        private int mineType;
-        private int shield;
-        private int lives;
-        private int currentHealth;
-        private int maxHealth;    //
-        private int simultanousMines;//
-        private int mineDetonationTimeOffset;
+        private int speed;        // player speed
+        private int minePower;    // how strong player's mines are 
+        private int mineRange;    // radius of mine explosion (in map fields)
+        private int mineType;     // mine type 
+        private int shield;       // how many points of shield player has
+        private int lives;        // number of lifes that player 
+        private int currentHealth;// current player health
+        private int maxHealth;    // player maximum health amount
+        private int simultanousMines; //how many mines player can set simultanously
+        private int mineDetonationTimeOffset; //how many seconds elapsed between mine setting and mine explosion
 
-        private bool triggeredMines;
-        private bool canThrow;
-        private bool canWalkMines;
-        private bool canShiftMines;
+        private bool triggeredMines; //tells if player can blow up mine remotly
+        private bool canThrow;       //tells if player can throw mines
+        private bool canWalkMines;   //tells if player can walth through set mines
+        private bool canShiftMines;  //tells if player can shift set mines
 
         private static float baseStep = (float)1;           // base shift of the player pos. when moving
         private static float playerRadius = (float)12.5;    // border of the player, for collision detection.
