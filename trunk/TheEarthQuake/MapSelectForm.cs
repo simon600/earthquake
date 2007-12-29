@@ -5,19 +5,38 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using TheEarthQuake.Logic;
+
+/*
+ * TODO:
+ *    -> nazwac sensownie klawisze!
+ *    -> zrobic podglad wygenerowanej mapy
+ *    -> dorobic wczytywanie i zapisywanie mapy
+ *    -> dorobic ladowanie mapy
+ */
 
 namespace TheEarthQuake.GUI
 {
     public partial class MapSelectForm : Form
     {
-        public MapSelectForm()
+        MapSelectFormControllerWrapper controllerWrapper;
+
+        public MapSelectForm(MapSelectFormControllerWrapper controllerWrapper)
         {
             InitializeComponent();
+            this.controllerWrapper = controllerWrapper;
         }
 
         /* This method handles key pressed event. */
         protected override bool ProcessDialogKey(Keys keyData)
         {
+            /*
+             * Keys:
+             *  L - generate map
+             *  Esc, Left - invoke button2 action
+             *  Enter, Right - invoke button1 action
+             */
+            
             switch (keyData)
             {
                 /* generate map */
@@ -48,7 +67,9 @@ namespace TheEarthQuake.GUI
             this.Close();
             this.Visible = false;
 
-            SelectPlayerForm window = new SelectPlayerForm();
+            SelectPlayerForm window = 
+                new SelectPlayerForm(
+                    this.controllerWrapper.selectPlayerFormControllerWrapper);
             window.ShowDialog();
         }
 
@@ -56,7 +77,9 @@ namespace TheEarthQuake.GUI
         {
             this.Close();
             this.Visible = false;
-            GameForm gameForm = new GameForm();
+            GameForm gameForm = 
+                new GameForm(
+                    this.controllerWrapper.gameFormControllerWrapper);
             gameForm.ShowDialog();
         }
     }

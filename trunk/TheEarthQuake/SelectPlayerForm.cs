@@ -5,19 +5,41 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using TheEarthQuake.Logic;
+
+/*
+ * TODO:
+ *  wypelnienie metod. 
+ */
 
 namespace TheEarthQuake.GUI
 {
     public partial class SelectPlayerForm : Form
     {
-        public SelectPlayerForm()
+        SelectPlayerFormControllerWrapper controllerWrapper;
+
+        public SelectPlayerForm(SelectPlayerFormControllerWrapper controllerWrapper)
         {
             InitializeComponent();
+            this.controllerWrapper = controllerWrapper;
         }
 
         /* This method handles key pressed event. */
         protected override bool ProcessDialogKey(Keys keyData)
         {
+            /*
+             * Keys:
+             *   1  - check radio button 1
+             *   2  - check radio button 2
+             *   3  - check radio button 3
+             *  Alt+1 - check radiobutton 4
+             *  Alt+2 - check radiobutton 5
+             *  Alt+3 - check radiobutton 6
+             * 
+             *  Esc, Left - exit form (button1 action)
+             *  Enter, Right - proceed (button2 action)
+             */
+
             switch (keyData)
             {
                 /* set first players name to first from the left */
@@ -102,7 +124,7 @@ namespace TheEarthQuake.GUI
         {
             this.Close();
             this.Visible = false;
-            MapSelectForm map = new MapSelectForm();
+            MapSelectForm map = new MapSelectForm(this.controllerWrapper.MapSelectFormControllerWrapper);
             map.ShowDialog();
         }
     }

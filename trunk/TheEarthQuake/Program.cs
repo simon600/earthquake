@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using TheEarthQuake.Logic;
+using TheEarthQuake.Engine;
 
 namespace TheEarthQuake.GUI
 {
@@ -16,7 +18,13 @@ namespace TheEarthQuake.GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new WelcomeForm());
+
+            Controller gameController = new Controller();
+            WelcomeFormControllerWrapper welcomeFormControllerWrapper =
+                new WelcomeFormControllerWrapper(gameController);
+
+            WelcomeForm form = new WelcomeForm(welcomeFormControllerWrapper);
+            Application.Run(form);
         }
     }
 }
