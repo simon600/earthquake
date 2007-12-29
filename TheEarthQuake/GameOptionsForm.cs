@@ -5,21 +5,41 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using TheEarthQuake.Logic;
+
+/*
+ * TODO:
+ *   -> w polach tekstowych "gora, dol, etc, etc" 
+ *      powinny pojawiac sie klawisze przypisane do gracza,
+ *      a nie klawisze wciskane na klawiaturze.
+ *   -> pola tekstowe nie powinny przechwytywac focusu.
+ */
 
 namespace TheEarthQuake.GUI
 {
     public partial class GameOptionsForm : Form
     {
-        public GameOptionsForm()
+        GameOptionsFormControllerWrapper controllerWrapper;
+        
+        public GameOptionsForm(GameOptionsFormControllerWrapper controllerWrapper)
         {
             InitializeComponent();
             this.comboBox1.SelectedIndex = 0;
             this.comboBox3.SelectedIndex = 0;
+
+            this.controllerWrapper = controllerWrapper;
         }
 
         /* method for handling key pressed events */
         protected override bool ProcessDialogKey(Keys keyData)
         {
+            /*
+             * Keys:
+             *   Space - check/unchech checkboxes, if focused
+             *   Esc, Left - exit (invoke button1 action)
+             *   Enter, Right - proceed (invoke button2 action)
+             */
+            
             switch (keyData)
             { 
                 /* check/uncheck checkbox, if focused */

@@ -5,19 +5,30 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using TheEarthQuake.Logic;
 
 namespace TheEarthQuake.GUI
 {
     public partial class WelcomeForm : Form
     {
-        public WelcomeForm()
+        WelcomeFormControllerWrapper controllerWrapper;
+        
+        public WelcomeForm(WelcomeFormControllerWrapper controllerWrapper)
         {
+            this.controllerWrapper = controllerWrapper;
             InitializeComponent();
         }
 
         /* This method handles key pressed event. */
         protected override bool ProcessDialogKey(Keys keyData)
         {
+            /* Keys:
+             *  Esc, Q  : exit application (kill)
+             *  O : invoke options form
+             *  N : invoke new game form
+             *  E : exit game 
+             */
+
             switch (keyData)
             { 
                 /* quit application */
@@ -86,13 +97,18 @@ namespace TheEarthQuake.GUI
 
         private void OptionButton_Click(object sender, EventArgs e)
         {
-            GameOptionsForm window = new GameOptionsForm();
+            GameOptionsForm window =
+                new GameOptionsForm(
+                    this.controllerWrapper.GameOptionsFormControllerWrapper);
             window.ShowDialog();
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            SelectPlayerForm window = new SelectPlayerForm();
+            SelectPlayerForm window = 
+                new SelectPlayerForm(
+                    this.controllerWrapper.SelectPlayersFormControllerWrapper);
+
             window.ShowDialog();
         }
     }
