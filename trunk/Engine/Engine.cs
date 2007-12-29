@@ -1,3 +1,10 @@
+/* TODO:
+ *  Wyœwietlanie graczy jak bêd¹ napisani
+ *  Wyœwietlanie bomb, wybuchów i wszystkiego czego jeszcze nie ma
+ *  Poprawiæ coœ z teksturami wody
+ *  
+ */
+
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -6,14 +13,21 @@ using TheEarthQuake.Maps;
 
 namespace TheEarthQuake.Engine
 {
+    /// <summary>
+    /// Initializes OpenGL and draws everything that needs to be drawn
+    /// in OpenGL (map, players, bombs etc.
+    /// </summary>
     public class Engine : OpenGLControl
     {        
-        private MapWrapper mapWrapper;
-        private float width;
-        private float height;
-        private OpenGLTexture2D[] textures;
-        private OpenGLTexture2D[] waterTextures;
+        private MapWrapper mapWrapper;  //grants access to some function and properties of Map
+        private float width;    //window width
+        private float height;   //window height
+        private OpenGLTexture2D[] textures; //holds textures for terain
+        private OpenGLTexture2D[] waterTextures;    //holds textures for wter tiles
 
+        /// <summary>
+        /// Constructor - loads textures and sets some default values
+        /// </summary>
         public Engine() : base()
         {   
             mapWrapper = null;
@@ -56,6 +70,9 @@ namespace TheEarthQuake.Engine
             waterTextures[19] = new OpenGLTexture2D(@"Textures\\WaterCUpLeft.bmp");
         }
 
+        /// <summary>
+        /// Sets window width
+        /// </summary>
         public float WindowWidth
         {
             set
@@ -64,6 +81,9 @@ namespace TheEarthQuake.Engine
             }
         }
 
+        /// <summary>
+        /// Sets window height
+        /// </summary>
         public float WindowHeight
         {
             set
@@ -72,11 +92,18 @@ namespace TheEarthQuake.Engine
             }
         }
 
+        /// <summary>
+        /// Sets map wrapper
+        /// </summary>
+        /// <param name="mapWrapper">Map wrapper to be set</param>
         public void SetWrapper(MapWrapper mapWrapper)
         {
             this.mapWrapper = mapWrapper;
         }
 
+        /// <summary>
+        /// This function is called every time a frame is drawn
+        /// </summary>
         public override void glDraw()
         {
             GL.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
@@ -86,6 +113,9 @@ namespace TheEarthQuake.Engine
             DrawPlayers();
         }        
 
+        /// <summary>
+        /// Initializes OpenGL
+        /// </summary>
         protected override void InitGLContext()
         {
             GL.glEnable(GL.GL_TEXTURE_2D); 
@@ -97,6 +127,10 @@ namespace TheEarthQuake.Engine
             GL.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
         }
 
+        /// <summary>
+        /// Called when window size is changed
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -109,6 +143,9 @@ namespace TheEarthQuake.Engine
             GL.glLoadIdentity();
         }
 
+        /// <summary>
+        /// Draws a map
+        /// </summary>
         private void DrawMap()
         {                        
             GL.glPushMatrix();
@@ -262,6 +299,9 @@ namespace TheEarthQuake.Engine
             //throw new Exception("The method or operation is not implemented.");
         }
 
+        /// <summary>
+        /// Draws background
+        /// </summary>
         private void DrawBackground()
         {
             GL.glPushMatrix();
