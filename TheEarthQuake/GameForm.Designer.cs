@@ -13,11 +13,17 @@ namespace TheEarthQuake.GUI
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing)
             {
-                components.Dispose();
+                if (components != null)
+                {
+                    components.Dispose();
+                }
             }
             base.Dispose(disposing);
+            // Abort the OpenGL Thread
+            // otherwise it will last rendering forever
+            thrOpenGL.Abort();
         }
 
         #region Windows Form Designer generated code

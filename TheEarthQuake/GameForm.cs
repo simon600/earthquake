@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 using TheEarthQuake.Logic;
 
 /*
@@ -21,14 +22,16 @@ namespace TheEarthQuake.GUI
 {
     public partial class GameForm : Form
     {
-        Engine.Engine engine;
-        Logic.StateMachine stateMachine;
+        private Engine.Engine engine;
+        private Logic.StateMachine stateMachine;
+        private Thread thrOpenGL;   //watek dla wyswietlania i dla podejmowanych akcji
 
         GameFormControllerWrapper controllerWrapper;
 
         public GameForm(GameFormControllerWrapper controllerWrapper)
         {
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false;
             this.controllerWrapper = controllerWrapper;
 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -42,6 +45,9 @@ namespace TheEarthQuake.GUI
             Maps.MapWrapper mapwr = new Maps.MapWrapper(stateMachine.Map);
             this.engine.SetWrapper(mapwr);
             this.engine.Dock = DockStyle.Fill;
+
+            this.thrOpenGL = new Thread(new ThreadStart(OpenGL_Start));
+            this.thrOpenGL.Start();
         }
                 
         /* method for handling key pressed events */
@@ -119,6 +125,17 @@ namespace TheEarthQuake.GUI
 
                 default:
                     return base.ProcessDialogKey(keyData);
+            }
+        }
+        
+
+        private void OpenGL_Start()
+        {
+            //to powinno jeszcze wywolywac jakies tiki itd...
+
+            while(true) // infinity loop for rendering
+            {
+                this.engine.Refresh();
             }
         }
     }

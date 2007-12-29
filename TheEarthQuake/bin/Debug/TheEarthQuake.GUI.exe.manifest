@@ -39,7 +39,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>WaUHjfeseF6qALKUQNUS7oDGFAY=</dsig:DigestValue>
+        <dsig:DigestValue>vdtAVJo/QH2uqbAkJAYD0e3v18s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -63,19 +63,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>8r5D4r3mWpUmRlkM6w2l9rvbJ4w=</dsig:DigestValue>
+        <dsig:DigestValue>Tx2h0bPXUQg/zwckD3k2sDyYV3M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheEarthQuake.GUI.exe" size="196608">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheEarthQuake.GUI.exe" size="200704">
       <assemblyIdentity name="TheEarthQuake.GUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>sWQj4/Lqus/P8luyyQvW4de/Rlo=</dsig:DigestValue>
+        <dsig:DigestValue>nSoFxXMGPPk+QZgcC6rqywhtrjk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -87,7 +87,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>VFcQt01mREA4I9TLDTNqGN6Yi+Q=</dsig:DigestValue>
+        <dsig:DigestValue>NcoJIhuQA2Ieq3fYIaW1Xq6Q9b4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

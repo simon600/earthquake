@@ -81,6 +81,7 @@ namespace TheEarthQuake.GUI
                 new GameForm(
                     this.controllerWrapper.gameFormControllerWrapper);
             gameForm.ShowDialog();
+            gameForm.Dispose(); // releases all the components in gameForm
         }
     }
 }
