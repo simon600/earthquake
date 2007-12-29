@@ -108,9 +108,18 @@ namespace TheEarthQuake.Engine
         {
             GL.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
             GL.glLoadIdentity();
+
+
             DrawBackground();
             DrawMap();
             DrawPlayers();
+
+            GL.glColor3d(0.5, 0.5, 0.5);
+            GL.glBegin(GL.GL_TRIANGLES);
+            GL.glVertex2d(0.0, 0.0);
+            GL.glVertex2d(100.0, 0.0);
+            GL.glVertex2d(0.0, 100.0);
+            GL.glEnd();
         }        
 
         /// <summary>

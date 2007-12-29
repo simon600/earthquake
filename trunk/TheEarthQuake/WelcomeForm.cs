@@ -89,7 +89,7 @@ namespace TheEarthQuake.GUI
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Czy chcesz opuœciæ grê The Earth Quake?", "The Earh Quake", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Czy chcesz opuœciæ grê The Earth Quake?", "The Earth Quake", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 this.Close();
             }
