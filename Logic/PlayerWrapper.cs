@@ -24,7 +24,7 @@ namespace TheEarthQuake.Logic
         {
             get 
             {
-                return player.BaseStep;
+                return Player.BaseStep;
             }
         }
 
@@ -35,7 +35,7 @@ namespace TheEarthQuake.Logic
         {
             get
             {
-                return player.PlayerRadius;
+                return Player.PlayerRadius;
             }
         }
        
@@ -189,7 +189,7 @@ namespace TheEarthQuake.Logic
         {
             get
             { 
-                return player.maxHealth;
+                return player.MaxHealth;
             }
         }
 

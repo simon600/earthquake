@@ -39,7 +39,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>dkceGHjWhvLY9zx/YK/yFRrV7Sk=</dsig:DigestValue>
+        <dsig:DigestValue>aEZpFFsov+tR5nWDBkiG8HVqM28=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -63,31 +63,31 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>zjMuRBcfYJVAGZup53fS2kcYRfc=</dsig:DigestValue>
+        <dsig:DigestValue>VMQaoqlcT7fkFBs10zC0rOW29VA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheEarthQuake.GUI.exe" size="196608">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheEarthQuake.GUI.exe" size="200704">
       <assemblyIdentity name="TheEarthQuake.GUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>k+uuR3TlbMC+LKkZLkeyDYlVkcE=</dsig:DigestValue>
+        <dsig:DigestValue>yn7L1DhjmH3rcaRyLV8xHO5mfsw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheEarthQuake.Logic.dll" size="24576">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheEarthQuake.Logic.dll" size="28672">
       <assemblyIdentity name="TheEarthQuake.Logic" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>PzR/ZhV3rJXBHoM0b8ao5gcWzkI=</dsig:DigestValue>
+        <dsig:DigestValue>4nKp3tEqQr7wEXWjNWDVQvcjvVU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
