@@ -234,7 +234,7 @@ namespace TheEarthQuake.Engine
                         }
                         else //water on right
                         {
-                            if (i <= mapWrapper.MapHeight && !(mapWrapper.GetField(i + 1, j) is Water)) //water on right and no water down
+                            if (i < mapWrapper.MapHeight-1 && !(mapWrapper.GetField(i + 1, j) is Water)) //water on right and no water down
                             {
                                 if (j > 0 && !(mapWrapper.GetField(i, j - 1) is Water)) //water on right and no water down and left
                                 {
