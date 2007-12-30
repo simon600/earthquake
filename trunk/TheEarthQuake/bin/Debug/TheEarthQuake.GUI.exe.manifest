@@ -39,7 +39,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>vdtAVJo/QH2uqbAkJAYD0e3v18s=</dsig:DigestValue>
+        <dsig:DigestValue>aEZpFFsov+tR5nWDBkiG8HVqM28=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -63,7 +63,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Tx2h0bPXUQg/zwckD3k2sDyYV3M=</dsig:DigestValue>
+        <dsig:DigestValue>VMQaoqlcT7fkFBs10zC0rOW29VA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -75,19 +75,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>nSoFxXMGPPk+QZgcC6rqywhtrjk=</dsig:DigestValue>
+        <dsig:DigestValue>yn7L1DhjmH3rcaRyLV8xHO5mfsw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheEarthQuake.Logic.dll" size="24576">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheEarthQuake.Logic.dll" size="28672">
       <assemblyIdentity name="TheEarthQuake.Logic" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>NcoJIhuQA2Ieq3fYIaW1Xq6Q9b4=</dsig:DigestValue>
+        <dsig:DigestValue>4nKp3tEqQr7wEXWjNWDVQvcjvVU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
