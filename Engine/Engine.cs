@@ -15,7 +15,7 @@ namespace TheEarthQuake.Engine
 {
     /// <summary>
     /// Initializes OpenGL and draws everything that needs to be drawn
-    /// in OpenGL (map, players, bombs etc.
+    /// in OpenGL (map, players, bombs etc.)
     /// </summary>
     public class Engine : OpenGLControl
     {        
@@ -23,7 +23,7 @@ namespace TheEarthQuake.Engine
         private float width;    //window width
         private float height;   //window height
         private OpenGLTexture2D[] textures; //holds textures for terain
-        private OpenGLTexture2D[] waterTextures;    //holds textures for wter tiles
+        private OpenGLTexture2D[] waterTextures;    //holds textures for water tiles
 
         /// <summary>
         /// Constructor - loads textures and sets some default values
@@ -113,13 +113,6 @@ namespace TheEarthQuake.Engine
             DrawBackground();
             DrawMap();
             DrawPlayers();
-
-            GL.glColor3d(0.5, 0.5, 0.5);
-            GL.glBegin(GL.GL_TRIANGLES);
-            GL.glVertex2d(0.0, 0.0);
-            GL.glVertex2d(100.0, 0.0);
-            GL.glVertex2d(0.0, 100.0);
-            GL.glEnd();
         }        
 
         /// <summary>
