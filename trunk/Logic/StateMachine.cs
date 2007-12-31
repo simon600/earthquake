@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TheEarthQuake.Players;
 
 /*
  *  TODO: 
@@ -65,6 +66,8 @@ namespace TheEarthQuake.Logic
 
         /// <summary>
         /// Accessor to current map. Only get. Redundant?
+        /// 
+        /// I think so. We have a factory few lines below.. (michal)
         /// </summary>
         public Maps.Map Map
         {

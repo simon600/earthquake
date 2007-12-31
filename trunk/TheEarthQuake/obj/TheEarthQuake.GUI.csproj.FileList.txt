@@ -46,3 +46,5 @@ bin\Debug\TheEarthQuake.GUI.exe.manifest
 bin\Debug\TheEarthQuake.GUI.application
 obj\Debug\TheEarthQuake.GUI.exe.manifest
 obj\Debug\TheEarthQuake.GUI.application
+bin\Debug\TheEarthQuake.Players.dll
+bin\Debug\TheEarthQuake.Players.pdb

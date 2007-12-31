@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace TheEarthQuake.Logic
+namespace TheEarthQuake.Players
 {
-    class PlayerWrapper
+    public class PlayerWrapper
     {
         private Player player;
 
@@ -13,7 +13,7 @@ namespace TheEarthQuake.Logic
         /// </summary>
         /// <param name="player">Player to wrap</param>
         public PlayerWrapper(Player player)
-        {   
+        {
             this.player = player;
         }
 
@@ -22,7 +22,7 @@ namespace TheEarthQuake.Logic
         /// </summary>
         public static float BaseStep
         {
-            get 
+            get
             {
                 return Player.BaseStep;
             }
@@ -38,13 +38,13 @@ namespace TheEarthQuake.Logic
                 return Player.PlayerRadius;
             }
         }
-       
+
         /// <summary>
         /// Accessor to height in discrete coordinate system.
         /// </summary>
         public int PositionI
         {
-            get 
+            get
             {
                 return player.PositionI;
             }
@@ -60,7 +60,7 @@ namespace TheEarthQuake.Logic
                 return player.PositionJ;
             }
         }
-        
+
         /// <summary>
         /// Accessor for heigth in floating point coordinate system.
         /// </summary>
@@ -188,7 +188,7 @@ namespace TheEarthQuake.Logic
         public int MaxHealth
         {
             get
-            { 
+            {
                 return player.MaxHealth;
             }
         }

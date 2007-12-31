@@ -63,7 +63,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>VMQaoqlcT7fkFBs10zC0rOW29VA=</dsig:DigestValue>
+        <dsig:DigestValue>ShOU1AR3NqYF0qhEt9SP4L06znM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -75,19 +75,31 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>yn7L1DhjmH3rcaRyLV8xHO5mfsw=</dsig:DigestValue>
+        <dsig:DigestValue>jZ2lFb8b8/ok/hdzv9IzE0QJwWY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheEarthQuake.Logic.dll" size="28672">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheEarthQuake.Logic.dll" size="24576">
       <assemblyIdentity name="TheEarthQuake.Logic" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>4nKp3tEqQr7wEXWjNWDVQvcjvVU=</dsig:DigestValue>
+        <dsig:DigestValue>IBoNCIZ/ZTb1UcecV9qAbfJXNBc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheEarthQuake.Players.dll" size="20480">
+      <assemblyIdentity name="TheEarthQuake.Players" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>YmCDPvLDvuojwKRIPeufP8epqzM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

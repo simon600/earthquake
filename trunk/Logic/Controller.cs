@@ -274,7 +274,7 @@ namespace TheEarthQuake.Logic
              * map; though, it takes a map wrapper, that restricts 
              * engine rights to reading from the map. 
              */
-            graphicsEngine.SetWrapper(stateMachine.GetWrapper());
+            graphicsEngine.SetMapWrapper(stateMachine.GetWrapper());
         }
     }
 }

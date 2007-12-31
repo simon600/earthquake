@@ -16,3 +16,5 @@ bin\Debug\nunit.framework.dll
 bin\Debug\nunit.framework.xml
 bin\Release\nunit.framework.dll
 bin\Release\nunit.framework.xml
+bin\Debug\TheEarthQuake.Players.dll
+bin\Debug\TheEarthQuake.Players.pdb

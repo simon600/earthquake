@@ -9,7 +9,7 @@ using System.Text;
  *      -> uzupelnic komentarze w kodzie (pola klasy)
  */
 
-namespace TheEarthQuake.Logic
+namespace TheEarthQuake.Players
 {
     /// <summary>
     /// Player class. Holds every information about the player;
@@ -23,7 +23,7 @@ namespace TheEarthQuake.Logic
 
         private float positionX;  // player position in floating coordinates
         private float positionY;  // player position in floating coordinates
-        
+
         private int speed;        // player speed
         private int minePower;    // how strong player's mines are 
         private int mineRange;    // radius of mine explosion (in map fields)
@@ -48,7 +48,7 @@ namespace TheEarthQuake.Logic
         /// </summary>
         public static float BaseStep
         {
-            get 
+            get
             {
                 return baseStep;
             }
@@ -77,24 +77,24 @@ namespace TheEarthQuake.Logic
         /// <param name="x">height in floating point coordinate system</param>
         /// <param name="y">width in floating point coordinate system</param>
         public Player(int i, int j, float x, float y)
-        {   
+        {
             positionI = i;
             positionJ = j;
             positionX = x;
             positionY = y;
         }
-        
+
         /// <summary>
         /// Accessor to height in discrete coordinate system. Both get and set.
         /// </summary>
         public int PositionI
         {
-            get 
+            get
             {
                 return this.positionI;
             }
 
-            set 
+            set
             {
                 this.positionI = value;
             }
@@ -115,7 +115,7 @@ namespace TheEarthQuake.Logic
                 this.positionJ = value;
             }
         }
-        
+
         /// <summary>
         /// Accessor for heigth in floating point coordinate system. Both get and set.
         /// </summary>
@@ -298,7 +298,7 @@ namespace TheEarthQuake.Logic
         public int MaxHealth
         {
             get
-            { 
+            {
                 return maxHealth;
             }
             set
