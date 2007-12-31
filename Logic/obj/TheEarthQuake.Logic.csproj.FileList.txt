@@ -20,3 +20,5 @@ bin\Debug\Maps.pdb
 obj\Debug\ResolveAssemblyReference.cache
 obj\Debug\TheEarthQuake.Logic.dll
 obj\Debug\TheEarthQuake.Logic.pdb
+bin\Debug\TheEarthQuake.Players.dll
+bin\Debug\TheEarthQuake.Players.pdb

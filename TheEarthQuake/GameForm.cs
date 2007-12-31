@@ -24,14 +24,18 @@ namespace TheEarthQuake.GUI
     {
         private Engine.Engine engine;
         private Logic.StateMachine stateMachine;
-        private Thread thrOpenGL;   //watek dla wyswietlania i dla podejmowanych akcji
+        private Thread thrOpenGL;   //thred needed to display scene and modify the state
 
         GameFormControllerWrapper controllerWrapper;
 
         public GameForm(GameFormControllerWrapper controllerWrapper)
         {
             InitializeComponent();
+            // Next line is needed to avoid some faults with thread
+            // (delete it to check what happens). If you know better
+            // solution feel free to modify code :).
             CheckForIllegalCrossThreadCalls = false;
+
             this.controllerWrapper = controllerWrapper;
 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -42,8 +46,8 @@ namespace TheEarthQuake.GUI
             this.engine = new Engine.Engine();
             this.engine.Parent = this;
             this.stateMachine = new Logic.StateMachine();
-            Maps.MapWrapper mapwr = new Maps.MapWrapper(stateMachine.Map);
-            this.engine.SetWrapper(mapwr);
+            Maps.MapWrapper mapwr = this.stateMachine.GetWrapper();
+            this.engine.SetMapWrapper(mapwr);
             this.engine.Dock = DockStyle.Fill;
 
             this.thrOpenGL = new Thread(new ThreadStart(OpenGL_Start));

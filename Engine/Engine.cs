@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using CsGL.OpenGL;
 using TheEarthQuake.Maps;
+using TheEarthQuake.Players;
 
 namespace TheEarthQuake.Engine
 {
@@ -20,6 +21,7 @@ namespace TheEarthQuake.Engine
     public class Engine : OpenGLControl
     {        
         private MapWrapper mapWrapper;  //grants access to some function and properties of Map
+        private PlayerWrapper playerWrapper; //grants access to some properties of Player
         private float width;    //window width
         private float height;   //window height
         private OpenGLTexture2D[] textures; //holds textures for terain
@@ -31,6 +33,7 @@ namespace TheEarthQuake.Engine
         public Engine() : base()
         {   
             mapWrapper = null;
+            playerWrapper = null;
            
             /*
              * You can change the values of width and height 
@@ -93,12 +96,21 @@ namespace TheEarthQuake.Engine
         }
 
         /// <summary>
-        /// Sets map wrapper
+        /// Sets map wrapper.
         /// </summary>
-        /// <param name="mapWrapper">Map wrapper to be set</param>
-        public void SetWrapper(MapWrapper mapWrapper)
+        /// <param name="mapWrapper">Map wrapper to be set.</param>
+        public void SetMapWrapper(MapWrapper mapWrapper)
         {
             this.mapWrapper = mapWrapper;
+        }
+
+        /// <summary>
+        /// Sets player wrapper.
+        /// </summary>
+        /// <param name="playerWrapper">Player wrapper to be set.</param>
+        public void SetPlayerWrapper(PlayerWrapper playerWrapper)
+        {
+            this.playerWrapper = playerWrapper;
         }
 
         /// <summary>

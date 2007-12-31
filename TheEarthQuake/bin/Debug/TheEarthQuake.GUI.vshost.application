@@ -4,14 +4,14 @@
   <description asmv2:publisher="TheEarthQuake.GUI" asmv2:product="TheEarthQuake.GUI" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="TheEarthQuake.GUI.exe.manifest" size="5365">
+    <dependentAssembly dependencyType="install" codebase="TheEarthQuake.GUI.exe.manifest" size="6007">
       <assemblyIdentity name="TheEarthQuake.GUI.exe" version="1.0.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>/H1Au2ueYmKVMKrNOAsXeI12jTM=</dsig:DigestValue>
+        <dsig:DigestValue>IKMD9fm5zCr+8sZfl8STsCDz04I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
