@@ -46,31 +46,31 @@ namespace TheEarthQuake.Engine
 
             textures = new OpenGLTexture2D[3];
             waterTextures = new OpenGLTexture2D[20];
-          
-            textures[0] = new OpenGLTexture2D(@"Textures\\Stone.bmp");
-            textures[1] = new OpenGLTexture2D(@"Textures\\Bricks.bmp");
-            textures[2] = new OpenGLTexture2D(@"Textures\\Path.bmp");
 
-            waterTextures[0]  = new OpenGLTexture2D(@"Textures\\Water.bmp");
-            waterTextures[1]  = new OpenGLTexture2D(@"Textures\\Water1Left.bmp");
-            waterTextures[2]  = new OpenGLTexture2D(@"Textures\\Water1Down.bmp");
-            waterTextures[3]  = new OpenGLTexture2D(@"Textures\\Water1Right.bmp");
-            waterTextures[4]  = new OpenGLTexture2D(@"Textures\\Water1Up.bmp");
-            waterTextures[5]  = new OpenGLTexture2D(@"Textures\\Water2DownLeft.bmp");
-            waterTextures[6]  = new OpenGLTexture2D(@"Textures\\Water2DownRight.bmp");
-            waterTextures[7]  = new OpenGLTexture2D(@"Textures\\Water2UpLeft.bmp");
-            waterTextures[8]  = new OpenGLTexture2D(@"Textures\\Water2UpRight.bmp");
-            waterTextures[9]  = new OpenGLTexture2D(@"Textures\\Water2UpDown.bmp");
-            waterTextures[10] = new OpenGLTexture2D(@"Textures\\Water2LeftRight.bmp");
-            waterTextures[11] = new OpenGLTexture2D(@"Textures\\Water3NoLeft.bmp");
-            waterTextures[12] = new OpenGLTexture2D(@"Textures\\Water3NoDown.bmp");
-            waterTextures[13] = new OpenGLTexture2D(@"Textures\\Water3NoRight.bmp");
-            waterTextures[14] = new OpenGLTexture2D(@"Textures\\Water3NoUp.bmp");
-            waterTextures[15] = new OpenGLTexture2D(@"Textures\\Water4.bmp");
-            waterTextures[16] = new OpenGLTexture2D(@"Textures\\WaterCDownLeft.bmp");
-            waterTextures[17] = new OpenGLTexture2D(@"Textures\\WaterCDownRight.bmp");
-            waterTextures[18] = new OpenGLTexture2D(@"Textures\\WaterCUpRight.bmp");
-            waterTextures[19] = new OpenGLTexture2D(@"Textures\\WaterCUpLeft.bmp");
+            textures[0] = new OpenGLTexture2D(@"..\..\..\textures\Stone.bmp");
+            textures[1] = new OpenGLTexture2D(@"..\..\..\textures\Bricks.bmp");
+            textures[2] = new OpenGLTexture2D(@"..\..\..\textures\Path.bmp");
+
+            waterTextures[0] = new OpenGLTexture2D(@"..\..\..\textures\Water.bmp");
+            waterTextures[1] = new OpenGLTexture2D(@"..\..\..\textures\Water1Left.bmp");
+            waterTextures[2] = new OpenGLTexture2D(@"..\..\..\textures\Water1Down.bmp");
+            waterTextures[3] = new OpenGLTexture2D(@"..\..\..\textures\Water1Right.bmp");
+            waterTextures[4] = new OpenGLTexture2D(@"..\..\..\textures\Water1Up.bmp");
+            waterTextures[5] = new OpenGLTexture2D(@"..\..\..\textures\Water2DownLeft.bmp");
+            waterTextures[6] = new OpenGLTexture2D(@"..\..\..\textures\Water2DownRight.bmp");
+            waterTextures[7] = new OpenGLTexture2D(@"..\..\..\textures\Water2UpLeft.bmp");
+            waterTextures[8] = new OpenGLTexture2D(@"..\..\..\textures\Water2UpRight.bmp");
+            waterTextures[9] = new OpenGLTexture2D(@"..\..\..\textures\Water2UpDown.bmp");
+            waterTextures[10] = new OpenGLTexture2D(@"..\..\..\textures\Water2LeftRight.bmp");
+            waterTextures[11] = new OpenGLTexture2D(@"..\..\..\textures\Water3NoLeft.bmp");
+            waterTextures[12] = new OpenGLTexture2D(@"..\..\..\textures\Water3NoDown.bmp");
+            waterTextures[13] = new OpenGLTexture2D(@"..\..\..\textures\Water3NoRight.bmp");
+            waterTextures[14] = new OpenGLTexture2D(@"..\..\..\textures\Water3NoUp.bmp");
+            waterTextures[15] = new OpenGLTexture2D(@"..\..\..\textures\Water4.bmp");
+            waterTextures[16] = new OpenGLTexture2D(@"..\..\..\textures\WaterCDownLeft.bmp");
+            waterTextures[17] = new OpenGLTexture2D(@"..\..\..\textures\WaterCDownRight.bmp");
+            waterTextures[18] = new OpenGLTexture2D(@"..\..\..\textures\WaterCUpRight.bmp");
+            waterTextures[19] = new OpenGLTexture2D(@"..\..\..\textures\WaterCUpLeft.bmp");
         }
 
         /// <summary>
