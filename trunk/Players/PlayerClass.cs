@@ -7,13 +7,12 @@ using System.Text;
 
 namespace TheEarthQuake.Players
 {
-    /**
-     * Player Class. Holds information about what values attributes have in some player class.
-     *
-     */
+    /// <summary>
+    /// Player class. Holds information about what values attributes have in some player class.
+    /// </summary>
     public class PlayerClass
     {
-        private string name;       // player class name
+        private string name;      // player class name
         private int speed;        // player speed
         private int minePower;    // how strong player's mines are 
         private int mineRange;    // radius of mine explosion (in map fields)
@@ -32,6 +31,9 @@ namespace TheEarthQuake.Players
         private string texturePath; // path to file with player texture
         private string logoPath;  // path to file with player class logo
         
+        /// <summary>
+        /// Player class constructor.
+        /// </summary>
         public PlayerClass()
         {
         }
@@ -163,9 +165,6 @@ namespace TheEarthQuake.Players
             }
         }
 
-       
-     
-
         /// <summary>
         /// Accessor for a number of mines that player can set simultanously. Both get and set.
         /// </summary>
@@ -212,8 +211,6 @@ namespace TheEarthQuake.Players
                 maxHealth = value;
             }
         }
-
-       
 
         /// <summary>
         /// ???. Both get and set.

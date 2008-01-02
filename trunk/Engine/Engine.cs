@@ -20,13 +20,13 @@ namespace TheEarthQuake.Engine
     /// </summary>
     public class Engine : OpenGLControl
     {        
-        private MapWrapper mapWrapper;  //grants access to some function and properties of Map
-        private PlayerWrapper player1Wrapper; //grants access to some properties of Players
-        private PlayerWrapper player2Wrapper; //grants access to some properties
-        private float width;    //window width
-        private float height;   //window height
-        private OpenGLTexture2D[] textures; //holds textures for terain
-        private OpenGLTexture2D[] waterTextures;    //holds textures for water tiles
+        private MapWrapper mapWrapper;          //grants access to some function and properties of Map
+        private PlayerWrapper player1Wrapper;   //grants access to some properties of Players
+        private PlayerWrapper player2Wrapper;   //grants access to some properties
+        private float width;                    //window width
+        private float height;                   //window height
+        private OpenGLTexture2D[] textures;     //holds textures for terain
+        private OpenGLTexture2D[] waterTextures;//holds textures for water tiles
 
         /// <summary>
         /// Constructor - loads textures and sets some default values
@@ -160,7 +160,7 @@ namespace TheEarthQuake.Engine
         }
 
         /// <summary>
-        /// Draws a map
+        /// Draws a map.
         /// </summary>
         private void DrawMap()
         {                        
@@ -310,6 +310,9 @@ namespace TheEarthQuake.Engine
             GL.glPopMatrix();
         }
 
+        /// <summary>
+        /// Draws players.
+        /// </summary>
         private void DrawPlayers()
         {
             float x1, y1;

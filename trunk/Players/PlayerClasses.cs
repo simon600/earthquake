@@ -17,8 +17,7 @@ namespace TheEarthQuake.Players
     {
         // current player classes list
         private List<PlayerClass> playerClasses = new List<PlayerClass>();
-      
-
+    
         /// <summary>
         /// Load player classes from an XML file
         /// </summary>
