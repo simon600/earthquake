@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using TheEarthQuake.Logic;
+using TheEarthQuake.Maps;
+using TheEarthQuake.Players;
 
 /*
  *  TODO: prawdopodobnie taki sposob obslugi klawiszy spowoduje, ze 
@@ -24,7 +26,7 @@ namespace TheEarthQuake.GUI
     {
         private Engine.Engine engine;
         private Logic.StateMachine stateMachine;
-        private Thread thrOpenGL;   //thred needed to display scene and modify the state
+        private Thread thrOpenGL;   //thread needed to display scene and modify the state
 
         GameFormControllerWrapper controllerWrapper;
 
@@ -43,18 +45,28 @@ namespace TheEarthQuake.GUI
             this.Name = "EarthQuake";
             this.Text = "EarthQuake";
 
-            this.engine = new Engine.Engine();
+            this.engine = this.controllerWrapper.GraphicsEngine;
+            this.stateMachine = this.controllerWrapper.StateMachine;
+
             this.engine.Parent = this;
-            this.stateMachine = new Logic.StateMachine();
-            Maps.MapWrapper mapwr = this.stateMachine.GetWrapper();
-            this.engine.SetMapWrapper(mapwr);
             this.engine.Dock = DockStyle.Fill;
+
+            Maps.MapWrapper mapwr = this.stateMachine.GetMapWrapper();
+            this.engine.SetMapWrapper(mapwr);
+            PlayerWrapper p1 = this.stateMachine.GetPlayerOneWrapper();
+            PlayerWrapper p2 = this.stateMachine.GetPlayerTwoWrapper();
+            this.engine.SetPlayersWrapper(p1, p2);
+
 
             this.thrOpenGL = new Thread(new ThreadStart(OpenGL_Start));
             this.thrOpenGL.Start();
         }
                 
-        /* method for handling key pressed events */
+        /// <summary>
+        /// Method for handling key pressed events.
+        /// </summary>
+        /// <param name="keyData">Keys data.</param>
+        /// <returns></returns>
         protected override bool ProcessDialogKey(Keys keyData)
         {
             /* Keys:

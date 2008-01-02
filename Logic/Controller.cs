@@ -18,7 +18,7 @@ namespace TheEarthQuake.Logic
     {
         /* every controller wrapper has direct access to 
            the controller */
-        protected Controller controller;  
+        protected Controller controller;
     }
 
     /// <summary>
@@ -30,6 +30,22 @@ namespace TheEarthQuake.Logic
         public GameFormControllerWrapper(Controller controller)
         {
             this.controller = controller;
+        }
+
+        
+        public Engine.Engine GraphicsEngine
+        {
+            get
+            {
+                return controller.GraphicsEngine;
+            }
+        }
+        public StateMachine StateMachine
+        {
+            get
+            {
+                return controller.StateMachine;
+            }
         }
 
         public void MovePlayer1Up()
@@ -95,6 +111,20 @@ namespace TheEarthQuake.Logic
         {
             this.controller = controller;
         }
+        public Engine.Engine GraphicsEngine
+        {
+            get
+            {
+                return controller.GraphicsEngine;
+            }
+        }
+        public StateMachine StateMachine
+        {
+            get
+            {
+                return controller.StateMachine;
+            }
+        }
     }
     
     /// <summary>
@@ -107,7 +137,20 @@ namespace TheEarthQuake.Logic
         {
             this.controller = controller;
         }
-
+        public Engine.Engine GraphicsEngine
+        {
+            get
+            {
+                return controller.GraphicsEngine;
+            }
+        }
+        public StateMachine StateMachine
+        {
+            get
+            {
+                return controller.StateMachine;
+            }
+        }
         /// <summary>
         /// This property is used to generate controller wrapper for the form,
         /// that is generated when button2 is pressed. 
@@ -139,6 +182,20 @@ namespace TheEarthQuake.Logic
     /// </summary>
     public class SelectPlayerFormControllerWrapper : ControllerWrapper
     {
+        public Engine.Engine GraphicsEngine
+        {
+            get
+            {
+                return controller.GraphicsEngine;
+            }
+        }
+        public StateMachine StateMachine
+        {
+            get
+            {
+                return controller.StateMachine;
+            }
+        }
         public SelectPlayerFormControllerWrapper(Controller controller)
         {
             this.controller = controller;
@@ -159,6 +216,20 @@ namespace TheEarthQuake.Logic
     /// </summary>
     public class WelcomeFormControllerWrapper : ControllerWrapper
     {
+        public Engine.Engine GraphicsEngine
+        {
+            get
+            {
+                return controller.GraphicsEngine;
+            }
+        }
+        public StateMachine StateMachine
+        {
+            get
+            {
+                return controller.StateMachine;
+            }
+        }
         public WelcomeFormControllerWrapper(Controller controller)
         {
             this.controller = controller;
@@ -197,6 +268,22 @@ namespace TheEarthQuake.Logic
     {
         private Engine.Engine graphicsEngine;       // graphics engine, the only one
         private StateMachine stateMachine;          // the only state machine 
+
+        public Engine.Engine GraphicsEngine
+        {
+            get
+            {
+                return this.graphicsEngine;
+            }
+        }
+
+        public StateMachine StateMachine
+        {
+            get
+            {
+                return this.stateMachine;
+            }
+        }
 
         /// <summary>
         /// Constructor. Creates the only instances of state machine
@@ -274,7 +361,7 @@ namespace TheEarthQuake.Logic
              * map; though, it takes a map wrapper, that restricts 
              * engine rights to reading from the map. 
              */
-            graphicsEngine.SetMapWrapper(stateMachine.GetWrapper());
+            graphicsEngine.SetMapWrapper(stateMachine.GetMapWrapper());
         }
     }
 }

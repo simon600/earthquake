@@ -21,7 +21,8 @@ namespace TheEarthQuake.Engine
     public class Engine : OpenGLControl
     {        
         private MapWrapper mapWrapper;  //grants access to some function and properties of Map
-        private PlayerWrapper playerWrapper; //grants access to some properties of Player
+        private PlayerWrapper player1Wrapper; //grants access to some properties of Players
+        private PlayerWrapper player2Wrapper; //grants access to some properties
         private float width;    //window width
         private float height;   //window height
         private OpenGLTexture2D[] textures; //holds textures for terain
@@ -33,17 +34,17 @@ namespace TheEarthQuake.Engine
         public Engine() : base()
         {   
             mapWrapper = null;
-            playerWrapper = null;
+            player1Wrapper = null;
+            player2Wrapper = null;
            
             /*
              * You can change the values of width and height 
              * using setters (in StatesMachine); default values are:
              */
-
             width = 1024;
             height = 768;
             
-
+            // initializes textures
             textures = new OpenGLTexture2D[3];
             waterTextures = new OpenGLTexture2D[20];
 
@@ -105,12 +106,14 @@ namespace TheEarthQuake.Engine
         }
 
         /// <summary>
-        /// Sets player wrapper.
+        /// Sets players wrapper.
         /// </summary>
-        /// <param name="playerWrapper">Player wrapper to be set.</param>
-        public void SetPlayerWrapper(PlayerWrapper playerWrapper)
+        /// <param name="player1">First player wrapper to be set.</param>
+        /// <param name="player2">Second player wrapper to be set.</param> 
+        public void SetPlayersWrapper(PlayerWrapper player1, PlayerWrapper player2)
         {
-            this.playerWrapper = playerWrapper;
+            this.player1Wrapper = player1;
+            this.player2Wrapper = player2;
         }
 
         /// <summary>
@@ -120,8 +123,7 @@ namespace TheEarthQuake.Engine
         {
             GL.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
             GL.glLoadIdentity();
-
-
+            
             DrawBackground();
             DrawMap();
             DrawPlayers();
@@ -310,7 +312,33 @@ namespace TheEarthQuake.Engine
 
         private void DrawPlayers()
         {
-            //throw new Exception("The method or operation is not implemented.");
+            float x1, y1;
+            float x2, y2;
+            float radius;
+
+            x1 = player1Wrapper.PositionX;
+            y1 = player1Wrapper.PositionY;
+
+            x2 = player2Wrapper.PositionX;
+            y2 = player2Wrapper.PositionY;
+
+            radius = Player.PlayerRadius;
+
+            GL.glPushMatrix();
+            GL.glTranslatef(-width / 2, height / 2, 0.0f);
+            GL.glColor3f(1.0f, 1.0f, 0.0f);
+            GL.glBegin(GL.GL_QUADS);
+            GL.glVertex2f(x1 - radius, -(y1 - radius));
+            GL.glVertex2f(x1 + radius, -(y1 - radius));
+            GL.glVertex2f(x1 + radius, -(y1 + radius));
+            GL.glVertex2f(x1 - radius, -(y1 + radius));
+
+            GL.glVertex2f(x2 - radius, -(y2 - radius));
+            GL.glVertex2f(x2 + radius, -(y2 - radius));
+            GL.glVertex2f(x2 + radius, -(y2 + radius));
+            GL.glVertex2f(x2 - radius, -(y2 + radius));
+            GL.glEnd();
+            GL.glPopMatrix();
         }
 
         /// <summary>
