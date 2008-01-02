@@ -20,7 +20,6 @@ namespace TheEarthQuake.Players
         private PlayerClass playerClass; // player class 
         private PlayerState playerState; // current player state
 
-    
         private int positionI;    // player position in map fields coordinates
         private int positionJ;    // player position in map fields coordinates
 
@@ -28,7 +27,7 @@ namespace TheEarthQuake.Players
         private float positionY;  // player position in floating coordinates
 
         private static float baseStep = (float)1;           // base shift of the player pos. when moving
-        private static float playerRadius = (float)12.5;    // border of the player, for collision detection.
+        private static float playerRadius = (float)18.5;    // border of the player, for collision detection.
 
 
         /// <summary>
@@ -57,8 +56,8 @@ namespace TheEarthQuake.Players
         /// Constructor for a player. 
         /// Warning: initial parameters must hold
         /// these inequations:
-        /// 1) i * fieldSize < x < (i+1) * fieldSize
-        /// 2) j * fieldSize < y < (j+1) * fieldSize
+        /// 1) i * fieldSize &gt; x &gt; (i+1) * fieldSize
+        /// 2) j * fieldSize &gt; y &gt; (j+1) * fieldSize
         /// </summary>
         /// <param name="i">height in discrete coordinate system</param>
         /// <param name="j">width in discrete coordinate system</param>
@@ -70,23 +69,10 @@ namespace TheEarthQuake.Players
             positionJ = j;
             positionX = x;
             positionY = y;
+            this.playerClass = new PlayerClass();
+            this.playerClass.Speed = 2;
         }
 
-        /// <summary>
-        /// Accessor to height in discrete coordinate system. Both get and set.
-        /// </summary>
-        public int PositionI
-        {
-            get
-            {
-                return this.positionI;
-            }
-
-            set
-            {
-                this.positionI = value;
-            }
-        }
 
         /// <summary>
         /// Accessors for playerClass. Both get and set.
@@ -120,6 +106,21 @@ namespace TheEarthQuake.Players
         }
 
 
+        /// <summary>
+        /// Accessor to height in discrete coordinate system. Both get and set.
+        /// </summary>
+        public int PositionI
+        {
+            get
+            {
+                return this.positionI;
+            }
+
+            set
+            {
+                this.positionI = value;
+            }
+        }
 
         /// <summary>
         /// Accessor for width in discrete coordinate system. Both get and set.

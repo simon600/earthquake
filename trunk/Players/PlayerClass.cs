@@ -34,7 +34,6 @@ namespace TheEarthQuake.Players
         
         public PlayerClass()
         {
-
         }
 
         /// <summary>

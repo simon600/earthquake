@@ -39,8 +39,8 @@ namespace TheEarthQuake.Logic
         private GameSettings currentGameSettings = null;    // actual settings
         private float currentFPS;                           // frames per second
 
-        private Player PlayerOne = null;                    // player 1 instance
-        private Player PlayerTwo = null;                    // player 2 instance
+        private Player PlayerOne;                           // player 1 instance
+        private Player PlayerTwo;                           // player 2 instance
 
         /// <summary>
         /// Accessor to screen height. Only get.
@@ -375,9 +375,25 @@ namespace TheEarthQuake.Logic
         /// <summary>
         /// Map wrapper factory.
         /// </summary>
-        public Maps.MapWrapper GetWrapper()
+        public Maps.MapWrapper GetMapWrapper()
         {
             return new Maps.MapWrapper(map);
+        }
+
+        /// <summary>
+        /// Player one factory.
+        /// </summary>
+        public PlayerWrapper GetPlayerOneWrapper()
+        {
+            return new PlayerWrapper(this.PlayerOne);
+        }
+
+        /// <summary>
+        /// Player two factory.
+        /// </summary>
+        public PlayerWrapper GetPlayerTwoWrapper()
+        {
+            return new PlayerWrapper(this.PlayerTwo);
         }
 
         /// <summary>
@@ -385,7 +401,7 @@ namespace TheEarthQuake.Logic
         /// </summary>
         public StateMachine()
         {
-            map = new Maps.Map();
+            this.map = new Maps.Map();
         }
     }
 }
