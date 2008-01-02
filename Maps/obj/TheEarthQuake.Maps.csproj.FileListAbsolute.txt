@@ -1,0 +1,5 @@
+C:\DEV\PROJECTS\EarthQuake\Maps\bin\Release\Maps.dll
+C:\DEV\PROJECTS\EarthQuake\Maps\bin\Release\Maps.pdb
+C:\DEV\PROJECTS\EarthQuake\Maps\obj\Release\ResolveAssemblyReference.cache
+C:\DEV\PROJECTS\EarthQuake\Maps\obj\Release\Maps.dll
+C:\DEV\PROJECTS\EarthQuake\Maps\obj\Release\Maps.pdb

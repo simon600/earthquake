@@ -90,7 +90,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.Speed;
+                return player.PlayerClass.Speed;
             }
         }
 
@@ -101,7 +101,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.MinePower;
+                return player.PlayerClass.MinePower;
             }
         }
 
@@ -112,7 +112,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.MineRange;
+                return player.PlayerClass.MineRange;
             }
         }
 
@@ -123,7 +123,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.MineType;
+                return player.PlayerClass.MineType;
             }
         }
 
@@ -134,7 +134,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.Shield;
+                return player.PlayerClass.Shield;
             }
         }
 
@@ -145,7 +145,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.Lives;
+                return player.PlayerState.Lives;
             }
         }
 
@@ -156,7 +156,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.CurrentHealth;
+                return player.PlayerState.CurrentHealth;
             }
         }
 
@@ -167,7 +167,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.SimultanousMines;
+                return player.PlayerClass.SimultanousMines;
             }
         }
 
@@ -178,7 +178,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.MineDetonationTimeOffset;
+                return player.PlayerClass.MineDetonationTimeOffset;
             }
         }
 
@@ -189,7 +189,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.MaxHealth;
+                return player.PlayerClass.MaxHealth;
             }
         }
 
@@ -200,7 +200,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.TriggeredMines;
+                return player.PlayerState.TriggeredMines;
             }
         }
 
@@ -211,7 +211,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.CanThrow;
+                return player.PlayerClass.CanThrow;
             }
         }
 
@@ -222,7 +222,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.CanWalkMines;
+                return player.PlayerClass.CanWalkMines;
             }
         }
 
@@ -234,7 +234,7 @@ namespace TheEarthQuake.Players
             get
             {
 
-                return player.CanShiftMines;
+                return player.PlayerClass.CanShiftMines;
             }
         }
     }

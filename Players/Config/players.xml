@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Classes>
+  <Class Name="StrongMan" Speed="2" MinePower="80" MineRange="70" MineType="3" MaxHealth="3000" simultanousMines="1" mineDetonationTimeOffset="30" CanThrow="False" CanWalkMines="True" CanShiftMines="False">
+    <Texture Path="C:\strongman.gif" />
+    <Logo Path="C:\strongman_L.gif" />
+  </Class>
+
+  <Class Class="SpeedMan" Speed="3" MinePower="40" MineRange="30" MineType="3" MaxHealth="1000" simultanousMines="1" mineDetonationTimeOffset="30" CanThrow="False" CanWalkMines="True" CanShiftMines="False">
+    <Texture Path="C:\SpeedMan.gif" />
+    <Logo Path="C:\SpeedMan_L.gif" />
+  </Class>
+
+  <Class Class="SlowMan" Speed="1" MinePower="40" MineRange="30" MineType="3" MaxHealth="2000" simultanousMines="1" mineDetonationTimeOffset="30" CanThrow="False" CanWalkMines="True" CanShiftMines="False">
+    <Texture Path="C:\SlowMan.gif" />
+    <Logo Path="C:\SlowMan_L.gif" />
+  </Class>
+
+  <Class Class="MindMan" Speed="2" MinePower="40" MineRange="30" MineType="3" MaxHealth="400" simultanousMines="3" mineDetonationTimeOffset="10"  CanThrow="True" CanWalkMines="True" CanShiftMines="True">
+    <Texture Path="C:\strongman.gif" />
+    <Logo Path="C:\strongman_l.gif" />
+  </Class>
+</Classes>
