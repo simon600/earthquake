@@ -34,8 +34,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerClass.cs" />
+    <Compile Include="PlayerClasses.cs" />
+    <Compile Include="PlayerState.cs" />
     <Compile Include="PlayerWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\players.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

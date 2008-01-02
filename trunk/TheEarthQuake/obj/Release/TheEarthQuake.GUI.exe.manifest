@@ -39,7 +39,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>yWaA/lZvZVUnKCJ6e1IR9kCGBWM=</dsig:DigestValue>
+        <dsig:DigestValue>QOIFdxJxFAo5HxXwjWiGQU4640E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -63,7 +63,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>ofmEpmGA2/gIGFT5mI6Ay46aNMA=</dsig:DigestValue>
+        <dsig:DigestValue>Iaa3dOD24dk4crzmtcP8/kc0oZo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -75,19 +75,31 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>dNkh2f3DI5NzcCJAo97wBoi8Lp0=</dsig:DigestValue>
+        <dsig:DigestValue>lcfh+ojFbUsYTX2Lcznlkp+NXys=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheEarthQuake.Logic.dll" size="24576">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheEarthQuake.Logic.dll" size="20480">
       <assemblyIdentity name="TheEarthQuake.Logic" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>GZTelPNtiODrPZ6ODqCFUl9I6LU=</dsig:DigestValue>
+        <dsig:DigestValue>0qqDTkEDHytVFZy0aoDNErOIA88=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheEarthQuake.Players.dll" size="20480">
+      <assemblyIdentity name="TheEarthQuake.Players" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>b4L47zZFuUNIvZjd0ZxCLkQWqMM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
