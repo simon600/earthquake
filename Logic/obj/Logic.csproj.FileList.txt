@@ -1,9 +1,0 @@
-bin\Release\Logic.dll
-bin\Release\Logic.pdb
-bin\Release\nunit.framework.dll
-bin\Release\nunit.framework.xml
-obj\Release\ResolveAssemblyReference.cache
-obj\Release\Logic.dll
-obj\Release\Logic.pdb
-bin\Release\Bonuses.dll
-bin\Release\Bonuses.pdb

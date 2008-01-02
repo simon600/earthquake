@@ -1,5 +1,0 @@
-bin\Debug\TheEarthQuake.Players.dll
-bin\Debug\TheEarthQuake.Players.pdb
-obj\Debug\ResolveAssemblyReference.cache
-obj\Debug\TheEarthQuake.Players.dll
-obj\Debug\TheEarthQuake.Players.pdb
