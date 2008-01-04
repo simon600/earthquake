@@ -48,18 +48,20 @@ namespace TheEarthQuake.GUI
             this.engine = this.controllerWrapper.GraphicsEngine;
             this.stateMachine = this.controllerWrapper.StateMachine;
 
+            //sets engine control in whole form
             this.engine.Preview = false;
             this.engine.Parent = this;
             this.engine.Dock = DockStyle.Fill;
 
+            //sets some wrappers in engine
             Maps.MapWrapper mapwr = this.stateMachine.GetMapWrapper();
             this.engine.SetMapWrapper(mapwr);
             PlayerWrapper p1 = this.stateMachine.GetPlayerOneWrapper();
             PlayerWrapper p2 = this.stateMachine.GetPlayerTwoWrapper();
             this.engine.SetPlayersWrapper(p1, p2);
 
-
-            this.thrOpenGL = new Thread(new ThreadStart(OpenGL_Start));
+            //starts redrawing thread
+            this.thrOpenGL = new Thread(new ThreadStart(Tick));
             this.thrOpenGL.Start();
         }
                 
@@ -145,10 +147,12 @@ namespace TheEarthQuake.GUI
             }
         }
         
-
-        private void OpenGL_Start()
+        /// <summary>
+        /// Use to redraw scene, and allow things to live their lives :) (eg. bomb explode)
+        /// </summary>
+        private void Tick()
         {
-            //to powinno jeszcze wywolywac jakies tiki itd...
+            //it should depend of the fps (because loop speed is depend of machine speed)
 
             while(true) // infinity loop for rendering
             {
