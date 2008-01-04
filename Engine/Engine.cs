@@ -27,6 +27,7 @@ namespace TheEarthQuake.Engine
         private float height;                   //window height
         private OpenGLTexture2D[] textures;     //holds textures for terain
         private OpenGLTexture2D[] waterTextures;//holds textures for water tiles
+        private bool preview;                   //map preview (true), or game(false);
 
         /// <summary>
         /// Constructor - loads textures and sets some default values
@@ -36,6 +37,7 @@ namespace TheEarthQuake.Engine
             mapWrapper = null;
             player1Wrapper = null;
             player2Wrapper = null;
+            this.preview = false;
            
             /*
              * You can change the values of width and height 
@@ -97,6 +99,21 @@ namespace TheEarthQuake.Engine
         }
 
         /// <summary>
+        /// Accessor to preview boolean value. Both get and set.
+        /// </summary>
+        public bool Preview
+        {
+            set
+            {
+                this.preview = value;
+            }
+            get
+            {
+                return this.preview;
+            }
+        }
+
+        /// <summary>
         /// Sets map wrapper.
         /// </summary>
         /// <param name="mapWrapper">Map wrapper to be set.</param>
@@ -126,8 +143,11 @@ namespace TheEarthQuake.Engine
             
             DrawBackground();
             DrawMap();
-            DrawPlayers();
-        }        
+            if (!preview)
+            {
+                DrawPlayers();
+            }
+        }
 
         /// <summary>
         /// Initializes OpenGL
@@ -151,7 +171,7 @@ namespace TheEarthQuake.Engine
         {
             base.OnSizeChanged(e);
             Size s = Size;
-
+            
             GL.glMatrixMode(GL.GL_PROJECTION);
             GL.glLoadIdentity();
             GL.gluOrtho2D(-width / 2, width / 2, -height / 2, height / 2);
@@ -166,6 +186,10 @@ namespace TheEarthQuake.Engine
         {                        
             GL.glPushMatrix();
             GL.glTranslatef(-width / 2, height / 2, 0.0f);
+            if (preview)
+            {
+                GL.glScalef(width / height, 1.0f, 1.0f);
+            }
             GL.glColor3f(1.0f, 1.0f, 1.0f);
 
             for (int i = 0; i < mapWrapper.MapHeight; i++)

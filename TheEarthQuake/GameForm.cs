@@ -48,6 +48,7 @@ namespace TheEarthQuake.GUI
             this.engine = this.controllerWrapper.GraphicsEngine;
             this.stateMachine = this.controllerWrapper.StateMachine;
 
+            this.engine.Preview = false;
             this.engine.Parent = this;
             this.engine.Dock = DockStyle.Fill;
 
