@@ -24,6 +24,7 @@ namespace TheEarthQuake.GUI
             // Abort the OpenGL Thread
             // otherwise it will last rendering forever
             thrOpenGL.Abort();
+            //recreate opengl context
             this.engine.RecreateContext();
         }
 

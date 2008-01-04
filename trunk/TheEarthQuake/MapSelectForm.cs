@@ -10,7 +10,6 @@ using TheEarthQuake.Logic;
 /*
  * TODO:
  *    -> nazwac sensownie klawisze!
- *    -> zrobic podglad wygenerowanej mapy
  *    -> dorobic wczytywanie i zapisywanie mapy
  *    -> dorobic ladowanie mapy
  */
@@ -29,8 +28,10 @@ namespace TheEarthQuake.GUI
 
             engine = this.controllerWrapper.GraphicsEngine;
             engine.Preview = true;
-            engine.Parent = this.panel;
-            engine.Dock = DockStyle.Fill;
+            engine.Width = 250;
+            engine.Height = 250;
+            engine.Location = new System.Drawing.Point(285, 37);
+            engine.Parent = this;
         }
 
         /* This method handles key pressed event. */
@@ -93,11 +94,11 @@ namespace TheEarthQuake.GUI
 
         private void button3_Click(object sender, EventArgs e)
         {
+            //creates new map in state machine, and sets new wrapper in graphics engine
             this.controllerWrapper.StateMachine.GenerateMap();
-            this.engine.glDraw();
-            engine.Parent = this.panel;
-            this.panel.Refresh();
-            engine.Dock = DockStyle.Fill;
+            this.controllerWrapper.GraphicsEngine.SetMapWrapper(this.controllerWrapper.StateMachine.GetMapWrapper());
+            //refresh preview
+            this.engine.Refresh();
         }
     }
 }

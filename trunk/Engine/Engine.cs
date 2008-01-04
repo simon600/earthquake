@@ -27,7 +27,7 @@ namespace TheEarthQuake.Engine
         private float height;                   //window height
         private OpenGLTexture2D[] textures;     //holds textures for terain
         private OpenGLTexture2D[] waterTextures;//holds textures for water tiles
-        private bool preview;                   //map preview (true), or game(false);
+        private bool preview;                   //true iff draw functions will be use to draw only map preview
 
         /// <summary>
         /// Constructor - loads textures and sets some default values
@@ -143,6 +143,7 @@ namespace TheEarthQuake.Engine
             
             DrawBackground();
             DrawMap();
+            //we just want to draw map preview, so we don't touch players
             if (!preview)
             {
                 DrawPlayers();
@@ -186,6 +187,7 @@ namespace TheEarthQuake.Engine
         {                        
             GL.glPushMatrix();
             GL.glTranslatef(-width / 2, height / 2, 0.0f);
+            //stretch the whole map to the size of conrol where it is diplaying (only in preview)
             if (preview)
             {
                 GL.glScalef(width / height, 1.0f, 1.0f);

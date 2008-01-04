@@ -34,7 +34,6 @@ namespace TheEarthQuake.GUI
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.panel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // listBox1
@@ -98,19 +97,11 @@ namespace TheEarthQuake.GUI
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // panel
-            // 
-            this.panel.Location = new System.Drawing.Point(260, 37);
-            this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(280, 280);
-            this.panel.TabIndex = 7;
-            // 
             // MapSelectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(565, 358);
-            this.Controls.Add(this.panel);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button2);
@@ -136,6 +127,5 @@ namespace TheEarthQuake.GUI
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Panel panel;
     }
 }
