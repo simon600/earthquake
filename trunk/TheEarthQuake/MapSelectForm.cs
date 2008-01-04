@@ -20,11 +20,17 @@ namespace TheEarthQuake.GUI
     public partial class MapSelectForm : Form
     {
         MapSelectFormControllerWrapper controllerWrapper;
+        Engine.Engine engine;
 
         public MapSelectForm(MapSelectFormControllerWrapper controllerWrapper)
         {
             InitializeComponent();
             this.controllerWrapper = controllerWrapper;
+
+            engine = this.controllerWrapper.GraphicsEngine;
+            engine.Preview = true;
+            engine.Parent = this.panel;
+            engine.Dock = DockStyle.Fill;
         }
 
         /* This method handles key pressed event. */
@@ -80,8 +86,18 @@ namespace TheEarthQuake.GUI
             GameForm gameForm = 
                 new GameForm(
                     this.controllerWrapper.gameFormControllerWrapper);
+            
             gameForm.ShowDialog();
             gameForm.Dispose(); // releases all the components in gameForm
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.controllerWrapper.StateMachine.GenerateMap();
+            this.engine.glDraw();
+            engine.Parent = this.panel;
+            this.panel.Refresh();
+            engine.Dock = DockStyle.Fill;
         }
     }
 }

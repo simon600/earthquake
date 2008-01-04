@@ -154,7 +154,7 @@ namespace TheEarthQuake.Logic
                         /* we calculate the border of the neighbouring field
                            on the left to check if player collides */
 
-                        float leftFieldBorder = player.PositionI * map.FieldSize;
+                        float leftFieldBorder = player.PositionJ * map.FieldSize;
                         
                         /* if player's border crosses the left field's border... */
 
@@ -163,7 +163,7 @@ namespace TheEarthQuake.Logic
                             /* we hold the case, when we reach the map edge:
                              * move player's border to the touch the map edge */
                             
-                            if (player.PositionI == 0)
+                            if (player.PositionJ == 0)
                             {
                                 player.PositionX = Player.PlayerRadius;
                                 return;
@@ -174,7 +174,7 @@ namespace TheEarthQuake.Logic
                                player is able to enter the field; if not, we move 
                                player's border to touch the fields edge. */
 
-                            Maps.Field field = Map.GetField(player.PositionI - 1, player.PositionJ);
+                            Maps.Field field = Map.GetField(player.PositionI, player.PositionJ - 1);
                             if (!(field is Maps.Path))
                             {
                                 player.PositionX = leftFieldBorder + Player.PlayerRadius;
@@ -187,7 +187,7 @@ namespace TheEarthQuake.Logic
 
                             if (player.PositionX + centerDx < leftFieldBorder)
                             {
-                                player.PositionI = player.PositionI - 1;
+                                player.PositionJ = player.PositionJ - 1;
                             }
                         }
 
@@ -207,7 +207,7 @@ namespace TheEarthQuake.Logic
                         /* we calculate the border of the neighbouring field
                          * on the right to check if player collides */
 
-                        float rightFieldBorder = (player.PositionI + 1) * map.FieldSize;
+                        float rightFieldBorder = (player.PositionJ + 1) * map.FieldSize;
 
                         /* if player's border crosses the right field's border... */
 
@@ -216,7 +216,7 @@ namespace TheEarthQuake.Logic
                             /* we hold the case, when we reach the map edge:
                              * move player's border to the touch the map edge */
 
-                            if (player.PositionI == Map.MapWidth - 1)
+                            if (player.PositionJ == Map.MapWidth - 1)
                             {
                                 player.PositionX = Map.MapWidth * Map.FieldSize - Player.PlayerRadius;
                                 return;
@@ -227,7 +227,7 @@ namespace TheEarthQuake.Logic
                              player is able to enter the field; if not, we move 
                              player's border to touch the fields edge. */
 
-                            Maps.Field field = Map.GetField(player.PositionI + 1, player.PositionJ);
+                            Maps.Field field = Map.GetField(player.PositionI, player.PositionJ + 1);
                             if (!(field is Maps.Path))
                             {
                                 player.PositionX = rightFieldBorder - Player.PlayerRadius;
@@ -240,7 +240,7 @@ namespace TheEarthQuake.Logic
 
 						    if (player.PositionX + centerDx > rightFieldBorder)
 						    {
-							    player.PositionI = player.PositionI + 1;
+							    player.PositionJ = player.PositionJ + 1;
 						    }
 					    }
 
@@ -259,7 +259,7 @@ namespace TheEarthQuake.Logic
                         /* we calculate the border of the neighbouring field
                          * on the up to check if player collides */
 
-                        float upFieldBorder = player.PositionJ * map.FieldSize;
+                        float upFieldBorder = player.PositionI * map.FieldSize;
 
                         /* if player's border crosses the up field's border... */
 
@@ -268,7 +268,7 @@ namespace TheEarthQuake.Logic
                             /* we hold the case, when we reach the map edge:
                              * move player's border to the touch the map edge */
 
-                            if (player.PositionJ == 0)
+                            if (player.PositionI == 0)
                             {
                                 player.PositionY = Player.PlayerRadius;
                                 return;
@@ -279,7 +279,7 @@ namespace TheEarthQuake.Logic
                              player is able to enter the field; if not, we move 
                              player's border to touch the fields edge. */
 
-                            Maps.Field field = Map.GetField(player.PositionI, player.PositionJ - 1);
+                            Maps.Field field = Map.GetField(player.PositionI - 1, player.PositionJ);
                             if (!(field is Maps.Path))
                             {
                                 player.PositionY = upFieldBorder + Player.PlayerRadius;
@@ -292,7 +292,7 @@ namespace TheEarthQuake.Logic
 
                             if (player.PositionY + centerDy < upFieldBorder)
                             {
-                                player.PositionJ = player.PositionJ - 1;
+                                player.PositionI = player.PositionI - 1;
                             }
                         }
 
@@ -311,7 +311,7 @@ namespace TheEarthQuake.Logic
                         /* we calculate the border of the neighbouring field
                          * on the down to check if player collides */
 
-                        float downFieldBorder = (player.PositionJ + 1) * map.FieldSize;
+                        float downFieldBorder = (player.PositionI + 1) * map.FieldSize;
 
                         /* if player's border crosses the down field's border... */
 
@@ -320,7 +320,7 @@ namespace TheEarthQuake.Logic
                             /* we hold the case, when we reach the map edge:
                              * move player's border to the touch the map edge */
 
-                            if (player.PositionJ == Map.MapHeight - 1)
+                            if (player.PositionI == Map.MapHeight - 1)
                             {
                                 player.PositionY = Map.MapHeight * Map.FieldSize - Player.PlayerRadius;
                                 return;
@@ -331,7 +331,7 @@ namespace TheEarthQuake.Logic
                              player is able to enter the field; if not, we move 
                              player's border to touch the fields edge. */
 
-                            Maps.Field field = Map.GetField(player.PositionI, player.PositionJ + 1);
+                            Maps.Field field = Map.GetField(player.PositionI + 1, player.PositionJ);
                             if (!(field is Maps.Path))
                             {
                                 player.PositionY = downFieldBorder - Player.PlayerRadius;
@@ -344,7 +344,7 @@ namespace TheEarthQuake.Logic
 
                             if (player.PositionY + centerDy > downFieldBorder)
                             {
-                                player.PositionJ = player.PositionJ + 1;
+                                player.PositionI = player.PositionI + 1;
                             }
                         }
 
@@ -370,6 +370,14 @@ namespace TheEarthQuake.Logic
                                    Map.MapHeight - 1,
                                    Map.MapWidth * Map.FieldSize - Player.PlayerRadius,
                                    Map.MapHeight * Map.FieldSize - Player.PlayerRadius);
+        }
+
+        /// <summary>
+        /// Generates new map.
+        /// </summary>
+        public void GenerateMap()
+        {
+            map = new Maps.Map();
         }
         
         /// <summary>

@@ -126,6 +126,7 @@ namespace TheEarthQuake.GUI
             this.Visible = false;
             MapSelectForm map = new MapSelectForm(this.controllerWrapper.MapSelectFormControllerWrapper);
             map.ShowDialog();
+            map.Dispose();
         }
     }
 }

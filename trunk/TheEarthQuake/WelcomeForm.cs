@@ -101,15 +101,19 @@ namespace TheEarthQuake.GUI
                 new GameOptionsForm(
                     this.controllerWrapper.GameOptionsFormControllerWrapper);
             window.ShowDialog();
+            window.Dispose();
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
+            //Controller c = new Controller();
+            //WelcomeFormControllerWrapper cw = new WelcomeFormControllerWrapper(c);
             SelectPlayerForm window = 
                 new SelectPlayerForm(
                     this.controllerWrapper.SelectPlayersFormControllerWrapper);
 
             window.ShowDialog();
+            window.Dispose();
         }
     }
 }
