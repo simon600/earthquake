@@ -11,16 +11,6 @@ using TheEarthQuake.Maps;
 using TheEarthQuake.Players;
 using System.Runtime.InteropServices;
 
-/*
- *  TODO: prawdopodobnie taki sposob obslugi klawiszy spowoduje, ze 
- *        wystapia konflikty na klawiaturze. 
- * 
- *        Rozwiazanie 1: zaimplementowanie hashtablicy z klawiszami
- *                       i modyfikowanie jej wg zdarzen onkeydown, onkeyup
- * 
- *        Rozwiazanie 2: GetKeyboardState (ojoj, to chyba w C++). Patrz msdn.
- */
-
 namespace TheEarthQuake.GUI
 {
     public partial class GameForm : Form
@@ -64,91 +54,6 @@ namespace TheEarthQuake.GUI
             //starts redrawing thread
             this.thrOpenGL = new Thread(new ThreadStart(Tick));
             this.thrOpenGL.Start();
-        }
-                
-        /// <summary>
-        /// Method for handling key pressed events.
-        /// </summary>
-        /// <param name="keyData">Keys data.</param>
-        /// <returns></returns>
-        protected override bool ProcessDialogKey(Keys keyData)
-        {
-            /* Keys:
-             *   WSAD - player 1 move up, down, left, right
-             *   E - player 1 special key
-             *   X - player 1 set up bomb
-             * 
-             *   IKJL - player 2 move up, down, left, right
-             *   U - player 2 special key
-             *   N - player 2 set up bomb
-             * 
-             *   Esc - exit form
-             * 
-             *             
-             * switch (keyData)
-             {
-                // player control keys 
-
-                case Keys.W:
-                    controllerWrapper.MovePlayer1Up();
-                    return true;
-
-                case Keys.S:
-                    controllerWrapper.MovePlayer1Down();
-                    return true;
-
-                case Keys.A:
-                    controllerWrapper.MovePlayer1Left();
-                    return true;
-
-                case Keys.D:
-                    controllerWrapper.MovePlayer1Right();
-                    return true;
-                
-                case Keys.E:
-                    controllerWrapper.Player1SetUpBomb();
-                    return true;
-
-                case Keys.X:
-                    controllerWrapper.Player1SetUpBomb();
-                    return true;
-
-                case Keys.I:
-                    controllerWrapper.MovePlayer2Up();
-                    return true;
-
-                case Keys.K:
-                    controllerWrapper.MovePlayer2Down();
-                    return true;
-
-                case Keys.J:
-                    controllerWrapper.MovePlayer2Left();
-                    return true;
-
-                case Keys.L:
-                    controllerWrapper.MovePlayer2Right();
-                    return true;
-
-                case Keys.U:
-                    controllerWrapper.Player2Special();
-                    return true;
-
-                case Keys.M:
-                    controllerWrapper.Player2SetUpBomb();
-                    return true;
-
-                // form control keys 
-
-                case Keys.Escape:
-                    this.Close();               // is it ok?
-                    return true;
-
-                default:
-                    return base.ProcessDialogKey(keyData);
-            }
-             */
-
-            return true;
         }
 
         /* importing the GetKeyboardState function */
