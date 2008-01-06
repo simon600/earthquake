@@ -9,6 +9,7 @@ using System.Threading;
 using TheEarthQuake.Logic;
 using TheEarthQuake.Maps;
 using TheEarthQuake.Players;
+using System.Runtime.InteropServices;
 
 /*
  *  TODO: prawdopodobnie taki sposob obslugi klawiszy spowoduje, ze 
@@ -82,11 +83,11 @@ namespace TheEarthQuake.GUI
              *   N - player 2 set up bomb
              * 
              *   Esc - exit form
-             */
-            
-            switch (keyData)
-            {
-                /* player control keys */
+             * 
+             *             
+             * switch (keyData)
+             {
+                // player control keys 
 
                 case Keys.W:
                     controllerWrapper.MovePlayer1Up();
@@ -136,7 +137,7 @@ namespace TheEarthQuake.GUI
                     controllerWrapper.Player2SetUpBomb();
                     return true;
 
-                /* form control keys */
+                // form control keys 
 
                 case Keys.Escape:
                     this.Close();               // is it ok?
@@ -145,8 +146,105 @@ namespace TheEarthQuake.GUI
                 default:
                     return base.ProcessDialogKey(keyData);
             }
+             */
+
+            return true;
         }
-        
+
+        /* importing the GetKeyboardState function */
+        [DllImport("user32.dll", CharSet=CharSet.Auto, ExactSpelling=true, CallingConvention=CallingConvention.Winapi)]
+		public static extern short GetKeyState(int keyCode);
+
+        /* checking, if wheter given key is pressed or not */
+        private bool IsKeyPressed(Keys key)
+        {
+            const ushort keyDownBit = 0x80;
+            return ((GetKeyState((short)key) & keyDownBit) == keyDownBit);
+        }
+
+        /* checking the keyboard state for pressed keys */
+        private void ProcessKeyboard()
+        {
+            /* Keys:
+             *   WSAD - player 1 move up, down, left, right
+             *   E - player 1 special key
+             *   X - player 1 set up bomb
+             * 
+             *   IKJL - player 2 move up, down, left, right
+             *   U - player 2 special key
+             *   N - player 2 set up bomb
+             * 
+             *   Esc - exit form
+             */
+
+            if (this.IsKeyPressed(Keys.W))
+            {
+                controllerWrapper.MovePlayer1Up();
+            }
+            
+            if (this.IsKeyPressed(Keys.S))
+            {
+                controllerWrapper.MovePlayer1Down();
+            }
+
+            if (this.IsKeyPressed(Keys.A))
+            {
+                controllerWrapper.MovePlayer1Left();
+            }
+
+            if (this.IsKeyPressed(Keys.D))
+            {
+                controllerWrapper.MovePlayer1Right();
+            }
+
+            if (this.IsKeyPressed(Keys.X))
+            {
+                controllerWrapper.Player1SetUpBomb();
+            }
+
+            if (this.IsKeyPressed(Keys.E))
+            {
+                controllerWrapper.Player1Special();
+            }
+
+            if (this.IsKeyPressed(Keys.I))
+            {
+                controllerWrapper.MovePlayer2Up();
+            }
+
+            if (this.IsKeyPressed(Keys.K))
+            {
+                controllerWrapper.MovePlayer2Down();
+            }
+
+            if (this.IsKeyPressed(Keys.J))
+            {
+                controllerWrapper.MovePlayer2Left();
+            }
+
+            if (this.IsKeyPressed(Keys.L))
+            {
+                controllerWrapper.MovePlayer2Right();
+            }
+
+            if (this.IsKeyPressed(Keys.U))
+            {
+                controllerWrapper.Player2Special();
+            }
+
+            if (this.IsKeyPressed(Keys.M))
+            {
+                controllerWrapper.Player2SetUpBomb();
+            }
+
+            // form control keys 
+
+            if (this.IsKeyPressed(Keys.Escape))
+            {
+                this.Close();               // is it ok?
+            }
+        }
+
         /// <summary>
         /// Use to redraw scene, and allow things to live their lives :) (eg. bomb explode)
         /// </summary>
@@ -156,6 +254,7 @@ namespace TheEarthQuake.GUI
 
             while(true) // infinity loop for rendering
             {
+                this.ProcessKeyboard();
                 this.engine.Refresh();
             }
         }
