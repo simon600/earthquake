@@ -198,19 +198,21 @@ namespace TheEarthQuake.Engine
             {
                 for (int j = 0; j < mapWrapper.MapWidth; j++)
                 {
-                    if (mapWrapper.GetField(i, j) is NonPersistentWall)
+                    Field field = mapWrapper.GetField(i, j);
+
+                    if (field is NonPersistentWall)
                     {
                         textures[1].Bind();
                     }
-                    else if (mapWrapper.GetField(i, j) is PersistentWall)
+                    else if (field is PersistentWall)
                     {
                         textures[0].Bind();
                     }
-                    else if (mapWrapper.GetField(i, j) is Path)
+                    else if (field is Path)
                     {
                         textures[2].Bind();
                     }
-                    else if (mapWrapper.GetField(i, j) is Water)
+                    else if (field is Water)
                     {
                         if (j < mapWrapper.MapWidth-1 && !(mapWrapper.GetField(i, j + 1) is Water)) //no water on right
                         {
@@ -330,6 +332,25 @@ namespace TheEarthQuake.Engine
                     GL.glTexCoord2f(0.0f, 1.0f);
                     GL.glVertex2f(j * mapWrapper.FieldSize, -i * mapWrapper.FieldSize);
                     GL.glEnd();
+
+                    if (field.Bonus != null && field is Path)
+                    {
+                        /* distance between bonus quad and field border */
+                        float distanceFromEdge = (mapWrapper.FieldSize - mapWrapper.BonusSize) / 2;
+
+                        /* beda teksturki */
+                        GL.glBegin(GL.GL_QUADS);
+                        GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                            -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                        GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                            -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);                        
+                        GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                            -i * mapWrapper.FieldSize - distanceFromEdge);
+                        GL.glTexCoord2f(0.0f, 1.0f);
+                        GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                            -i * mapWrapper.FieldSize - distanceFromEdge);
+                        GL.glEnd();
+                    }
                 }
             }
 

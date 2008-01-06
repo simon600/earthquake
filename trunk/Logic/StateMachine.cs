@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TheEarthQuake.Players;
+using TheEarthQuake.Maps;
+using TheEarthQuake.Maps.Bonuses;
 
 namespace TheEarthQuake.Logic
 {
@@ -184,6 +186,13 @@ namespace TheEarthQuake.Logic
                             if (!(field is Maps.Path))
                             {
                                 player.PositionX = leftFieldBorder + Player.PlayerRadius;
+                                /* we check if field contains a bonus to get */
+                                if (field.Bonus != null)
+                                {
+                                    // player gets the bonus
+                                    field.Bonus = null;
+                                    // here goes code to handle bonus event
+                                }
                                 return;
                             }
 
@@ -384,7 +393,7 @@ namespace TheEarthQuake.Logic
                             Maps.Field field = Map.GetField(player.PositionI + 1, player.PositionJ);
                             if (!(field is Maps.Path))
                             {
-                                player.PositionY = downFieldBorder - Player.PlayerRadius;
+                                player.PositionY = downFieldBorder - Player.PlayerRadius;                                
                                 return;
                             }
 
@@ -408,6 +417,9 @@ namespace TheEarthQuake.Logic
                 default:
                     throw new Exception("Illegal direction in StateMachine.MovePlayer()");
             }
+
+            /* check if player got bonus */
+            CheckForBonuses(player);
         }
 
         /// <summary>
@@ -461,6 +473,18 @@ namespace TheEarthQuake.Logic
         public StateMachine()
         {
             this.map = new Maps.Map();
+        }
+
+        /// <summary>
+        /// Checks if player get's bonus
+        /// </summary>
+        /// <param name="player">player to take the bonus</param>
+        private void CheckForBonuses(Player player)
+        {
+            Bonus bonus;
+            bonus = Map.GetBonusForPlayer(player.PositionI, player.PositionJ);
+            /* here goes code that handles bonuse's effect */
+
         }
     }
 }

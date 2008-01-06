@@ -59,6 +59,17 @@ namespace TheEarthQuake.Maps
         }
 
         /// <summary>
+        /// Returns bonus quad size.
+        /// </summary>
+        public float BonusSize
+        {
+            get
+            {
+                return map.BonusSize;
+            }
+        }
+
+        /// <summary>
         /// Returns clone of field (used to access the type of field) from row 'i' and column 'j'.
         /// </summary>
         /// <param name="i"></param>
