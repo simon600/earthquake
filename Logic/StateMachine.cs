@@ -118,7 +118,7 @@ namespace TheEarthQuake.Logic
         /// Method responsible for moving player. Called by controller.
         /// </summary>
         public void MovePlayer(Players playerId, Directions direction)
-        {
+        {            
             Player player = null;
             switch (playerId)
             { 
@@ -140,12 +140,15 @@ namespace TheEarthQuake.Logic
             
             /* we shift both: players center and players i,j coordinates,
                depending on direction. */
-            
+
+            float wallTunnelDistance = Map.FieldSize * 0.3f;
+
             switch (direction)  
-            {   
+            {                   
                 /* we wish to move player to the left */
 
-                case(Directions.Left):    
+                case(Directions.Left):
+                    #region
                     {
                         /* we calculate the shift to the left */
 
@@ -160,6 +163,18 @@ namespace TheEarthQuake.Logic
 
                         if (player.PositionX + centerDx - Player.PlayerRadius < leftFieldBorder)
                         {
+                            /* if the left border is on the neighbouring field,
+                               forbid the movement */
+
+                            if (player.PositionY - Player.PlayerRadius < player.PositionI * Map.FieldSize)
+                                return;
+
+                            /* if the right border is on the neighbouring field,
+                               forbid the movement */
+
+                            if (player.PositionY + Player.PlayerRadius > (player.PositionI + 1) * Map.FieldSize)
+                                return;
+                            
                             /* we hold the case, when we reach the map edge:
                              * move player's border to the touch the map edge */
                             
@@ -195,11 +210,15 @@ namespace TheEarthQuake.Logic
                            floating coordinates */
 
                         player.PositionX = player.PositionX + centerDx;
-                    }
-                    break;
 
+
+                    }
+
+                    #endregion
+                    break;
                 case (Directions.Right):
-                    {    
+                    #region
+                    {                      
                         /* we calculate the shift to the right */
 
                         centerDx = player.PlayerClass.Speed * Player.BaseStep;
@@ -213,6 +232,18 @@ namespace TheEarthQuake.Logic
 
                         if (player.PositionX + centerDx + Player.PlayerRadius > rightFieldBorder)
                         {
+                            /* if the left border is on the neighbouring field,
+                               forbid the movement */
+
+                            if (player.PositionY - Player.PlayerRadius < player.PositionI * Map.FieldSize)
+                                return;
+
+                            /* if the right border is on the neighbouring field,
+                               forbid the movement */
+
+                            if (player.PositionY + Player.PlayerRadius > (player.PositionI + 1) * Map.FieldSize)
+                                return;
+                            
                             /* we hold the case, when we reach the map edge:
                              * move player's border to the touch the map edge */
 
@@ -249,10 +280,12 @@ namespace TheEarthQuake.Logic
 
 					    player.PositionX = player.PositionX + centerDx;
                     }
+                    #endregion
                     break;
-                case (Directions.Up):          
+                case (Directions.Up):
+                    #region
                     {
-                        /* we calculate the shift to the up */
+                         /* we calculate the shift to the up */
 
                         centerDy = -player.PlayerClass.Speed * Player.BaseStep;
 
@@ -265,6 +298,18 @@ namespace TheEarthQuake.Logic
 
                         if (player.PositionY + centerDy - Player.PlayerRadius < upFieldBorder)
                         {
+                            /* if the left border is on the neighbouring field,
+                               forbid the movement */
+
+                            if (player.PositionX - Player.PlayerRadius < player.PositionJ * Map.FieldSize)
+                                return;
+
+                            /* if the right border is on the neighbouring field,
+                              forbid the movement */
+
+                            if (player.PositionX + Player.PlayerRadius > (player.PositionJ + 1) * Map.FieldSize)
+                                return;
+
                             /* we hold the case, when we reach the map edge:
                              * move player's border to the touch the map edge */
 
@@ -301,8 +346,10 @@ namespace TheEarthQuake.Logic
 
                         player.PositionY = player.PositionY + centerDy;
                     }
+                    #endregion
                     break;
-                case (Directions.Down): 
+                case (Directions.Down):
+                    #region
                     {
                         /* we calculate the shift to the down */
 
@@ -317,6 +364,18 @@ namespace TheEarthQuake.Logic
 
                         if (player.PositionY + centerDy + Player.PlayerRadius > downFieldBorder)
                         {
+                            /* if the left border is on the neighbouring field,
+                                forbid the movement */
+
+                            if (player.PositionX - Player.PlayerRadius < player.PositionJ * Map.FieldSize)
+                                return;
+
+                            /* if the right border is on the neighbouring field,
+                              forbid the movement */
+
+                            if (player.PositionX + Player.PlayerRadius > (player.PositionJ + 1) * Map.FieldSize)
+                                return;
+                            
                             /* we hold the case, when we reach the map edge:
                              * move player's border to the touch the map edge */
 
@@ -353,6 +412,7 @@ namespace TheEarthQuake.Logic
 
                         player.PositionY = player.PositionY + centerDy;
                     }
+                    #endregion
                     break;
                 default:
                     throw new Exception("Illegal direction in StateMachine.MovePlayer()");
@@ -365,11 +425,11 @@ namespace TheEarthQuake.Logic
         public void CreateGame()
         {
             map = new Maps.Map();
-            PlayerOne = new Player(0, 0, Player.PlayerRadius, Player.PlayerRadius);
+            PlayerOne = new Player(0, 0, Map.FieldSize/2, Map.FieldSize/2);
             PlayerTwo = new Player(Map.MapWidth - 1, 
                                    Map.MapHeight - 1,
-                                   Map.MapWidth * Map.FieldSize - Player.PlayerRadius,
-                                   Map.MapHeight * Map.FieldSize - Player.PlayerRadius);
+                                   Map.MapWidth * Map.FieldSize - Map.FieldSize/2,
+                                   Map.MapHeight * Map.FieldSize - Map.FieldSize/2);
         }
 
         /// <summary>

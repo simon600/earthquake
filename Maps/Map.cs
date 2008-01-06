@@ -5,15 +5,6 @@
 
 /*
  *  TODO:
- *   -> napisac sprawdzanie spojnosci mapy
- *      (
- *        wg nastepujacego schematu:
- *          1. rozlewamy wode;
- *          2. po rozlaniu wody odpalamy DFS, ktory zlicza nam ilosc pol na ktore moze przejsc
- *             gracz
- *          3. jezeli liczba tych pol jest rowna liczbie pol typu Paths, to ok
- *          4. w przeciwnym razie trzeba cofnac zmiany i sprobowac rozlac wode gdzie indziej (historia) * 
- *      )
  *   -> jak sie pojawi obsluga bomb, to wypelnic metode BlowUp()
  *   -> GetFieldState jest do wypelnienia (trzeba ustalic co ma zwracac)
  */

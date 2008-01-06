@@ -26,8 +26,8 @@ namespace TheEarthQuake.Players
         private float positionX;  // player position in floating coordinates
         private float positionY;  // player position in floating coordinates
 
-        private static float baseStep = (float)1;           // base shift of the player pos. when moving
-        private static float playerRadius = (float)18.5;    // border of the player, for collision detection.
+        private static float baseStep = (float)0.1;       // base shift of the player pos. when moving
+        private static float playerRadius = (float)14;    // border of the player, for collision detection.
 
 
         /// <summary>
