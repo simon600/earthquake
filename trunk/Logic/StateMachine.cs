@@ -3,15 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using TheEarthQuake.Players;
 
-/*
- *  TODO: 
- * -> sprawdzic, czy nie odwrocilismy indeksow w mapie!! ;-)
- * -> dorobic stan gry (jakis enum, pole, czy cos)  
- * -> dorobic klase playerWrapper na modle mapWrapper i dawac silnikowi zeby sobie 
- *    malowal graczy (kontroler daje, tu tylko zwracamy wrappery funkcyjnie)
- * -> czy konstruktor maszyny stanow ma byc taki... pustawy?
- */
-
 namespace TheEarthQuake.Logic
 {
     /// <summary>
