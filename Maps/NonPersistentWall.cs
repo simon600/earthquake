@@ -18,7 +18,9 @@ namespace TheEarthQuake.Maps
         /// <returns></returns>
         public override Field clone()
         {
-            return new NonPersistentWall();
+            NonPersistentWall returnNonPersistentWallField = new NonPersistentWall();
+            returnNonPersistentWallField.Bonus = this.Bonus;
+            return returnNonPersistentWallField;
         }
     }
 }

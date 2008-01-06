@@ -19,7 +19,9 @@ namespace TheEarthQuake.Maps
         /// <returns></returns>
         public override Field clone()
         {
-            return new Path();
+            Path returnPathField = new Path();
+            returnPathField.Bonus = this.Bonus;
+            return returnPathField;
         }
     }
 }

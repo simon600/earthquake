@@ -13,12 +13,23 @@ namespace TheEarthQuake.Maps
     /// </summary>
     public abstract class Field
     {
-        private Bonuses.Bonus bonus;
+        private Bonuses.Bonus bonus;       
 
         /// <summary>
         /// Clones field to avoid direct access to fields.
         /// </summary>
         /// <returns></returns>
         public abstract Field clone();
+        public Bonuses.Bonus Bonus
+        {
+            get
+            {
+                return bonus;
+            }
+            set
+            {
+                bonus = value;
+            }
+        }
     }
 }

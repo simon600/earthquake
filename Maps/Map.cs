@@ -22,13 +22,14 @@ namespace TheEarthQuake.Maps
         private int mapHeight = 19;                     // ought to be odd
         private int mapWidth = 19;                      // ought to be odd 
         
-        private float fieldSize;                   // field size for OpenGL
+        private float fieldSize;                        // field size for OpenGL
+        private float bonusSize;                        // bonus' quad size for OpenGL
 
         private Field[,] fields;                        // container for fields
 
         private Random floatGenerator;                  // used to generate some doubles
         private Random intGenerator;                    // same for ints
-
+        
         /// <summary>
         /// Returns number of fields in column.
         /// </summary>
@@ -74,6 +75,17 @@ namespace TheEarthQuake.Maps
         }
 
         /// <summary>
+        /// Return bonus quad size.
+        /// </summary>
+        public float BonusSize
+        {
+            get
+            {
+                return this.bonusSize;
+            }
+        }
+
+        /// <summary>
         /// Constructor - it generates map. It doesn't assure 
         /// that graph of walkable fields is connected.
         /// </summary>
@@ -84,6 +96,7 @@ namespace TheEarthQuake.Maps
              * a last one *)
              */
             fieldSize = 768.0f / mapHeight;      //sets fieldSize so that map's height is equal to screen's height
+            bonusSize = fieldSize - 10;          //sets bonusSize so that it's a bit smaller then a field
 
             fields = new Field[mapHeight, mapWidth];
 
@@ -117,6 +130,19 @@ namespace TheEarthQuake.Maps
         {
             /* STUB! */
         }
+
+        /// <summary>
+        /// Return bonus that lies on row 'i', column 'j'
+        /// providing that this bonus exists and erases it from the field.
+        /// </summary>
+        /// <param name="i">row</param>
+        /// <param name="j">column</param>
+        public Bonuses.Bonus GetBonusForPlayer(int i, int j)
+        {
+            Bonuses.Bonus bonus = this.fields[i, j].Bonus;            
+            this.fields[i, j].Bonus = null;
+            return bonus;            
+        }
         
         /// <summary>
         /// Fills the map with path fields.
@@ -134,7 +160,9 @@ namespace TheEarthQuake.Maps
                 for (int j = 0; j < mapWidth; j++)
                 {
                     if (fields[i, j] == null)
-                        fields[i, j] = new Path();
+                    {
+                        fields[i, j] = new Path();                        
+                    }
                 }
             }
         }                 
@@ -311,8 +339,10 @@ namespace TheEarthQuake.Maps
                 while (!(fields[wallRow, wallColumn] is Path));
 
                 fields[wallRow, wallColumn] = new NonPersistentWall();
-            }
 
+                /*set's bonus for a filed with some propability*/
+                fields[wallRow, wallColumn].Bonus = GenerateBonus();
+            }            
         }
 
         /// <summary>
@@ -338,6 +368,29 @@ namespace TheEarthQuake.Maps
               fields[mapHeight - 1, mapWidth - 1] = new Path();
               fields[mapHeight - 2, mapWidth - 1] = new Path();
               fields[mapHeight - 1, mapWidth - 2] = new Path();
-         }
-    }
+        }
+        
+        /// <summary>
+        /// Generates bonus of some type or null and returns it.
+        /// </summary>
+        /// <returns>some bonus as type Bonus or null</returns>
+        private Bonuses.Bonus GenerateBonus()
+        {            
+            float bonusPropability = 0.1f;
+            Type[] bonusTypes = { Type.GetType("TheEarthQuake.Maps.Bonuses.SampleBonus") };  // types of bonuses in the game            
+
+            if (floatGenerator.NextDouble() < bonusPropability)
+            {
+                /*get type of bonus to return*/
+                Type returnBonusType = bonusTypes[intGenerator.Next(bonusTypes.Length)];
+                
+                /*return new instance of a bonus*/
+                return returnBonusType.GetConstructors()[0].Invoke(new object[0]) as Maps.Bonuses.Bonus;
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }    
 }
