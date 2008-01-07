@@ -86,6 +86,19 @@ namespace TheEarthQuake.Maps.Tests
             }
 
             Assert.AreEqual(true, result);
-        }    
+        }
+
+        [Test]
+        public void TestGetBonusForPlayer()
+        {
+            Console.WriteLine("Test if function GetBonusForPlayer works properly");
+            Field field = map.Fields[0,0];
+
+            field.Bonus = new Bonuses.SampleBonus();
+
+            Bonuses.Bonus bonus = map.GetBonusForPlayer(0, 0);
+
+            Assert.IsNotNull(bonus);            
+        }
     }
 }
