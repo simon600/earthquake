@@ -6,5 +6,7 @@ namespace TheEarthQuake.Maps.Bonuses
 {
     public class SampleBonus: Bonus
     {        
+
+
     }
 }
