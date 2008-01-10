@@ -77,7 +77,7 @@ namespace TheEarthQuake.Maps
         /// <returns></returns>
         public Field GetField(int i, int j)
         {
-            return map.GetField(i, j);
+            return this.map.GetField(i, j);
         }
 
     }
