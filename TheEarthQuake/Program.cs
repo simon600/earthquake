@@ -25,6 +25,14 @@ namespace TheEarthQuake.GUI
 
             WelcomeForm form = new WelcomeForm(welcomeFormControllerWrapper);
             Application.Run(form);
+
+
+            Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
+        }
+
+        static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            MessageBox.Show("Wyst¹pi³ b³¹d");
         }
     }
 }
