@@ -24,11 +24,11 @@ namespace TheEarthQuake.Maps
         {
             get
             {
-                return bonus;
+                return this.bonus;
             }
             set
             {
-                bonus = value;
+                this.bonus = value;
             }
         }
     }

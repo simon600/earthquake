@@ -27,8 +27,7 @@ namespace TheEarthQuake.Logic
         private static float width = 1024;      // screen width
         private static float height = 768;      // screnn height
 
-        private Maps.Map map;                               // actual map
-        private State currentState = null;                  // current machine state
+        private Maps.Map map;                               // actual map//private State currentState = null;                  // current machine state
         private GameSettings currentGameSettings = null;    // actual settings
         private float currentFPS;                           // frames per second
 
@@ -67,17 +66,6 @@ namespace TheEarthQuake.Logic
             get
             {
                 return map;
-            }
-        }
-
-        /// <summary>
-        /// Accessor to current machine state. Only get.
-        /// </summary>
-        public State CurrentState
-        {
-            get
-            {
-                return currentState;
             }
         }
 

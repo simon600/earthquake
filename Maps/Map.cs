@@ -3,12 +3,6 @@
  *  Karol Stosiek
  */
 
-/*
- *  TODO:
- *   -> jak sie pojawi obsluga bomb, to wypelnic metode BlowUp()
- *   -> GetFieldState jest do wypelnienia (trzeba ustalic co ma zwracac)
- */
-
 using System;
 
 namespace TheEarthQuake.Maps
