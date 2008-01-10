@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using TheEarthQuake.Logic;
+using TheEarthQuake.Players;
 
 /*
  * TODO:
@@ -16,7 +17,8 @@ namespace TheEarthQuake.GUI
 {
     public partial class SelectPlayerForm : Form
     {
-        SelectPlayerFormControllerWrapper controllerWrapper;
+        private SelectPlayerFormControllerWrapper controllerWrapper;
+        private PlayerClass[] P;
 
         public SelectPlayerForm(SelectPlayerFormControllerWrapper controllerWrapper)
         {
@@ -127,6 +129,95 @@ namespace TheEarthQuake.GUI
             MapSelectForm map = new MapSelectForm(this.controllerWrapper.MapSelectFormControllerWrapper);
             map.ShowDialog();
             map.Dispose();
+        }
+
+        private void SelectPlayerForm_Load(object sender, EventArgs e)
+        {
+            PlayerClasses PC = new PlayerClasses(@"..\..\..\Players\Config\players.xml");
+            P = PC.GetAll();
+
+
+            pictureBox1.Image = pictureBox4.Image =  System.Drawing.Image.FromFile(@P[0].LogoPath);
+            pictureBox2.Image = pictureBox5.Image = System.Drawing.Image.FromFile(@P[1].LogoPath);
+            pictureBox3.Image = pictureBox6.Image = System.Drawing.Image.FromFile(@P[2].LogoPath);
+
+            speedProgressBar.Maximum = 3;
+            speedProgressBar.Minimum = 0;
+            speedProgressBar2.Maximum = 3;
+            speedProgressBar2.Minimum = 0;
+
+            powerProgressBar.Maximum = 100;
+            powerProgressBar.Minimum = 0;
+            powerProgressBar2.Maximum = 100;
+            powerProgressBar2.Minimum = 0;
+
+            rangeProgressBar.Maximum = 100;
+            rangeProgressBar.Minimum = 0;
+            rangeProgressBar2.Maximum = 100;
+            rangeProgressBar2.Minimum = 0;
+
+            healthProgressBar.Maximum = 3000;
+            healthProgressBar.Minimum = 0;
+            healthProgressBar2.Maximum = 3000;
+            healthProgressBar2.Minimum = 0;
+
+            numberOfMineProgressBar.Maximum = 3;
+            numberOfMineProgressBar.Minimum = 0;
+            numberOfMineProgressBar2.Maximum = 3;
+            numberOfMineProgressBar2.Minimum = 0;
+
+            SelectPlayer(0, false);
+
+        }
+
+        private void radioButton1_Click(object sender, EventArgs e)
+        {
+            SelectPlayer(0,true);
+        }
+
+        private void SelectPlayer(int p,bool up)
+        {
+            if (up)
+            {
+                speedProgressBar.Value = P[p].Speed;
+                powerProgressBar.Value = P[p].MinePower;
+                rangeProgressBar.Value = P[p].MineRange;
+                healthProgressBar.Value = P[p].MaxHealth;
+                numberOfMineProgressBar.Value = P[p].SimultanousMines;
+            }
+            else
+            {
+                speedProgressBar2.Value = P[p].Speed;
+                powerProgressBar2.Value = P[p].MinePower;
+                rangeProgressBar2.Value = P[p].MineRange;
+                healthProgressBar2.Value = P[p].MaxHealth;
+                numberOfMineProgressBar2.Value = P[p].SimultanousMines;
+            }
+        }
+
+        private void radioButton2_Click(object sender, EventArgs e)
+        {
+            SelectPlayer(1, true);
+        }
+
+        private void radioButton3_Click(object sender, EventArgs e)
+        {
+            SelectPlayer(2, true);
+        }
+
+        private void radioButton6_Click(object sender, EventArgs e)
+        {
+            SelectPlayer(2, false);
+        }
+
+        private void radioButton4_Click(object sender, EventArgs e)
+        {
+            SelectPlayer(0, false);
+        }
+
+        private void radioButton5_Click(object sender, EventArgs e)
+        {
+            SelectPlayer(1, false);
         }
     }
 }

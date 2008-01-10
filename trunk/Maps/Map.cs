@@ -202,6 +202,7 @@ namespace TheEarthQuake.Maps
             int totalWalkableFields = (mapWidth * mapHeight) - (mapWidth / 2 * mapHeight / 2);
             int fieldsToWater = (int)(totalWalkableFields * fractureOfWalkableFields);
 
+
             for (int i = 0; i < fieldsToWater; i++)
             {
                 int waterColumn;

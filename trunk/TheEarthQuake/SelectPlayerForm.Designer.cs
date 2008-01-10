@@ -62,7 +62,7 @@ namespace TheEarthQuake.GUI
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.healtProgressBar2 = new System.Windows.Forms.ProgressBar();
+            this.healthProgressBar2 = new System.Windows.Forms.ProgressBar();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.speedProgressBar2 = new System.Windows.Forms.ProgressBar();
@@ -126,6 +126,7 @@ namespace TheEarthQuake.GUI
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Zdzichu";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.Click += new System.EventHandler(this.radioButton3_Click);
             // 
             // label6
             // 
@@ -146,6 +147,7 @@ namespace TheEarthQuake.GUI
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Juzek";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.Click += new System.EventHandler(this.radioButton2_Click);
             // 
             // label5
             // 
@@ -166,6 +168,7 @@ namespace TheEarthQuake.GUI
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Zenek";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.Click += new System.EventHandler(this.radioButton1_Click);
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // numberOfMineProgressBar
@@ -297,7 +300,7 @@ namespace TheEarthQuake.GUI
             this.groupBox2.Controls.Add(this.pictureBox4);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.pictureBox5);
-            this.groupBox2.Controls.Add(this.healtProgressBar2);
+            this.groupBox2.Controls.Add(this.healthProgressBar2);
             this.groupBox2.Controls.Add(this.pictureBox6);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.speedProgressBar2);
@@ -323,13 +326,14 @@ namespace TheEarthQuake.GUI
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(302, 139);
+            this.radioButton4.Location = new System.Drawing.Point(17, 139);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(63, 17);
+            this.radioButton4.Size = new System.Drawing.Size(56, 17);
             this.radioButton4.TabIndex = 8;
             this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Zdzichu";
+            this.radioButton4.Text = "Zenek";
             this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.Click += new System.EventHandler(this.radioButton4_Click);
             // 
             // label7
             // 
@@ -350,6 +354,7 @@ namespace TheEarthQuake.GUI
             this.radioButton5.TabStop = true;
             this.radioButton5.Text = "Juzek";
             this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButton5.Click += new System.EventHandler(this.radioButton5_Click);
             // 
             // label8
             // 
@@ -363,13 +368,14 @@ namespace TheEarthQuake.GUI
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(17, 139);
+            this.radioButton6.Location = new System.Drawing.Point(302, 140);
             this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(56, 17);
+            this.radioButton6.Size = new System.Drawing.Size(63, 17);
             this.radioButton6.TabIndex = 6;
             this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Zenek";
+            this.radioButton6.Text = "Zdzichu";
             this.radioButton6.UseVisualStyleBackColor = true;
+            this.radioButton6.Click += new System.EventHandler(this.radioButton6_Click);
             // 
             // numberOfMineProgressBar2
             // 
@@ -403,13 +409,13 @@ namespace TheEarthQuake.GUI
             this.pictureBox5.TabIndex = 1;
             this.pictureBox5.TabStop = false;
             // 
-            // healtProgressBar2
+            // healthProgressBar2
             // 
-            this.healtProgressBar2.Location = new System.Drawing.Point(516, 105);
-            this.healtProgressBar2.Name = "healtProgressBar2";
-            this.healtProgressBar2.Size = new System.Drawing.Size(100, 23);
-            this.healtProgressBar2.TabIndex = 22;
-            this.healtProgressBar2.Click += new System.EventHandler(this.HealtPprogressBar2_Click);
+            this.healthProgressBar2.Location = new System.Drawing.Point(516, 105);
+            this.healthProgressBar2.Name = "healthProgressBar2";
+            this.healthProgressBar2.Size = new System.Drawing.Size(100, 23);
+            this.healthProgressBar2.TabIndex = 22;
+            this.healthProgressBar2.Click += new System.EventHandler(this.HealtPprogressBar2_Click);
             // 
             // pictureBox6
             // 
@@ -481,6 +487,7 @@ namespace TheEarthQuake.GUI
             this.Name = "SelectPlayerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Wybierz postaæ";
+            this.Load += new System.EventHandler(this.SelectPlayerForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -529,7 +536,7 @@ namespace TheEarthQuake.GUI
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.ProgressBar healtProgressBar2;
+        private System.Windows.Forms.ProgressBar healthProgressBar2;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ProgressBar speedProgressBar2;

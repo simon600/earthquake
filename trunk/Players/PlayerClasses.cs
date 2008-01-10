@@ -31,10 +31,12 @@ namespace TheEarthQuake.Players
 
             // get all nodes from XML file for player classes definitions
             XmlNodeList classNodes = doc.SelectNodes("/Classes/Class");
+            //XmlNodeList classNodes = doc.SelectNodes("/Classes");
 
             //iterate over nodes
             foreach (XmlNode node in classNodes)
             {
+
                
                 // create PlayerClass
                 PlayerClass pClass = new PlayerClass();
@@ -46,8 +48,8 @@ namespace TheEarthQuake.Players
                 pClass.MineRange = Convert.ToInt32(node.Attributes["MineRange"].InnerText);
                 pClass.MineType = Convert.ToInt32(node.Attributes["MineType"].InnerText);
                 pClass.MaxHealth = Convert.ToInt32(node.Attributes["MaxHealth"].InnerText);
-                pClass.SimultanousMines = Convert.ToInt32(node.Attributes["SimultanousMines"].InnerText);
-                pClass.MineDetonationTimeOffset = Convert.ToInt32(node.Attributes["MineDetonationTimeOffset"].InnerText);
+                pClass.SimultanousMines = Convert.ToInt32(node.Attributes["simultanousMines"].InnerText);
+                pClass.MineDetonationTimeOffset = Convert.ToInt32(node.Attributes["mineDetonationTimeOffset"].InnerText);
                 pClass.CanThrow = Convert.ToBoolean(node.Attributes["CanThrow"].InnerText);
                 pClass.CanWalkMines = Convert.ToBoolean(node.Attributes["CanWalkMines"].InnerText);
                 pClass.CanShiftMines = Convert.ToBoolean(node.Attributes["CanShiftMines"].InnerText);
@@ -58,7 +60,7 @@ namespace TheEarthQuake.Players
                 pClass.TexturePath = textureNode.Attributes["Path"].InnerText;
 
                 XmlNode logoNode = node.SelectSingleNode("Logo");
-                pClass.LogoPath = textureNode.Attributes["Path"].InnerText;
+                pClass.LogoPath = logoNode.Attributes["Path"].InnerText;
 
 
                 // add created PlayerClass to current player classes list
