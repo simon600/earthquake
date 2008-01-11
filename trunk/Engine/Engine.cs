@@ -73,7 +73,7 @@ namespace TheEarthQuake.Engine
             waterTextures[16] = new OpenGLTexture2D(@"..\..\..\textures\WaterCDownLeft.bmp");
             waterTextures[17] = new OpenGLTexture2D(@"..\..\..\textures\WaterCDownRight.bmp");
             waterTextures[18] = new OpenGLTexture2D(@"..\..\..\textures\WaterCUpRight.bmp");
-            waterTextures[19] = new OpenGLTexture2D(@"..\..\..\textures\WaterCUpLeft.bmp");
+            waterTextures[19] = new OpenGLTexture2D(@"..\..\..\textures\WaterCUpLeft.bmp");            
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace TheEarthQuake.Engine
                         textures[2].Bind();
                     }
                     else if (field is Water)
-                    {
+                    {                       
                         if (j < mapWrapper.MapWidth-1 && !(mapWrapper.GetField(i, j + 1) is Water)) //no water on right
                         {
                             if (i < mapWrapper.MapHeight-1 && !(mapWrapper.GetField(i + 1, j) is Water)) //no water down and right

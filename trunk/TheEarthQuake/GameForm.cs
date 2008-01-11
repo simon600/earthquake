@@ -155,12 +155,23 @@ namespace TheEarthQuake.GUI
         /// </summary>
         private void Tick()
         {
+            DateTime time = DateTime.Now; // used to count fps
+            DateTime tempTime; // used to count fps
+            TimeSpan timeDifference; // used to count fps
+
+
             //it should depend of the fps (because loop speed is depend of machine speed)
 
             while(true) // infinity loop for rendering
-            {
+            { 
                 this.ProcessKeyboard();
                 this.engine.Refresh();
+
+                /* counting fps */
+                tempTime = DateTime.Now;
+                timeDifference = (tempTime - time);
+                stateMachine.CurrentFPS = 1000.0f / timeDifference.Milliseconds;
+                time = tempTime;
             }
         }
     }

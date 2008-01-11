@@ -70,7 +70,7 @@ namespace TheEarthQuake.Players
             positionX = x;
             positionY = y;
             this.playerClass = new PlayerClass();
-            this.playerClass.Speed = 2;
+            this.playerClass.Speed = 300;
         }
 
 
