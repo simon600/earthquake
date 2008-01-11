@@ -133,7 +133,7 @@ namespace TheEarthQuake.Logic
                     {
                         /* we calculate the shift to the left */
 
-                        centerDx = -player.PlayerClass.Speed * Player.BaseStep;
+                        centerDx = -player.PlayerClass.Speed / currentFPS * Player.BaseStep;
                         
                         /* we calculate the border of the neighbouring field
                            on the left to check if player collides */
@@ -209,7 +209,7 @@ namespace TheEarthQuake.Logic
                     {                      
                         /* we calculate the shift to the right */
 
-                        centerDx = player.PlayerClass.Speed * Player.BaseStep;
+                        centerDx = player.PlayerClass.Speed / currentFPS * Player.BaseStep;
 
                         /* we calculate the border of the neighbouring field
                          * on the right to check if player collides */
@@ -275,7 +275,7 @@ namespace TheEarthQuake.Logic
                     {
                          /* we calculate the shift to the up */
 
-                        centerDy = -player.PlayerClass.Speed * Player.BaseStep;
+                        centerDy = -player.PlayerClass.Speed / currentFPS * Player.BaseStep;
 
                         /* we calculate the border of the neighbouring field
                          * on the up to check if player collides */
@@ -341,7 +341,7 @@ namespace TheEarthQuake.Logic
                     {
                         /* we calculate the shift to the down */
 
-                        centerDy = player.PlayerClass.Speed * Player.BaseStep;
+                        centerDy = player.PlayerClass.Speed / currentFPS * Player.BaseStep;
 
                         /* we calculate the border of the neighbouring field
                          * on the down to check if player collides */
