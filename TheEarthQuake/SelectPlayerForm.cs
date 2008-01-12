@@ -18,7 +18,12 @@ namespace TheEarthQuake.GUI
     public partial class SelectPlayerForm : Form
     {
         private SelectPlayerFormControllerWrapper controllerWrapper;
-        private PlayerClass[] P;
+        private PlayerClasses playerClasses;
+
+        private Dictionary<string, CheckBox> playerOneRadioButtons = new Dictionary<string, CheckBox>();
+        private Dictionary<string, CheckBox> playerTwoRadioButtons = new Dictionary<string, CheckBox>();
+
+        private PlayerClass[] selected = new PlayerClass[2];
 
         public SelectPlayerForm(SelectPlayerFormControllerWrapper controllerWrapper)
         {
@@ -26,101 +31,77 @@ namespace TheEarthQuake.GUI
             this.controllerWrapper = controllerWrapper;
         }
 
-        /* This method handles key pressed event. */
-        protected override bool ProcessDialogKey(Keys keyData)
-        {
-            /*
-             * Keys:
-             *   1  - check radio button 1
-             *   2  - check radio button 2
-             *   3  - check radio button 3
-             *  Alt+1 - check radiobutton 4
-             *  Alt+2 - check radiobutton 5
-             *  Alt+3 - check radiobutton 6
-             * 
-             *  Esc, Left - exit form (button1 action)
-             *  Enter, Right - proceed (button2 action)
-             */
+        ///* This method handles key pressed event. */
+        //protected override bool ProcessDialogKey(Keys keyData)
+        //{
+        //    /*
+        //     * Keys:
+        //     *   1  - check radio button 1
+        //     *   2  - check radio button 2
+        //     *   3  - check radio button 3
+        //     *  Alt+1 - check radiobutton 4
+        //     *  Alt+2 - check radiobutton 5
+        //     *  Alt+3 - check radiobutton 6
+        //     * 
+        //     *  Esc, Left - exit form (button1 action)
+        //     *  Enter, Right - proceed (button2 action)
+        //     */
 
-            switch (keyData)
-            {
-                /* set first players name to first from the left */
-                case Keys.D1:
-                    this.radioButton1.Checked = true;
-                    return true;
+        //    switch (keyData)
+        //    {
+        //        /* set first players name to first from the left */
+        //        case Keys.D1:
+        //            this.radioButton1.Checked = true;
+        //            return true;
 
-                /* set first players name to second from the left */
-                case Keys.D2:
-                    this.radioButton2.Checked = true;
-                    return true;
+        //        /* set first players name to second from the left */
+        //        case Keys.D2:
+        //            this.radioButton2.Checked = true;
+        //            return true;
 
-                /* set first players name to third from the left */
-                case Keys.D3:
-                    this.radioButton3.Checked = true;
-                    return true;
+        //        /* set first players name to third from the left */
+        //        case Keys.D3:
+        //            this.radioButton3.Checked = true;
+        //            return true;
 
-                /* set second players name to third from the left */
-                case Keys.D3 | Keys.Alt:
-                    this.radioButton4.Checked = true;
-                    return true;
+        //        /* set second players name to third from the left */
+        //        case Keys.D3 | Keys.Alt:
+        //            this.radioButton4.Checked = true;
+        //            return true;
 
-                /* set second players name to second from the left */
-                case Keys.D2 | Keys.Alt:
-                    this.radioButton5.Checked = true;
-                    return true;
+        //        /* set second players name to second from the left */
+        //        case Keys.D2 | Keys.Alt:
+        //            this.radioButton5.Checked = true;
+        //            return true;
 
-                /* set second players name to first from the left */
-                case Keys.D1 | Keys.Alt:
-                    this.radioButton6.Checked = true;
-                    return true;
+        //        /* set second players name to first from the left */
+        //        case Keys.D1 | Keys.Alt:
+        //            this.radioButton6.Checked = true;
+        //            return true;
 
-                /* exit */
-                case Keys.Escape:
-                case Keys.Left:
-                    this.button2_Click(this, null);
-                    return true;    // will it ever be called? 
+        //        /* exit */
+        //        case Keys.Escape:
+        //        case Keys.Left:
+        //            this.button2_Click(this, null);
+        //            return true;    // will it ever be called? 
 
-                /* proceed */
-                case Keys.Enter:
-                case Keys.Right:
-                    this.button1_Click(this, null);
-                    return true;    // will this ever be invoked?
+        //        /* proceed */
+        //        case Keys.Enter:
+        //        case Keys.Right:
+        //            this.button1_Click(this, null);
+        //            return true;    // will this ever be invoked?
 
-                /* let the base class handle the key */
-                default:
-                    return base.ProcessDialogKey(keyData);
-            }
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
+        //        /* let the base class handle the key */
+        //        default:
+        //            return base.ProcessDialogKey(keyData);
+        //    }
+        //}
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void HealtPprogressBar2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void NumberOfMineProgressBar_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -133,13 +114,77 @@ namespace TheEarthQuake.GUI
 
         private void SelectPlayerForm_Load(object sender, EventArgs e)
         {
-            PlayerClasses PC = new PlayerClasses(@"..\..\..\Players\Config\players.xml");
-            P = PC.GetAll();
+            playerClasses = new PlayerClasses(@"..\..\..\Players\Config\players.xml");
+
+            bool tmp = true;
+
+            foreach (PlayerClass playerClass in playerClasses.GetAll())
+            {
+
+                Panel panel = new Panel();
+                panel.Top = 0;
+                panel.Width = 120;
+                panel.Height = 130;
+                panel.BorderStyle = BorderStyle.FixedSingle;
+          
+
+                PictureBox logo = new PictureBox();
+                logo.Image = System.Drawing.Image.FromFile(@playerClass.LogoPath);
+                logo.Width = 100;
+                logo.Height = 100;
+                logo.Top = 0;
+                logo.Left = 9;
+                logo.SizeMode = PictureBoxSizeMode.StretchImage;
+                panel.Controls.Add(logo);
 
 
-            pictureBox1.Image = pictureBox4.Image =  System.Drawing.Image.FromFile(@P[0].LogoPath);
-            pictureBox2.Image = pictureBox5.Image = System.Drawing.Image.FromFile(@P[1].LogoPath);
-            pictureBox3.Image = pictureBox6.Image = System.Drawing.Image.FromFile(@P[2].LogoPath);
+                CheckBox radio = new CheckBox();
+                radio.Top = 100;
+                radio.Left = 10;
+                radio.Text = playerClass.Name;
+
+
+                radio.Click += new EventHandler(radio_Click);
+
+
+                panel.Controls.Add(radio);
+                
+                playerOneRadioButtons[playerClass.Name] = radio;
+                player1ClassesPanel.Controls.Add(panel);                
+            }
+
+
+            tmp = true;
+            foreach (PlayerClass playerClass in playerClasses.GetAll()) 
+            {
+                Panel panel = new Panel();
+                panel.Top = 0;
+                panel.Width = 120;
+                panel.Height = 130;
+                panel.BorderStyle = BorderStyle.FixedSingle;
+
+                PictureBox logo = new PictureBox();
+                logo.Width = 100;
+                logo.Height = 100;
+                logo.SizeMode = PictureBoxSizeMode.StretchImage;
+                logo.Image = System.Drawing.Image.FromFile(@playerClass.LogoPath);
+                panel.Controls.Add(logo);
+
+
+                CheckBox radio = new CheckBox();
+                radio.Top = 100;
+                radio.Left = 10;
+                radio.Text = playerClass.Name;
+                radio.Click += new EventHandler(radio_Click2);
+   
+
+                panel.Controls.Add(radio);
+
+              
+           
+                playerTwoRadioButtons[playerClass.Name] = radio;
+                player2ClassesPanel.Controls.Add(panel);
+            }
 
             speedProgressBar.Maximum = 3;
             speedProgressBar.Minimum = 0;
@@ -166,58 +211,87 @@ namespace TheEarthQuake.GUI
             numberOfMineProgressBar2.Maximum = 3;
             numberOfMineProgressBar2.Minimum = 0;
 
-            SelectPlayer(0, false);
+
+            playerOneRadioButtons[playerClasses.GetAll()[0].Name].Checked = true;
+            playerTwoRadioButtons[playerClasses.GetAll()[0].Name].Checked = true;
+
+
+            Bind(0, playerClasses.GetAll()[0].Name);
+            Bind(1, playerClasses.GetAll()[0].Name);
 
         }
 
-        private void radioButton1_Click(object sender, EventArgs e)
+        void Bind(int i, string name)
         {
-            SelectPlayer(0,true);
-        }
+            selected[i] = playerClasses.GetPlayerClass(name);
 
-        private void SelectPlayer(int p,bool up)
-        {
-            if (up)
+
+            if (i == 0)
             {
-                speedProgressBar.Value = P[p].Speed;
-                powerProgressBar.Value = P[p].MinePower;
-                rangeProgressBar.Value = P[p].MineRange;
-                healthProgressBar.Value = P[p].MaxHealth;
-                numberOfMineProgressBar.Value = P[p].SimultanousMines;
+                speedProgressBar.Value = selected[0].Speed;
+                powerProgressBar.Value = selected[0].MinePower;
+                rangeProgressBar.Value = selected[0].MineRange;
+                healthProgressBar.Value = selected[0].MaxHealth;
+                numberOfMineProgressBar.Value = selected[0].SimultanousMines;
             }
-            else
+
+            if (i == 1)
             {
-                speedProgressBar2.Value = P[p].Speed;
-                powerProgressBar2.Value = P[p].MinePower;
-                rangeProgressBar2.Value = P[p].MineRange;
-                healthProgressBar2.Value = P[p].MaxHealth;
-                numberOfMineProgressBar2.Value = P[p].SimultanousMines;
+                speedProgressBar2.Value = selected[1].Speed;
+                powerProgressBar2.Value = selected[1].MinePower;
+                rangeProgressBar2.Value = selected[1].MineRange;
+                healthProgressBar2.Value = selected[1].MaxHealth;
+                numberOfMineProgressBar2.Value = selected[1].SimultanousMines;
             }
+
+
         }
 
-        private void radioButton2_Click(object sender, EventArgs e)
+        void radio_Click2(object sender, EventArgs e)
         {
-            SelectPlayer(1, true);
+            string tmp = "";
+            foreach (KeyValuePair<string, CheckBox> buttonX in playerTwoRadioButtons)
+            {
+
+                if (buttonX.Value == (CheckBox)sender)
+                {
+                    buttonX.Value.Checked = true;
+                    tmp = buttonX.Key;
+                }
+                else
+                {
+                    buttonX.Value.Checked = false;
+                }
+            }
+
+            Bind(1, tmp);
         }
 
-        private void radioButton3_Click(object sender, EventArgs e)
+
+
+
+
+
+        void radio_Click(object sender, EventArgs e)
         {
-            SelectPlayer(2, true);
+            string tmp = "";
+            foreach (KeyValuePair<string, CheckBox> buttonX in playerOneRadioButtons)
+            {
+
+                if (buttonX.Value == (CheckBox)sender)
+                {
+                    buttonX.Value.Checked = true;
+                }
+                else
+                {
+                    buttonX.Value.Checked = false;
+                    tmp = buttonX.Key;
+                }
+            }
+
+            Bind(0, tmp);
         }
 
-        private void radioButton6_Click(object sender, EventArgs e)
-        {
-            SelectPlayer(2, false);
-        }
 
-        private void radioButton4_Click(object sender, EventArgs e)
-        {
-            SelectPlayer(0, false);
-        }
-
-        private void radioButton5_Click(object sender, EventArgs e)
-        {
-            SelectPlayer(1, false);
-        }
     }
 }
