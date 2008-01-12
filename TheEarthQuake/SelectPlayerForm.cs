@@ -115,8 +115,7 @@ namespace TheEarthQuake.GUI
         private void SelectPlayerForm_Load(object sender, EventArgs e)
         {
             playerClasses = new PlayerClasses(@"..\..\..\Players\Config\players.xml");
-
-            bool tmp = true;
+            bool tmp;
 
             foreach (PlayerClass playerClass in playerClasses.GetAll())
             {

@@ -19,15 +19,11 @@ namespace TheEarthQuake.GUI
 {
     public partial class GameOptionsForm : Form
     {
-        GameOptionsFormControllerWrapper controllerWrapper;
-        
-        public GameOptionsForm(GameOptionsFormControllerWrapper controllerWrapper)
+        public GameOptionsForm()
         {
             InitializeComponent();
             this.comboBox1.SelectedIndex = 0;
             this.comboBox3.SelectedIndex = 0;
-
-            this.controllerWrapper = controllerWrapper;
         }
 
         /* method for handling key pressed events */

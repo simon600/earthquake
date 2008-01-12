@@ -19,11 +19,7 @@ namespace TheEarthQuake.GUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Controller gameController = new Controller();
-            WelcomeFormControllerWrapper welcomeFormControllerWrapper =
-                new WelcomeFormControllerWrapper(gameController);
-
-            WelcomeForm form = new WelcomeForm(welcomeFormControllerWrapper);
+            WelcomeForm form = new WelcomeForm();
             Application.Run(form);
 
 
