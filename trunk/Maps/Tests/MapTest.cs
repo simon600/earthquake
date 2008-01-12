@@ -29,7 +29,7 @@ namespace TheEarthQuake.Maps.Tests
         {
             Console.WriteLine("Tearing down...");
         }
-
+        
 
         /// <summary>
         /// Testing whether mapWidth and mapHeight is odd natural number
@@ -66,6 +66,23 @@ namespace TheEarthQuake.Maps.Tests
         }
 
         /// <summary>
+        /// Testing if bonus size is positive number.
+        /// </summary>
+        [Test]
+        public void TestBonusSize()
+        {
+            Console.WriteLine("Test if field size is positive number");
+            bool result;
+
+            if (map.BonusSize > 0.0)
+                result = true;
+            else
+                result = false;
+
+            Assert.AreEqual(true, result);
+        }
+
+        /// <summary>
         /// Testing whether each field was initialized properly.
         /// </summary>
         [Test]
@@ -88,6 +105,9 @@ namespace TheEarthQuake.Maps.Tests
             Assert.AreEqual(true, result);
         }
 
+        /// <summary>
+        /// Testing GetBonusForPlayer() method
+        /// </summary>
         [Test]
         public void TestGetBonusForPlayer()
         {
@@ -99,6 +119,26 @@ namespace TheEarthQuake.Maps.Tests
             Bonuses.Bonus bonus = map.GetBonusForPlayer(0, 0);
 
             Assert.IsNotNull(bonus);            
+        }
+
+        /// <summary>
+        /// Testing SetPlayerLivingSpace method
+        /// </summary>
+        [Test]
+        public void TestSetPlayerLivingSpace()
+        {
+            Console.WriteLine("Test if function SetPlayerLivingSpace works properly");
+
+            bool result;
+
+            if (map.GetField(0, 0) is Path && map.GetField(1, 0) is Path && map.GetField(0, 1) is Path&&
+                map.GetField(map.MapHeight - 1, map.MapWidth - 1) is Path && map.GetField(map.MapHeight - 1, map.MapWidth - 2) is Path &&
+                map.GetField(map.MapHeight - 2, map.MapWidth - 1) is Path)
+                result = true;
+            else
+                result = false;
+
+            Assert.AreEqual(result, true);
         }
     }
 }

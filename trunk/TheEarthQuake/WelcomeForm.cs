@@ -10,12 +10,9 @@ using TheEarthQuake.Logic;
 namespace TheEarthQuake.GUI
 {
     public partial class WelcomeForm : Form
-    {
-        WelcomeFormControllerWrapper controllerWrapper;
-        
-        public WelcomeForm(WelcomeFormControllerWrapper controllerWrapper)
+    {        
+        public WelcomeForm()
         {
-            this.controllerWrapper = controllerWrapper;
             InitializeComponent();
         }
 
@@ -98,19 +95,17 @@ namespace TheEarthQuake.GUI
         private void OptionButton_Click(object sender, EventArgs e)
         {
             GameOptionsForm window =
-                new GameOptionsForm(
-                    this.controllerWrapper.GameOptionsFormControllerWrapper);
+                new GameOptionsForm();
             window.ShowDialog();
             window.Dispose();
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            //Controller c = new Controller();
-            //WelcomeFormControllerWrapper cw = new WelcomeFormControllerWrapper(c);
+            Controller c = new Controller();
+
             SelectPlayerForm window = 
-                new SelectPlayerForm(
-                    this.controllerWrapper.SelectPlayersFormControllerWrapper);
+                new SelectPlayerForm(new SelectPlayerFormControllerWrapper(c));
 
             window.ShowDialog();
             window.Dispose();

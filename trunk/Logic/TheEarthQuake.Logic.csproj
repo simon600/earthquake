@@ -48,8 +48,6 @@
     <Compile Include="Tests\MapSelecFormControllerWrapperTest.cs" />
     <Compile Include="Tests\SelectPlayerFormControllerWrapperTest.cs" />
     <Compile Include="Tests\StateMachineTest.cs" />
-    <Compile Include="Tests\WelcomeFormWrapperTest.cs" />
-    <Compile Include="WelcomeFormControllerWrapper.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="ControllerWrapper.cs" />
     <Compile Include="GameFormControllerWrapper.cs" />
