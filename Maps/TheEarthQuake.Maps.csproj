@@ -37,7 +37,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="TheEarthQuake.Players, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\TheEarthQuake\bin\Release\TheEarthQuake.Players.dll</HintPath>
+      <HintPath>..\Players\bin\Debug\TheEarthQuake.Players.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -37,12 +37,20 @@
     <Compile Include="Player.cs" />
     <Compile Include="PlayerClass.cs" />
     <Compile Include="PlayerClasses.cs" />
-    <Compile Include="PlayerState.cs" />
     <Compile Include="PlayerWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\players.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Maps\TheEarthQuake.Maps.csproj">
+      <Project>{3B33AD3B-FAAB-4EE5-884E-4348F6688E09}</Project>
+      <Name>TheEarthQuake.Maps</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

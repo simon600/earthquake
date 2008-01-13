@@ -43,12 +43,12 @@ namespace TheEarthQuake.Players
 
                 // read attributes  and assign values to properties
                 pClass.Name = node.Attributes["Name"].InnerText;
-                pClass.Speed = Convert.ToInt32(node.Attributes["Speed"].InnerText);
+                pClass.BasicSpeed = Convert.ToInt32(node.Attributes["Speed"].InnerText);
                 pClass.MinePower = Convert.ToInt32(node.Attributes["MinePower"].InnerText);
                 pClass.MineRange = Convert.ToInt32(node.Attributes["MineRange"].InnerText);
                 pClass.MineType = Convert.ToInt32(node.Attributes["MineType"].InnerText);
                 pClass.MaxHealth = Convert.ToInt32(node.Attributes["MaxHealth"].InnerText);
-                pClass.SimultanousMines = Convert.ToInt32(node.Attributes["simultanousMines"].InnerText);
+                pClass.MaxBomb = Convert.ToInt32(node.Attributes["simultanousMines"].InnerText);
                 pClass.MineDetonationTimeOffset = Convert.ToInt32(node.Attributes["mineDetonationTimeOffset"].InnerText);
                 pClass.CanThrow = Convert.ToBoolean(node.Attributes["CanThrow"].InnerText);
                 pClass.CanWalkMines = Convert.ToBoolean(node.Attributes["CanWalkMines"].InnerText);
