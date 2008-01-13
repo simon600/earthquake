@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameOptionsKeys.cs" />
     <Compile Include="Tests\ControllerTest.cs" />
     <Compile Include="Tests\GameFormControllerWrapperTest.cs" />
     <Compile Include="Tests\GameOptionsFormControllerWrapperTest.cs" />

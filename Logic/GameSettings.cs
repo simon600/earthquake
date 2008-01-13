@@ -4,10 +4,6 @@ using System.Text;
 
 namespace TheEarthQuake.Logic
 {
-    /// <summary>
-    /// A bunch of resolutions that user can choose from.
-    /// </summary>
-    public enum Resolution { r640x480 = 1, r800x600, r1024x768, r1280x1024, r1280x800 };
 
     /// <summary>
     /// GameSettings class holds settings for the program.
@@ -16,37 +12,66 @@ namespace TheEarthQuake.Logic
     /// </summary>
     public class GameSettings
     {
-        private Resolution gameResolution = Resolution.r800x600;      
-        private bool soundOn = true;        
+        // game speed 
+        private int gameSpeed = 4;
 
-        /// <summary>
-        /// Accessor for the resolution set. Both get and set.
-        /// </summary>
-        public Resolution GameResolution
+        // say if bonuses is enabled
+        private bool bonusesOn = true;
+        
+        // sound value percentage
+        private int soundVolume = 0;
+
+        // music volume percentage 
+        private int musicVolume = 0;
+
+        //  a keys settings for player one
+        private GameControllKeys playerOneKeys;
+
+        //  a keys settings for player two
+        private GameControllKeys playerTwoKeys;
+
+
+        public GameSettings()
         {
-            get
-            {
-                return gameResolution;
-            }
-            set
-            {
-                gameResolution = value;
-            }
+            playerOneKeys = new GameControllKeys(Players.Player1);
+            playerTwoKeys = new GameControllKeys(Players.Player2);
         }
 
-        /// <summary>
-        /// Accessor for sound on/off option. Both set and get.
-        /// </summary>
-        public bool SoundOn
+        public int GameSpeed
         {
-            get
-            {
-                return soundOn;
-            }
-            set
-            {
-                soundOn = value;
-            }
+            get { return gameSpeed; }
+            set { gameSpeed = value; }
+        }
+
+        public bool BonusesOn
+        {
+            get { return bonusesOn; }
+            set { bonusesOn = value; }
+        }
+
+
+        public int SoundVolume
+        {
+            get { return soundVolume; }
+            set { soundVolume = value; }
+        }
+
+        public int MusicVolume
+        {
+            get { return musicVolume; }
+            set { musicVolume = value; }
+        }
+
+        public GameControllKeys PlayerOneKeys
+        {
+            get { return playerOneKeys; }
+            set { playerOneKeys = value; }
+        }
+
+        public GameControllKeys PlayerTwoKeys
+        {
+            get { return playerTwoKeys; }
+            set { playerTwoKeys = value; }
         }
     }
 }

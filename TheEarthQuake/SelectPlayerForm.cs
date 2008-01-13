@@ -136,19 +136,15 @@ namespace TheEarthQuake.GUI
                 logo.SizeMode = PictureBoxSizeMode.StretchImage;
                 panel.Controls.Add(logo);
 
-
-                CheckBox radio = new CheckBox();
-                radio.Top = 100;
-                radio.Left = 10;
-                radio.Text = playerClass.Name;
-
-
-                radio.Click += new EventHandler(radio_Click);
+                CheckBox checkbox = new CheckBox();
+                checkbox.Top = 100;
+                checkbox.Left = 10;
+                checkbox.Text = playerClass.Name;
 
 
-                panel.Controls.Add(radio);
-                
-                playerOneRadioButtons[playerClass.Name] = radio;
+                checkbox.Click += new EventHandler(radio_Click);
+                panel.Controls.Add(checkbox);                
+                playerOneRadioButtons[playerClass.Name] = checkbox;
                 player1ClassesPanel.Controls.Add(panel);                
             }
 
@@ -170,18 +166,15 @@ namespace TheEarthQuake.GUI
                 panel.Controls.Add(logo);
 
 
-                CheckBox radio = new CheckBox();
-                radio.Top = 100;
-                radio.Left = 10;
-                radio.Text = playerClass.Name;
-                radio.Click += new EventHandler(radio_Click2);
+                CheckBox checkbox = new CheckBox();
+                checkbox.Top = 100;
+                checkbox.Left = 10;
+                checkbox.Text = playerClass.Name;
+                checkbox.Click += new EventHandler(radio_Click2);
    
 
-                panel.Controls.Add(radio);
-
-              
-           
-                playerTwoRadioButtons[playerClass.Name] = radio;
+                panel.Controls.Add(checkbox);           
+                playerTwoRadioButtons[playerClass.Name] = checkbox;
                 player2ClassesPanel.Controls.Add(panel);
             }
 
@@ -280,17 +273,16 @@ namespace TheEarthQuake.GUI
                 if (buttonX.Value == (CheckBox)sender)
                 {
                     buttonX.Value.Checked = true;
+                    tmp = buttonX.Key;
                 }
                 else
                 {
                     buttonX.Value.Checked = false;
-                    tmp = buttonX.Key;
+                    
                 }
             }
 
             Bind(0, tmp);
         }
-
-
     }
 }

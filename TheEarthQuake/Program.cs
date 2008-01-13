@@ -21,8 +21,6 @@ namespace TheEarthQuake.GUI
 
             WelcomeForm form = new WelcomeForm();
             Application.Run(form);
-
-
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
         }
 
