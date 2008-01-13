@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TheEarthQuake.Maps.Bonuses;
 
 /*
  *   TODO:
@@ -17,8 +18,8 @@ namespace TheEarthQuake.Players
     /// </summary>
     public class Player
     {
-        private PlayerClass playerClass; // player class 
-        private PlayerState playerState; // current player state
+        private PlayerClass playerClass; // player class
+        private Bonus myBonus;
 
         private int positionI;    // player position in map fields coordinates
         private int positionJ;    // player position in map fields coordinates
@@ -29,6 +30,7 @@ namespace TheEarthQuake.Players
         private static float baseStep = (float)0.1;       // base shift of the player pos. when moving
         private static float playerRadius = (float)16;    // border of the player, for collision detection.
 
+        
 
         /// <summary>
         /// Accessor for base shift of the player position. Only get.
@@ -70,7 +72,7 @@ namespace TheEarthQuake.Players
             positionX = x;
             positionY = y;
             this.playerClass = new PlayerClass();
-            this.playerClass.Speed = 300;
+            myBonus = null;
         }
 
 
@@ -86,22 +88,6 @@ namespace TheEarthQuake.Players
             set
             {
                 playerClass = value;
-            }
-        }
-
-        /// <summary>
-        /// Accessors for playerState. Both get and set.
-        /// </summary>
-        public PlayerState PlayerState
-        {
-            get
-            {
-                return playerState;
-            }
-
-            set
-            {
-                playerState = value;
             }
         }
 
@@ -167,8 +153,265 @@ namespace TheEarthQuake.Players
             set
             {
                 this.positionY = value;
+            }   
+        }
+
+        /// <summary>
+        /// Accessor for actually speed. Both get and set.
+        /// </summary>
+        public int Speed
+        {
+            get
+            {
+                if (myBonus != null && myBonus.Type == TypeOfBonus.Speed)
+                {
+                    return playerClass.BasicSpeed + myBonus.Modyfication;
+                }
+                else
+                {
+                    return playerClass.BasicSpeed;
+                }
             }
         }
+        /// <summary>
+        /// Accessor for class name. Both get and set.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return playerClass.Name; ;
+            }
+
+            set
+            {
+                playerClass.Name = value;
+            }
+        }
+
+        /// <summary>
+        /// Accessor for texture path. Both get and set.
+        /// </summary>
+        public string TexturePath
+        {
+            get
+            {
+                return playerClass.TexturePath;
+            }
+            set
+            {
+                playerClass.TexturePath = value;
+            }
+        }
+
+        /// <summary>
+        /// Access for logo path. Both get and set.
+        /// </summary>
+        public string LogoPath
+        {
+            get
+            {
+                return playerClass.LogoPath;
+            }
+
+            set
+            {
+                playerClass.LogoPath = value;
+            }
+        }
+
+
+        /// <summary>
+        /// Accessor for mine power. Both get and set.
+        /// </summary>
+        public int MinePower
+        {
+            get
+            {
+                return playerClass.MinePower;
+            }
+
+            set
+            {
+                playerClass.MinePower = value;
+            }
+        }
+
+        /// <summary>
+        /// Accessor for mine range. Both get and set.
+        /// </summary>
+        public int MineRange
+        {
+            get
+            {
+                return playerClass.MineRange;
+            }
+
+            set
+            {
+                playerClass.MineRange = value;
+            }
+        }
+
+        /// <summary>
+        /// Accessor for mine type. Both get and set.
+        /// </summary>
+        public int MineType
+        {
+            get
+            {
+                return playerClass.MineType;
+            }
+
+            set
+            {
+                playerClass.MineType = value;
+            }
+        }
+
+        /// <summary>
+        /// Accessor for shield. Both get and set.
+        /// </summary>
+        public int Shield
+        {
+            get
+            {
+                return playerClass.Shield;
+            }
+
+            set
+            {
+                playerClass.Shield = value;
+            }
+        }
+
+        /// <summary>
+        /// Accessor for a number of mines that player can set simultanously. Both get and set.
+        /// </summary>
+        public int MaxBomb
+        {
+            get
+            {
+                return playerClass.MaxBomb;
+            }
+
+            set
+            {
+                playerClass.MaxBomb = value;
+            }
+        }
+
+        /// <summary>
+        /// Accessor for the time of a mine to blow up. Both get and set.
+        /// </summary>
+        public int MineDetonationTimeOffset
+        {
+            get
+            {
+                return playerClass.MineDetonationTimeOffset;
+            }
+
+            set
+            {
+                playerClass.MineDetonationTimeOffset = value;
+            }
+        }
+
+        /// <summary>
+        /// Accessor for player's maximum health amount. Both get and set.
+        /// </summary>
+        public int MaxHealth
+        {
+            get
+            {
+                return playerClass.MaxHealth;
+            }
+            set
+            {
+                playerClass.MaxHealth= value;
+            }
+        }
+
+        /// <summary>
+        /// ???. Both get and set.
+        /// </summary>
+        public bool CanThrow
+        {
+            get
+            {
+                return playerClass.CanThrow;
+            }
+
+            set
+            {
+                playerClass.CanThrow = value;
+            }
+        }
+
+        /// <summary>
+        /// Accessor for option saying: can the player walk on mines?. Both get and set.
+        /// </summary>
+        public bool CanWalkMines
+        {
+            get
+            {
+                return playerClass.CanWalkMines;
+            }
+
+            set
+            {
+                playerClass.CanWalkMines = value;
+            }
+        }
+
+        /// <summary>
+        /// Accessor for option: can player move a set up mine? Both get and set.
+        /// </summary>
+        public bool CanShiftMines
+        {
+            get
+            {
+                return playerClass.CanShiftMines;
+            }
+
+            set
+            {
+                playerClass.CanShiftMines = value;
+            }
+        }
+
+        /// <summary>
+        /// Accessor for lives number that player has left. Both get and set.
+        /// </summary>
+        public int Lives
+        {
+            get
+            {
+                return playerClass.Lives;
+            }
+
+            set
+            {
+                playerClass.Lives = value;
+            }
+        }
+
+        /// <summary>
+        /// Accessor for player's health. Both get and set.
+        /// </summary>
+        public int CurrentHealth
+        {
+            get
+            {
+                return playerClass.CurrentHealth;
+            }
+
+            set
+            {
+                playerClass.CurrentHealth = value;
+            }
+        }
+
 
 
     }

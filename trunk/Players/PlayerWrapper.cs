@@ -105,7 +105,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.PlayerClass.Speed;
+                return player.PlayerClass.BasicSpeed;
             }
         }
 
@@ -160,7 +160,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.PlayerState.Lives;
+                return player.PlayerClass.Lives;
             }
         }
 
@@ -171,18 +171,18 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.PlayerState.CurrentHealth;
+                return player.PlayerClass.CurrentHealth;
             }
         }
 
         /// <summary>
         /// Accessor for a number of mines that player can set simultanously.
         /// </summary>
-        public int SimultanousMines
+        public int maxBomb
         {
             get
             {
-                return player.PlayerClass.SimultanousMines;
+                return player.PlayerClass.MaxBomb;
             }
         }
 
@@ -209,13 +209,13 @@ namespace TheEarthQuake.Players
         }
 
         /// <summary>
-        /// Accessor for a number of mines already triggered.
+        /// Accessor for a number of mines already triggered. Only get.
         /// </summary>
-        public bool TriggeredMines
+        public int TriggeredMines
         {
             get
             {
-                return player.PlayerState.TriggeredMines;
+                return player.PlayerClass.NumberOfTriggeredMines;
             }
         }
 

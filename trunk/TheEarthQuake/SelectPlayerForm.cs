@@ -119,7 +119,6 @@ namespace TheEarthQuake.GUI
         private void SelectPlayerForm_Load(object sender, EventArgs e)
         {
             playerClasses = new PlayerClasses(@"..\..\..\Players\Config\players.xml");
-            bool tmp;
 
             foreach (PlayerClass playerClass in playerClasses.GetAll())
             {
@@ -153,7 +152,6 @@ namespace TheEarthQuake.GUI
             }
 
 
-            tmp = true;
             foreach (PlayerClass playerClass in playerClasses.GetAll()) 
             {
                 Panel panel = new Panel();
@@ -224,20 +222,20 @@ namespace TheEarthQuake.GUI
 
             if (i == 0)
             {
-                speedProgressBar.Value = selected[0].Speed;
+                speedProgressBar.Value = selected[0].BasicSpeed;
                 powerProgressBar.Value = selected[0].MinePower;
                 rangeProgressBar.Value = selected[0].MineRange;
                 healthProgressBar.Value = selected[0].MaxHealth;
-                numberOfMineProgressBar.Value = selected[0].SimultanousMines;
+                numberOfMineProgressBar.Value = selected[0].MaxBomb;
             }
 
             if (i == 1)
             {
-                speedProgressBar2.Value = selected[1].Speed;
+                speedProgressBar2.Value = selected[1].BasicSpeed;
                 powerProgressBar2.Value = selected[1].MinePower;
                 rangeProgressBar2.Value = selected[1].MineRange;
                 healthProgressBar2.Value = selected[1].MaxHealth;
-                numberOfMineProgressBar2.Value = selected[1].SimultanousMines;
+                numberOfMineProgressBar2.Value = selected[1].MaxBomb;
             }
 
 
