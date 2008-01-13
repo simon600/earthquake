@@ -17,11 +17,6 @@ namespace TheEarthQuake.Maps.Bonuses
         internal TypeOfBonus type;
         internal int modyfication;
 
-        
-
-        public abstract void Activate(Player P);
-        public abstract void DeActivate(Player P);
-
 
         public TypeOfBonus Type
         {
@@ -42,6 +37,11 @@ namespace TheEarthQuake.Maps.Bonuses
                 modyfication = value; 
             }
         }
+        /// <summary>
+        /// Acivate bonus
+        /// </summary>
+        public abstract void Activation(Player P);
+
     }
 
     public class SpeedBonus : Bonus
@@ -50,32 +50,25 @@ namespace TheEarthQuake.Maps.Bonuses
         SpeedBonus()
         {
             type = TypeOfBonus.Speed;
+            modyfication = 300;
         }
 
-
-        public override void Activate(Player P)
+        public override void Activation(Player P)
         {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        public override void DeActivate(Player P)
-        {
-            throw new Exception("The method or operation is not implemented.");
+            //nothing
         }
     }
 
     public class HealthBonus : Bonus
     {
-
-
-        public override void Activate(Player P)
+        public HealthBonus()
         {
-            throw new Exception("The method or operation is not implemented.");
+            modyfication = 1000;
         }
 
-        public override void DeActivate(Player P)
+        public override void Activation(Player P)
         {
-            throw new Exception("The method or operation is not implemented.");
+            P.CurrentHealth = P.MaxHealth;
         }
     }
 
@@ -84,17 +77,12 @@ namespace TheEarthQuake.Maps.Bonuses
         KaczynskiBonus()
         {
             type = TypeOfBonus.Kaczynski;
+            modyfication = -1;
         }
 
-
-        public override void Activate(Player P)
+        public override void Activation(Player P)
         {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        public override void DeActivate(Player P)
-        {
-            throw new Exception("The method or operation is not implemented.");
+            // Create 2 ducks !
         }
     }
 

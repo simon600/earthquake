@@ -414,5 +414,15 @@ namespace TheEarthQuake.Players
 
 
 
+        /// <summary>
+        /// Modify a player who take bonus
+        /// </summary>
+        /// <param name="bonus">Finded bonus</param>
+        public void TakeBonus(Bonus bonus)
+        {
+            myBonus = bonus;
+            bonus.Activation(this);
+            
+        }
     }
 }
