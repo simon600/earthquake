@@ -162,7 +162,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\down.png" />
     <Content Include="Resources\earthmoon.jpeg" />
+    <Content Include="Resources\explosion.png" />
+    <Content Include="Resources\left.png" />
+    <Content Include="Resources\right.png" />
+    <Content Include="Resources\up.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
