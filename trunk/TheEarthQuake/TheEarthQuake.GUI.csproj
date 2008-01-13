@@ -11,8 +11,10 @@
     <AssemblyName>TheEarthQuake.GUI</AssemblyName>
     <ManifestCertificateThumbprint>9484D0E4C31F035E5968C51C36B70C7C598CEC88</ManifestCertificateThumbprint>
     <ManifestKeyFile>TheEarthQuake.GUI_TemporaryKey.pfx</ManifestKeyFile>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
     <SignManifests>true</SignManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetZone>LocalIntranet</TargetZone>
     <PublishUrl>C:\Documents and Settings\Acer\Pulpit\eq\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +26,6 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -131,10 +132,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <BaseApplicationManifest Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\GameOptionsForm.datasource" />
     <None Include="Properties\DataSources\GameSettings.datasource" />
     <None Include="Resources\1.jpg" />
-    <None Include="TheEarthQuake.GUI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\TheEarthQuake.Engine.csproj">
