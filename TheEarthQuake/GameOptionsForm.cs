@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using TheEarthQuake.Logic;
+using TheEarthQuake.Players;
 
 /*
  * Author: Marcin Golebiowski
@@ -21,7 +22,9 @@ namespace TheEarthQuake.GUI
         {
             InitializeComponent();
             this.controller = controller;
-            Bind();
+
+            FillBasicOptions();
+            this.cbxPlayer.SelectedIndex = 0;
         }
 
         private void btnReturn_Click(object sender, EventArgs e)
@@ -34,7 +37,7 @@ namespace TheEarthQuake.GUI
         /// <summary>
         /// Fill controls with values from GameSettings in Controller
         /// </summary>
-        public void Bind()
+        public void FillBasicOptions()
         {
             numMusic.Value = controller.GameSettings.MusicVolume;
             numSound.Value = controller.GameSettings.SoundVolume;
@@ -43,6 +46,29 @@ namespace TheEarthQuake.GUI
             cbxBonusesOn.Checked = controller.GameSettings.BonusesOn;
         }
 
+        public void FillControllKeys(TheEarthQuake.Logic.Players player)
+        {
+            if (player == TheEarthQuake.Logic.Players.Player1)
+            {
+                tbxTop.Text = controller.GameSettings.PlayerOneKeys.Top.ToString();
+                tbxDown.Text = controller.GameSettings.PlayerOneKeys.Down.ToString();
+                tbxLeft.Text = controller.GameSettings.PlayerOneKeys.Left.ToString();
+                tbxRight.Text = controller.GameSettings.PlayerOneKeys.Right.ToString();
+                tbxBomb.Text = controller.GameSettings.PlayerOneKeys.Bomb.ToString();
+                tbxSpecial.Text = controller.GameSettings.PlayerOneKeys.Special.ToString();
+            }
+
+            if (player == TheEarthQuake.Logic.Players.Player2)
+            {
+                tbxTop.Text = controller.GameSettings.PlayerTwoKeys.Top.ToString();
+                tbxDown.Text = controller.GameSettings.PlayerTwoKeys.Down.ToString();
+                tbxLeft.Text = controller.GameSettings.PlayerTwoKeys.Left.ToString();
+                tbxRight.Text = controller.GameSettings.PlayerTwoKeys.Right.ToString();
+                tbxBomb.Text = controller.GameSettings.PlayerTwoKeys.Bomb.ToString();
+                tbxSpecial.Text = controller.GameSettings.PlayerTwoKeys.Special.ToString();
+            }
+        }
+        
         private void cbxBonusesOn_Click(object sender, EventArgs e)
         {
             controller.GameSettings.BonusesOn = cbxBonusesOn.Checked;
@@ -63,11 +89,23 @@ namespace TheEarthQuake.GUI
             controller.GameSettings.MusicVolume = (int)numMusic.Value;
         }
 
-        private void textBox6_KeyDown(object sender, KeyEventArgs e)
+        private void cbxPlayer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            if (cbxPlayer.SelectedItem != null)
+            {
+                if (cbxPlayer.SelectedIndex == 0)
+                {
+                    FillControllKeys(TheEarthQuake.Logic.Players.Player1);
+                }
+
+                if (cbxPlayer.SelectedIndex == 1)
+                {
+                    FillControllKeys(TheEarthQuake.Logic.Players.Player2);
+                }
+            }
         }
 
+    
 
         ///* method for handling key pressed events */
         //protected override bool ProcessDialogKey(Keys keyData)
