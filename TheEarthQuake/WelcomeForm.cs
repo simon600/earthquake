@@ -105,6 +105,9 @@ namespace TheEarthQuake.GUI
             SelectPlayerForm window =
                 new SelectPlayerForm(new SelectPlayerFormControllerWrapper(Controller.Instace));
 
+            Controller.Instace.NewGame();
+
+
             window.ShowDialog();
             window.Dispose();
         }

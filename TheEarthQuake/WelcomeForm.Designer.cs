@@ -40,11 +40,11 @@ namespace TheEarthQuake.GUI
             this.label1.BackColor = System.Drawing.Color.Black;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(85, 64);
+            this.label1.Location = new System.Drawing.Point(63, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(209, 31);
+            this.label1.Size = new System.Drawing.Size(271, 31);
             this.label1.TabIndex = 0;
-            this.label1.Text = "EARTH QUAKE";
+            this.label1.Text = "THE EARTH QUAKE";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // startButton
