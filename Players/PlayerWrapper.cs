@@ -28,6 +28,21 @@ namespace TheEarthQuake.Players
             }
         }
 
+        public PlayerClass PlayerClass
+        {
+            get
+            {
+                return player.PlayerClass;
+            }
+
+            set
+            {
+                player.PlayerClass = value;
+            }
+        }
+        
+
+
         /// <summary>
         /// Accessor for the player's border.
         /// </summary>

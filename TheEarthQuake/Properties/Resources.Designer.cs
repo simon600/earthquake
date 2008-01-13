@@ -67,6 +67,13 @@ namespace TheEarthQuake.GUI.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap detonator {
+            get {
+                object obj = ResourceManager.GetObject("detonator", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap down {
             get {
                 object obj = ResourceManager.GetObject("down", resourceCulture);

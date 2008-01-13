@@ -133,8 +133,10 @@ namespace TheEarthQuake.GUI
             // speedProgressBar
             // 
             this.speedProgressBar.Location = new System.Drawing.Point(516, 19);
+            this.speedProgressBar.Maximum = 10;
             this.speedProgressBar.Name = "speedProgressBar";
             this.speedProgressBar.Size = new System.Drawing.Size(100, 23);
+            this.speedProgressBar.Step = 1;
             this.speedProgressBar.TabIndex = 16;
             // 
             // powerProgressBar

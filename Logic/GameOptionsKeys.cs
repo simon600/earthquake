@@ -7,7 +7,7 @@ namespace TheEarthQuake.Logic
 {
     public class GameControllKeys
     {
-        private Keys top;
+        private Keys up;
         private Keys left;
         private Keys right;
         private Keys down;
@@ -18,7 +18,7 @@ namespace TheEarthQuake.Logic
         {
             if (player == Players.Player1)
             {
-                top = Keys.W;
+                up = Keys.W;
                 left = Keys.A;
                 right = Keys.D;
                 down = Keys.S;
@@ -28,7 +28,7 @@ namespace TheEarthQuake.Logic
 
             if (player == Players.Player2)
             {
-                top = Keys.I;
+                up = Keys.I;
                 left = Keys.J;
                 down = Keys.K;
                 right = Keys.L;
@@ -37,16 +37,16 @@ namespace TheEarthQuake.Logic
             }
         }
 
-        public Keys Top
+        public Keys Up
         {
             get
             {
-                return top;
+                return up;
             }
 
             set
             {
-                top = value;
+                up = value;
             }
         }
 

@@ -163,6 +163,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\detonator.png" />
     <Content Include="Resources\down.png" />
     <Content Include="Resources\earthmoon.jpeg" />
     <Content Include="Resources\explosion.png" />

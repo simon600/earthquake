@@ -67,77 +67,71 @@ namespace TheEarthQuake.GUI
             return ((GetKeyState((short)key) & keyDownBit) == keyDownBit);
         }
 
+
         /* checking the keyboard state for pressed keys */
         private void ProcessKeyboard()
         {
-            /* Keys:
-             *   WSAD - player 1 move up, down, left, right
-             *   E - player 1 special key
-             *   X - player 1 set up bomb
-             * 
-             *   IKJL - player 2 move up, down, left, right
-             *   U - player 2 special key
-             *   N - player 2 set up bomb
-             * 
-             *   Esc - exit form
-             */
+            // checking state of keys for PlayerOne actions
 
-            if (this.IsKeyPressed(Keys.W))
+            if (this.IsKeyPressed(controllerWrapper.StateMachine.CurrentGameSettings.PlayerOneKeys.Up))
             {
                 controllerWrapper.MovePlayer1Up();
             }
             
-            if (this.IsKeyPressed(Keys.S))
+            if (this.IsKeyPressed(controllerWrapper.StateMachine.CurrentGameSettings.PlayerOneKeys.Down))
             {
                 controllerWrapper.MovePlayer1Down();
             }
 
-            if (this.IsKeyPressed(Keys.A))
+            if (this.IsKeyPressed(controllerWrapper.StateMachine.CurrentGameSettings.PlayerOneKeys.Left))
             {
                 controllerWrapper.MovePlayer1Left();
             }
 
-            if (this.IsKeyPressed(Keys.D))
+            if (this.IsKeyPressed(controllerWrapper.StateMachine.CurrentGameSettings.PlayerOneKeys.Right))
             {
                 controllerWrapper.MovePlayer1Right();
             }
 
-            if (this.IsKeyPressed(Keys.X))
+            if (this.IsKeyPressed(controllerWrapper.StateMachine.CurrentGameSettings.PlayerOneKeys.Bomb))
             {
                 controllerWrapper.Player1SetUpBomb();
             }
 
-            if (this.IsKeyPressed(Keys.E))
+            if (this.IsKeyPressed(controllerWrapper.StateMachine.CurrentGameSettings.PlayerOneKeys.Special))
             {
                 controllerWrapper.Player1Special();
             }
 
-            if (this.IsKeyPressed(Keys.I))
+
+            // checking state of keys for PlayerOne actions
+
+            if (this.IsKeyPressed(controllerWrapper.StateMachine.CurrentGameSettings.PlayerTwoKeys.Up))
             {
                 controllerWrapper.MovePlayer2Up();
             }
 
-            if (this.IsKeyPressed(Keys.K))
+            if (this.IsKeyPressed(controllerWrapper.StateMachine.CurrentGameSettings.PlayerTwoKeys.Down))
             {
                 controllerWrapper.MovePlayer2Down();
             }
 
-            if (this.IsKeyPressed(Keys.J))
+            if (this.IsKeyPressed(controllerWrapper.StateMachine.CurrentGameSettings.PlayerTwoKeys.Left))
             {
                 controllerWrapper.MovePlayer2Left();
             }
 
-            if (this.IsKeyPressed(Keys.L))
+            if (this.IsKeyPressed(controllerWrapper.StateMachine.CurrentGameSettings.PlayerTwoKeys.Right))
             {
                 controllerWrapper.MovePlayer2Right();
             }
 
-            if (this.IsKeyPressed(Keys.U))
+            if (this.IsKeyPressed(controllerWrapper.StateMachine.CurrentGameSettings.PlayerTwoKeys.Special))
             {
                 controllerWrapper.Player2Special();
             }
 
-            if (this.IsKeyPressed(Keys.M))
+            if (this.IsKeyPressed(controllerWrapper.StateMachine.CurrentGameSettings.PlayerTwoKeys.Bomb))
             {
                 controllerWrapper.Player2SetUpBomb();
             }
