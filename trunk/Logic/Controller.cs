@@ -18,6 +18,35 @@ namespace TheEarthQuake.Logic
     {
         private Engine.Engine graphicsEngine;       // graphics engine, the only one
         private StateMachine stateMachine;          // the only state machine 
+        private GameSettings gameSettings;          // all games settings
+        private static Controller instace;          // main controller for game
+
+        public static Controller Instace
+        {
+            get
+            {
+                if (instace == null)
+                {
+                    instace = new Controller();
+                }
+                return instace;
+            }
+        }
+
+
+        public GameSettings GameSettings
+        {
+            get
+            {
+                return gameSettings;
+            }
+
+            set
+            {
+                gameSettings = value;
+            }
+        }
+
 
         public Engine.Engine GraphicsEngine
         {
@@ -43,6 +72,7 @@ namespace TheEarthQuake.Logic
         {
             stateMachine = new StateMachine();
             graphicsEngine = new Engine.Engine();
+            gameSettings = new GameSettings();
 
             NewGame();                              // sets up a new game
         }

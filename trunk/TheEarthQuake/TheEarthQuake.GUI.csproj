@@ -73,11 +73,6 @@
     <Compile Include="GameOptionsForm.Designer.cs">
       <DependentUpon>GameOptionsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameSettings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>GameSettings.settings</DependentUpon>
-    </Compile>
     <Compile Include="MapSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,10 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="GameSettings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>GameSettings.Designer.cs</LastGenOutput>
-    </None>
     <None Include="Properties\DataSources\GameOptionsForm.datasource" />
     <None Include="Properties\DataSources\GameSettings.datasource" />
     <None Include="Resources\1.jpg" />

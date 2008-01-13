@@ -29,16 +29,11 @@ namespace TheEarthQuake.GUI
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.cbxBonusesOn = new System.Windows.Forms.CheckBox();
+            this.numSpeed = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -55,33 +50,28 @@ namespace TheEarthQuake.GUI
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnReturn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.numSound = new System.Windows.Forms.NumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numMusic = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpeed)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSound)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMusic)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(247, 116);
@@ -89,28 +79,10 @@ namespace TheEarthQuake.GUI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Grafika";
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(102, 27);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Pe³ny ekran:";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(70, 83);
+            this.label2.Location = new System.Drawing.Point(24, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 3;
@@ -120,39 +92,15 @@ namespace TheEarthQuake.GUI
             // 
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(102, 80);
+            this.comboBox2.Location = new System.Drawing.Point(61, 24);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 4;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 56);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Rozdzielczoœæ:";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "800x600",
-            "1024x768",
-            "1280x1024",
-            "1280x800 "});
-            this.comboBox1.Location = new System.Drawing.Point(102, 53);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 1;
-            // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.checkBox2);
-            this.groupBox2.Controls.Add(this.numericUpDown1);
+            this.groupBox2.Controls.Add(this.cbxBonusesOn);
+            this.groupBox2.Controls.Add(this.numSpeed);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Location = new System.Drawing.Point(13, 232);
             this.groupBox2.Name = "groupBox2";
@@ -161,45 +109,39 @@ namespace TheEarthQuake.GUI
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Gra";
             // 
-            // label4
+            // cbxBonusesOn
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(51, 55);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Bonusy:";
+            this.cbxBonusesOn.AutoSize = true;
+            this.cbxBonusesOn.Location = new System.Drawing.Point(102, 54);
+            this.cbxBonusesOn.Name = "cbxBonusesOn";
+            this.cbxBonusesOn.Size = new System.Drawing.Size(61, 17);
+            this.cbxBonusesOn.TabIndex = 6;
+            this.cbxBonusesOn.Text = "Bonusy";
+            this.cbxBonusesOn.UseVisualStyleBackColor = true;
+            this.cbxBonusesOn.Click += new System.EventHandler(this.cbxBonusesOn_Click);
             // 
-            // checkBox2
+            // numSpeed
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(102, 54);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(15, 14);
-            this.checkBox2.TabIndex = 6;
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(102, 24);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.numSpeed.Location = new System.Drawing.Point(102, 24);
+            this.numSpeed.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.numSpeed.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(53, 20);
-            this.numericUpDown1.TabIndex = 5;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.numSpeed.Name = "numSpeed";
+            this.numSpeed.Size = new System.Drawing.Size(53, 20);
+            this.numSpeed.TabIndex = 5;
+            this.numSpeed.Value = new decimal(new int[] {
             5,
             0,
             0,
             0});
+            this.numSpeed.ValueChanged += new System.EventHandler(this.numSpeed_ValueChanged);
             // 
             // label3
             // 
@@ -267,7 +209,6 @@ namespace TheEarthQuake.GUI
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(113, 20);
             this.textBox5.TabIndex = 11;
-            this.textBox5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
             // 
             // label9
             // 
@@ -285,7 +226,6 @@ namespace TheEarthQuake.GUI
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(113, 20);
             this.textBox4.TabIndex = 9;
-            this.textBox4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox4_KeyDown);
             // 
             // label8
             // 
@@ -312,7 +252,6 @@ namespace TheEarthQuake.GUI
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(113, 20);
             this.textBox3.TabIndex = 7;
-            this.textBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
             // 
             // textBox2
             // 
@@ -321,7 +260,6 @@ namespace TheEarthQuake.GUI
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(113, 20);
             this.textBox2.TabIndex = 7;
-            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyDown);
             // 
             // label6
             // 
@@ -339,7 +277,6 @@ namespace TheEarthQuake.GUI
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(113, 20);
             this.textBox1.TabIndex = 2;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // pictureBox1
             // 
@@ -363,32 +300,23 @@ namespace TheEarthQuake.GUI
             this.comboBox3.Size = new System.Drawing.Size(260, 21);
             this.comboBox3.TabIndex = 0;
             // 
-            // button1
+            // btnReturn
             // 
-            this.button1.Location = new System.Drawing.Point(13, 346);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Powrót";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(611, 346);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Zastosuj";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnReturn.Location = new System.Drawing.Point(13, 346);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(75, 23);
+            this.btnReturn.TabIndex = 3;
+            this.btnReturn.Text = "Powrót";
+            this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.numericUpDown3);
+            this.groupBox4.Controls.Add(this.numSound);
             this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Controls.Add(this.label12);
-            this.groupBox4.Controls.Add(this.numericUpDown2);
+            this.groupBox4.Controls.Add(this.numMusic);
             this.groupBox4.Controls.Add(this.label13);
             this.groupBox4.Location = new System.Drawing.Point(12, 135);
             this.groupBox4.Name = "groupBox4";
@@ -406,22 +334,23 @@ namespace TheEarthQuake.GUI
             this.label14.TabIndex = 9;
             this.label14.Text = "%";
             // 
-            // numericUpDown3
+            // numSound
             // 
-            this.numericUpDown3.Increment = new decimal(new int[] {
+            this.numSound.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown3.Location = new System.Drawing.Point(103, 51);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(53, 20);
-            this.numericUpDown3.TabIndex = 8;
-            this.numericUpDown3.Value = new decimal(new int[] {
+            this.numSound.Location = new System.Drawing.Point(103, 51);
+            this.numSound.Name = "numSound";
+            this.numSound.Size = new System.Drawing.Size(53, 20);
+            this.numSound.TabIndex = 8;
+            this.numSound.Value = new decimal(new int[] {
             50,
             0,
             0,
             0});
+            this.numSound.ValueChanged += new System.EventHandler(this.numSound_ValueChanged);
             // 
             // label15
             // 
@@ -441,22 +370,23 @@ namespace TheEarthQuake.GUI
             this.label12.TabIndex = 6;
             this.label12.Text = "%";
             // 
-            // numericUpDown2
+            // numMusic
             // 
-            this.numericUpDown2.Increment = new decimal(new int[] {
+            this.numMusic.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown2.Location = new System.Drawing.Point(103, 24);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(53, 20);
-            this.numericUpDown2.TabIndex = 5;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.numMusic.Location = new System.Drawing.Point(103, 24);
+            this.numMusic.Name = "numMusic";
+            this.numMusic.Size = new System.Drawing.Size(53, 20);
+            this.numMusic.TabIndex = 5;
+            this.numMusic.Value = new decimal(new int[] {
             50,
             0,
             0,
             0});
+            this.numMusic.ValueChanged += new System.EventHandler(this.numMusic_ValueChanged);
             // 
             // label13
             // 
@@ -473,8 +403,7 @@ namespace TheEarthQuake.GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(703, 381);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -488,14 +417,14 @@ namespace TheEarthQuake.GUI
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpeed)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSound)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMusic)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -505,17 +434,12 @@ namespace TheEarthQuake.GUI
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.NumericUpDown numSpeed;
+        private System.Windows.Forms.CheckBox cbxBonusesOn;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox1;
@@ -530,13 +454,12 @@ namespace TheEarthQuake.GUI
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numMusic;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown numSound;
         private System.Windows.Forms.Label label15;
     }
 }

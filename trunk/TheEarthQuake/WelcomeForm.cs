@@ -95,17 +95,15 @@ namespace TheEarthQuake.GUI
         private void OptionButton_Click(object sender, EventArgs e)
         {
             GameOptionsForm window =
-                new GameOptionsForm();
+                new GameOptionsForm(new GameOptionsFormControllerWrapper(Controller.Instace));
             window.ShowDialog();
             window.Dispose();
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            Controller c = new Controller();
-
-            SelectPlayerForm window = 
-                new SelectPlayerForm(new SelectPlayerFormControllerWrapper(c));
+            SelectPlayerForm window =
+                new SelectPlayerForm(new SelectPlayerFormControllerWrapper(Controller.Instace));
 
             window.ShowDialog();
             window.Dispose();

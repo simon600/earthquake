@@ -28,5 +28,13 @@ namespace TheEarthQuake.Logic
                 return controller.StateMachine;
             }
         }
+
+        public GameSettings GameSettings
+        {
+            get
+            {
+                return controller.GameSettings;
+            }
+        }
     }
 }
