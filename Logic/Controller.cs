@@ -18,7 +18,6 @@ namespace TheEarthQuake.Logic
     {
         private Engine.Engine graphicsEngine;       // graphics engine, the only one
         private StateMachine stateMachine;          // the only state machine 
-        private GameSettings gameSettings;          // all games settings
         private static Controller instace;          // main controller for game
 
         public static Controller Instace
@@ -34,18 +33,7 @@ namespace TheEarthQuake.Logic
         }
 
 
-        public GameSettings GameSettings
-        {
-            get
-            {
-                return gameSettings;
-            }
 
-            set
-            {
-                gameSettings = value;
-            }
-        }
 
 
         public Engine.Engine GraphicsEngine
@@ -53,6 +41,11 @@ namespace TheEarthQuake.Logic
             get
             {
                 return this.graphicsEngine;
+            }
+
+            set
+            {
+                this.graphicsEngine = value;
             }
         }
 
@@ -71,10 +64,6 @@ namespace TheEarthQuake.Logic
         public Controller()
         {
             stateMachine = new StateMachine();
-            graphicsEngine = new Engine.Engine();
-            gameSettings = new GameSettings();
-
-            NewGame();                              // sets up a new game
         }
 
         public void MovePlayer1Up()
@@ -133,8 +122,9 @@ namespace TheEarthQuake.Logic
         /// Set up a new game. 
         /// Should be called whenever a new game is started.
         /// </summary>
-        private void NewGame()
+        public void NewGame()
         {
+            graphicsEngine = new Engine.Engine();
             stateMachine.CreateGame();              // init machine to a new game
 
             /* Engine does not have any rights to change anything in

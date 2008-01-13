@@ -28,9 +28,8 @@ namespace TheEarthQuake.Logic
         private static float height = 768;      // screnn height
 
         private Maps.Map map;                               // actual map//private State currentState = null;                  // current machine state
-        private GameSettings currentGameSettings = null;    // actual settings
         private float currentFPS;                           // frames per second
-
+        private GameSettings gameSettings;
         private Player PlayerOne;                           // player 1 instance
         private Player PlayerTwo;                           // player 2 instance
 
@@ -76,7 +75,7 @@ namespace TheEarthQuake.Logic
         {
             get
             {
-                return currentGameSettings;
+                return gameSettings;
             }
         }
 
@@ -461,6 +460,7 @@ namespace TheEarthQuake.Logic
         public StateMachine()
         {
             this.map = new Maps.Map();
+            this.gameSettings = new GameSettings();
         }
 
         /// <summary>

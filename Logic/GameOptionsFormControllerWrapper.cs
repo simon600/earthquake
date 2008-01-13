@@ -33,7 +33,7 @@ namespace TheEarthQuake.Logic
         {
             get
             {
-                return controller.GameSettings;
+                return controller.StateMachine.CurrentGameSettings;
             }
         }
     }
