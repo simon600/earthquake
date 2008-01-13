@@ -107,6 +107,10 @@ namespace TheEarthQuake.GUI
         {
             this.Close();
             this.Visible = false;
+
+            controllerWrapper.StateMachine.GetPlayerOneWrapper().PlayerClass = selected[0];
+            controllerWrapper.StateMachine.GetPlayerTwoWrapper().PlayerClass = selected[1];
+
             MapSelectForm map = new MapSelectForm(this.controllerWrapper.MapSelectFormControllerWrapper);
             map.ShowDialog();
             map.Dispose();
@@ -178,9 +182,9 @@ namespace TheEarthQuake.GUI
                 player2ClassesPanel.Controls.Add(panel);
             }
 
-            speedProgressBar.Maximum = 3;
+            speedProgressBar.Maximum = 1000;
             speedProgressBar.Minimum = 0;
-            speedProgressBar2.Maximum = 3;
+            speedProgressBar2.Maximum = 1000;
             speedProgressBar2.Minimum = 0;
 
             powerProgressBar.Maximum = 100;

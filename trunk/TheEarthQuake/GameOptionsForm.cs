@@ -50,22 +50,22 @@ namespace TheEarthQuake.GUI
         {
             if (player == TheEarthQuake.Logic.Players.Player1)
             {
-                tbxTop.Text = controller.GameSettings.PlayerOneKeys.Top.ToString();
+                tbxTop.Text = controller.GameSettings.PlayerOneKeys.Up.ToString();
                 tbxDown.Text = controller.GameSettings.PlayerOneKeys.Down.ToString();
                 tbxLeft.Text = controller.GameSettings.PlayerOneKeys.Left.ToString();
                 tbxRight.Text = controller.GameSettings.PlayerOneKeys.Right.ToString();
                 tbxBomb.Text = controller.GameSettings.PlayerOneKeys.Bomb.ToString();
-              
+                tbxSpecial.Text = controller.GameSettings.PlayerOneKeys.Special.ToString(); 
             }
 
             if (player == TheEarthQuake.Logic.Players.Player2)
             {
-                tbxTop.Text = controller.GameSettings.PlayerTwoKeys.Top.ToString();
+                tbxTop.Text = controller.GameSettings.PlayerTwoKeys.Up.ToString();
                 tbxDown.Text = controller.GameSettings.PlayerTwoKeys.Down.ToString();
                 tbxLeft.Text = controller.GameSettings.PlayerTwoKeys.Left.ToString();
                 tbxRight.Text = controller.GameSettings.PlayerTwoKeys.Right.ToString();
                 tbxBomb.Text = controller.GameSettings.PlayerTwoKeys.Bomb.ToString();
-               
+                tbxSpecial.Text = controller.GameSettings.PlayerTwoKeys.Special.ToString();
             }
         }
         
@@ -109,12 +109,12 @@ namespace TheEarthQuake.GUI
         {
             if (cbxPlayer.SelectedIndex == 0)
             {
-                controller.GameSettings.PlayerOneKeys.Top = e.KeyCode;
+                controller.GameSettings.PlayerOneKeys.Up = e.KeyCode;
                 FillControllKeys(TheEarthQuake.Logic.Players.Player1);
             }
             else
             {
-                controller.GameSettings.PlayerTwoKeys.Top = e.KeyCode;
+                controller.GameSettings.PlayerTwoKeys.Up = e.KeyCode;
                 FillControllKeys(TheEarthQuake.Logic.Players.Player2);
             }
         }
@@ -144,9 +144,7 @@ namespace TheEarthQuake.GUI
             {
                 controller.GameSettings.PlayerTwoKeys.Right = e.KeyCode;
                 FillControllKeys(TheEarthQuake.Logic.Players.Player2);
-            }
-
-          
+            }     
         }
 
         private void tbxLeft_TextChanged(object sender, KeyEventArgs e)
