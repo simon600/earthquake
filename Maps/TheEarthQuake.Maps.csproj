@@ -43,12 +43,12 @@
   <ItemGroup>
     <Compile Include="Bonuses\Bonus.cs" />
     <Compile Include="Bonuses\SampleBonus.cs" />
-    <Compile Include="Field.cs" />
+    <Compile Include="Fields\Field.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MapWrapper.cs" />
-    <Compile Include="NonPersistentWall.cs" />
-    <Compile Include="Path.cs" />
-    <Compile Include="PersistentWall.cs" />
+    <Compile Include="Fields\NonPersistentWall.cs" />
+    <Compile Include="Fields\Path.cs" />
+    <Compile Include="Fields\PersistentWall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\NonPersistentWallTest.cs" />
     <Compile Include="Tests\MapWrapperTest.cs" />
@@ -56,8 +56,8 @@
     <Compile Include="Tests\PathTest.cs" />
     <Compile Include="Tests\PersistentWallTest.cs" />
     <Compile Include="Tests\WaterTest.cs" />
-    <Compile Include="Wall.cs" />
-    <Compile Include="Water.cs" />
+    <Compile Include="Fields\Wall.cs" />
+    <Compile Include="Fields\Water.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
