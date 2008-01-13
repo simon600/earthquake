@@ -474,10 +474,8 @@ namespace TheEarthQuake.Logic
            
             if (bonus != null)
             {
-                ActivateBonus(bonus, player);
+                player.TakeBonus(bonus);
             }
-            /* here goes code that handles bonuse's effect */
-
         }
 
         private void ActivateBonus(Bonus bonus, Player player)
