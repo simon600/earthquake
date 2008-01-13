@@ -55,7 +55,7 @@ namespace TheEarthQuake.GUI
                 tbxLeft.Text = controller.GameSettings.PlayerOneKeys.Left.ToString();
                 tbxRight.Text = controller.GameSettings.PlayerOneKeys.Right.ToString();
                 tbxBomb.Text = controller.GameSettings.PlayerOneKeys.Bomb.ToString();
-                tbxSpecial.Text = controller.GameSettings.PlayerOneKeys.Special.ToString();
+              
             }
 
             if (player == TheEarthQuake.Logic.Players.Player2)
@@ -65,7 +65,7 @@ namespace TheEarthQuake.GUI
                 tbxLeft.Text = controller.GameSettings.PlayerTwoKeys.Left.ToString();
                 tbxRight.Text = controller.GameSettings.PlayerTwoKeys.Right.ToString();
                 tbxBomb.Text = controller.GameSettings.PlayerTwoKeys.Bomb.ToString();
-                tbxSpecial.Text = controller.GameSettings.PlayerTwoKeys.Special.ToString();
+               
             }
         }
         
@@ -105,7 +105,91 @@ namespace TheEarthQuake.GUI
             }
         }
 
-    
+        private void tbxTop_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (cbxPlayer.SelectedIndex == 0)
+            {
+                controller.GameSettings.PlayerOneKeys.Top = e.KeyCode;
+                FillControllKeys(TheEarthQuake.Logic.Players.Player1);
+            }
+            else
+            {
+                controller.GameSettings.PlayerTwoKeys.Top = e.KeyCode;
+                FillControllKeys(TheEarthQuake.Logic.Players.Player2);
+            }
+        }
+
+        private void tbxDown_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (cbxPlayer.SelectedIndex == 0)
+            {
+                controller.GameSettings.PlayerOneKeys.Down = e.KeyCode;
+                FillControllKeys(TheEarthQuake.Logic.Players.Player1);
+            }
+            else
+            {
+                controller.GameSettings.PlayerTwoKeys.Down = e.KeyCode;
+                FillControllKeys(TheEarthQuake.Logic.Players.Player2);
+            }
+        }
+
+        private void tbxRight_TextChanged(object sender, KeyEventArgs e)
+        {
+            if (cbxPlayer.SelectedIndex == 0)
+            {
+                controller.GameSettings.PlayerOneKeys.Right = e.KeyCode;
+                FillControllKeys(TheEarthQuake.Logic.Players.Player1);
+            }
+            else
+            {
+                controller.GameSettings.PlayerTwoKeys.Right = e.KeyCode;
+                FillControllKeys(TheEarthQuake.Logic.Players.Player2);
+            }
+
+          
+        }
+
+        private void tbxLeft_TextChanged(object sender, KeyEventArgs e)
+        {
+            if (cbxPlayer.SelectedIndex == 0)
+            {
+                controller.GameSettings.PlayerOneKeys.Left = e.KeyCode;
+                FillControllKeys(TheEarthQuake.Logic.Players.Player1);
+            }
+            else
+            {
+                controller.GameSettings.PlayerTwoKeys.Left = e.KeyCode;
+                FillControllKeys(TheEarthQuake.Logic.Players.Player2);
+            }
+        }
+
+        private void tbxBomb_TextChanged(object sender, KeyEventArgs e)
+        {
+            if (cbxPlayer.SelectedIndex == 0)
+            {
+                controller.GameSettings.PlayerOneKeys.Bomb = e.KeyCode;
+                FillControllKeys(TheEarthQuake.Logic.Players.Player1);
+            }
+            else
+            {
+                controller.GameSettings.PlayerTwoKeys.Bomb = e.KeyCode;
+                FillControllKeys(TheEarthQuake.Logic.Players.Player2);
+            }
+        }
+
+        private void tbxSpecial_TextChanged(object sender, KeyEventArgs e)
+        {
+            if (cbxPlayer.SelectedIndex == 0)
+            {
+                controller.GameSettings.PlayerOneKeys.Special = e.KeyCode;
+                FillControllKeys(TheEarthQuake.Logic.Players.Player1);
+            }
+            else
+            {
+                controller.GameSettings.PlayerTwoKeys.Special = e.KeyCode;
+                FillControllKeys(TheEarthQuake.Logic.Players.Player2);
+            }
+        }
 
         ///* method for handling key pressed events */
         //protected override bool ProcessDialogKey(Keys keyData)
