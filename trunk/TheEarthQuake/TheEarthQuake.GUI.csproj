@@ -138,6 +138,10 @@
     <None Include="Resources\1.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bonuses\TheEarthQuake.Bonuses.csproj">
+      <Project>{F36A769D-1A5D-4406-9650-17730A721B88}</Project>
+      <Name>TheEarthQuake.Bonuses</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Engine\TheEarthQuake.Engine.csproj">
       <Project>{6EC1672D-BFFE-49C6-8323-B6369889C0D9}</Project>
       <Name>TheEarthQuake.Engine</Name>

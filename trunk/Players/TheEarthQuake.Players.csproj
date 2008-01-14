@@ -45,13 +45,13 @@
     <Content Include="Config\players.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bonuses\TheEarthQuake.Bonuses.csproj">
+      <Project>{F36A769D-1A5D-4406-9650-17730A721B88}</Project>
+      <Name>TheEarthQuake.Bonuses</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Maps\TheEarthQuake.Maps.csproj">
       <Project>{3B33AD3B-FAAB-4EE5-884E-4348F6688E09}</Project>
       <Name>TheEarthQuake.Maps</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TheEarthQuake.Bonuses\TheEarthQuake.Bonuses.csproj">
-      <Project>{F36A769D-1A5D-4406-9650-17730A721B88}</Project>
-      <Name>TheEarthQuake.Bonuses</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

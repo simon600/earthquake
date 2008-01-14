@@ -60,6 +60,10 @@
     <Compile Include="StateMachine.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bonuses\TheEarthQuake.Bonuses.csproj">
+      <Project>{F36A769D-1A5D-4406-9650-17730A721B88}</Project>
+      <Name>TheEarthQuake.Bonuses</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Engine\TheEarthQuake.Engine.csproj">
       <Project>{6EC1672D-BFFE-49C6-8323-B6369889C0D9}</Project>
       <Name>TheEarthQuake.Engine</Name>
@@ -71,10 +75,6 @@
     <ProjectReference Include="..\Players\TheEarthQuake.Players.csproj">
       <Project>{F80F26CF-17EB-4293-B96F-7DD725A5D1FA}</Project>
       <Name>TheEarthQuake.Players</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TheEarthQuake.Bonuses\TheEarthQuake.Bonuses.csproj">
-      <Project>{F36A769D-1A5D-4406-9650-17730A721B88}</Project>
-      <Name>TheEarthQuake.Bonuses</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

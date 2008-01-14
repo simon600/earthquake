@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheEarthQuake.Maps", "Maps\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheEarthQuake.Players", "Players\TheEarthQuake.Players.csproj", "{F80F26CF-17EB-4293-B96F-7DD725A5D1FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheEarthQuake.Bonuses", "TheEarthQuake.Bonuses\TheEarthQuake.Bonuses.csproj", "{F36A769D-1A5D-4406-9650-17730A721B88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheEarthQuake.Bonuses", "Bonuses\TheEarthQuake.Bonuses.csproj", "{F36A769D-1A5D-4406-9650-17730A721B88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
