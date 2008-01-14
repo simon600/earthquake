@@ -30,7 +30,7 @@ namespace TheEarthQuake.Maps
         /// </summary>
         /// <returns></returns>
         public override Field clone()
-        {
+        {            
             Path returnPathField = new Path();
             returnPathField.Bonus = this.Bonus;
             returnPathField.Bomb = this.Bomb;
@@ -51,17 +51,20 @@ namespace TheEarthQuake.Maps
        
 
         //seems broken! i dunno how to fix this yet, though
-        new public bool HasBomb()
+        public override bool HasBomb()
         {
             return this.bomb != null;
         }
-        new public Bomb.Bomb GetBomb() { return this.bomb; }
-        new public void InsertBomb(Bomb.Bomb b)
+        public override Bomb.Bomb GetBomb()
+        {
+            return this.bomb;
+        }
+        override public void InsertBomb(Bomb.Bomb b)
         {
             this.bomb = b;
             return;
         }
-        new public void RemoveBomb()
+        public override void RemoveBomb()
         {
             this.bomb = null;
             return;

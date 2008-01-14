@@ -18,7 +18,8 @@ namespace TheEarthQuake.Maps
         private int mapWidth = 19;                      // ought to be odd 
         
         private float fieldSize;                        // field size for OpenGL
-        private float bonusSize;                        // bonus' quad size for OpenGL
+        private float bonusSize;                        // bonuse's quad size for OpenGL
+        private float bombSize;                         // bomb's quad size for OpenGL
 
         private Field[,] fields;                        // container for fields
 
@@ -81,6 +82,17 @@ namespace TheEarthQuake.Maps
         }
 
         /// <summary>
+        /// Return bomb quad size.
+        /// </summary>
+        public float BombSize
+        {
+            get
+            {
+                return this.bombSize;
+            }
+        }
+
+        /// <summary>
         /// Constructor - it generates map. It doesn't assure 
         /// that graph of walkable fields is connected.
         /// </summary>
@@ -92,6 +104,7 @@ namespace TheEarthQuake.Maps
              */
             fieldSize = 768.0f / mapHeight;      //sets fieldSize so that map's height is equal to screen's height
             bonusSize = fieldSize - 10;          //sets bonusSize so that it's a bit smaller then a field
+            bombSize = fieldSize - 15;           //sets bombSize so that it's a bit smaller then a field   
 
             fields = new Field[mapHeight, mapWidth];
 
@@ -137,6 +150,11 @@ namespace TheEarthQuake.Maps
             Bonus bonus = this.fields[i, j].Bonus;            
             this.fields[i, j].Bonus = null;
             return bonus;            
+        }
+
+        public void InsertBomb(int i, int j, Bomb.Bomb bomb)
+        {
+            fields[i, j].InsertBomb(bomb);
         }
         
         /// <summary>
