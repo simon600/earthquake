@@ -32,10 +32,6 @@ namespace TheEarthQuake.Logic
             }
         }
 
-
-
-
-
         public Engine.Engine GraphicsEngine
         {
             get
