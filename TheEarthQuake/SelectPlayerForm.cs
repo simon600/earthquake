@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using TheEarthQuake.Logic;
 using TheEarthQuake.Players;
+using System.Configuration;
 
 /*
  * TODO:
@@ -118,7 +119,7 @@ namespace TheEarthQuake.GUI
 
         private void SelectPlayerForm_Load(object sender, EventArgs e)
         {
-            playerClasses = new PlayerClasses(@"..\..\..\Players\Config\players.xml");
+            playerClasses = new PlayerClasses(ConfigurationManager.AppSettings["playerClasses"]);
 
             foreach (PlayerClass playerClass in playerClasses.GetAll())
             {

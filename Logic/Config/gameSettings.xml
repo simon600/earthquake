@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GameSettings>
+  <Music>30</Music>
+  <Sound>40</Sound>
+  <BonusesOn>True</BonusesOn>
+  <GameSpeed>7</GameSpeed>
+  <Controlls>
+    <PlayerOne>
+      <Up>87</Up>
+      <Down>83</Down>
+      <Left>65</Left>
+      <Right>68</Right>
+      <Bomb>90</Bomb>
+      <Special>88</Special>
+    </PlayerOne>
+    <PlayerTwo>
+      <Up>73</Up>
+      <Down>75</Down>
+      <Left>74</Left>
+      <Right>76</Right>
+      <Bomb>77</Bomb>
+      <Special>78</Special>
+    </PlayerTwo>
+  </Controlls>
+</GameSettings>
