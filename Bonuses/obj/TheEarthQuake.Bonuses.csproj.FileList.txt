@@ -1,0 +1,5 @@
+bin\Debug\TheEarthQuake.Bonuses.dll
+bin\Debug\TheEarthQuake.Bonuses.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\TheEarthQuake.Bonuses.dll
+obj\Debug\TheEarthQuake.Bonuses.pdb
