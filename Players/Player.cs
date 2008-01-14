@@ -453,7 +453,6 @@ namespace TheEarthQuake.Players
             myBonuses.Add(bonus);
             bonus.Activation();
             UpgradePlayer(bonus);
-
         }
 
         private void UpgradePlayer(Bonus bonus)
