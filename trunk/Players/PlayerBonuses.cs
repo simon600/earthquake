@@ -52,9 +52,5 @@ namespace TheEarthQuake.Players
             return null;
         }
 
-        private void RemoveBonus(Bonus B)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
     }
 }
