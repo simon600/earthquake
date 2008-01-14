@@ -32,7 +32,8 @@ namespace TheEarthQuake.Players
         private bool canShiftMines;  //tells if player can shift set mines
 
 
-        private string texturePath; // path to file with player texture
+        private string[] texturePaths; // path to file with player one texture
+
         private string logoPath;  // path to file with player class logo
         
         /// <summary>
@@ -58,20 +59,23 @@ namespace TheEarthQuake.Players
             }
         }
 
+
+
         /// <summary>
         /// Accessor for texture path. Both get and set.
         /// </summary>
-        public string TexturePath
+        public string[] TexturePaths
         {
             get
             {
-                return texturePath;
+                return texturePaths;
             }
             set
             {
-                texturePath = value;
+                texturePaths = value;
             }
         }
+
 
         /// <summary>
         /// Access for logo path. Both get and set.

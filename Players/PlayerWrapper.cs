@@ -28,6 +28,7 @@ namespace TheEarthQuake.Players
             }
         }
 
+
         public PlayerClass PlayerClass
         {
             get

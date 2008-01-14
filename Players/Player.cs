@@ -193,15 +193,15 @@ namespace TheEarthQuake.Players
         /// <summary>
         /// Accessor for texture path. Both get and set.
         /// </summary>
-        public string TexturePath
+        public string[] TexturePaths
         {
             get
             {
-                return playerClass.TexturePath;
+                return playerClass.TexturePaths;
             }
             set
             {
-                playerClass.TexturePath = value;
+                playerClass.TexturePaths = value;
             }
         }
 
