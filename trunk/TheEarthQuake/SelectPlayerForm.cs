@@ -222,7 +222,7 @@ namespace TheEarthQuake.GUI
 
             if (i == 0)
             {
-                speedProgressBar.Value = selected[0].BasicSpeed;
+                speedProgressBar.Value = selected[0].Speed;
                 powerProgressBar.Value = selected[0].MinePower;
                 rangeProgressBar.Value = selected[0].MineRange;
                 healthProgressBar.Value = selected[0].MaxHealth;
@@ -231,7 +231,7 @@ namespace TheEarthQuake.GUI
 
             if (i == 1)
             {
-                speedProgressBar2.Value = selected[1].BasicSpeed;
+                speedProgressBar2.Value = selected[1].Speed;
                 powerProgressBar2.Value = selected[1].MinePower;
                 rangeProgressBar2.Value = selected[1].MineRange;
                 healthProgressBar2.Value = selected[1].MaxHealth;
