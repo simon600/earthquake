@@ -337,7 +337,7 @@ namespace TheEarthQuake.Maps
                 fields[wallRow, wallColumn] = new NonPersistentWall();
 
                 /*set's bonus for a filed with some propability*/
-                fields[wallRow, wallColumn].Bonus = GenerateBonus();
+                //fields[wallRow, wallColumn].Bonus = GenerateBonus();
             }            
         }
 
