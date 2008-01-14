@@ -70,6 +70,17 @@ namespace TheEarthQuake.Maps
         }
 
         /// <summary>
+        /// Returns bomb quad size.
+        /// </summary>
+        public float BombSize
+        {
+            get
+            {
+                return map.BombSize;
+            }
+        }
+
+        /// <summary>
         /// Returns clone of field (used to access the type of field) from row 'i' and column 'j'.
         /// </summary>
         /// <param name="i"></param>

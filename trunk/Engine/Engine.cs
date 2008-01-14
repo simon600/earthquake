@@ -351,6 +351,24 @@ namespace TheEarthQuake.Engine
                             -i * mapWrapper.FieldSize - distanceFromEdge);
                         GL.glEnd();
                     }
+
+                    if (field is Path && (field as Path).Bomb != null) // na polu jest bomba, trza wiêc namalowaæ
+                    {
+                        /* distance between bomb quad and field border */
+                        float distanceFromEdge = (mapWrapper.FieldSize - mapWrapper.BombSize) / 2;
+
+                        GL.glBegin(GL.GL_QUADS);
+                        GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                            -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                        GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                            -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                        GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                            -i * mapWrapper.FieldSize - distanceFromEdge);
+                        GL.glTexCoord2f(0.0f, 1.0f);
+                        GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                            -i * mapWrapper.FieldSize - distanceFromEdge);
+                        GL.glEnd();
+                    }
                 }
             }
 

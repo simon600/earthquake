@@ -510,7 +510,7 @@ namespace TheEarthQuake.Logic
                 playerInstance.PositionX, playerInstance.PositionY,
                 playerInstance.PositionI, playerInstance.PositionJ
             );
-            field.InsertBomb(insertedBomb);
+            this.map.InsertBomb(playerInstance.PositionI, playerInstance.PositionJ, insertedBomb);
             this.bombs.Add(insertedBomb);
             playerInstance.SetMine();
         }
@@ -585,7 +585,11 @@ namespace TheEarthQuake.Logic
                 {
                     if (this.map.Fields[i - k, j] is Maps.NonPersistentWall)
                     {//kruszymy sciane
+                        /* kopiujemy bobus ¿eby by³ w na œcie¿ce */
+                        Bonus bonus = this.map.Fields[i - k, j].Bonus;
                         this.map.Fields[i - k, j] = new Maps.Path(this.map.Fields[i - k, j]);
+                        this.map.Fields[i - k, j].Bonus = bonus;
+
                     }
                     cut = false;
                 }
