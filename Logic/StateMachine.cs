@@ -477,9 +477,5 @@ namespace TheEarthQuake.Logic
                 player.TakeBonus(bonus);
             }
         }
-
-        private void ActivateBonus(Bonus bonus, Player player)
-        {
-        }
     }
 }

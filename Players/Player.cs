@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using TheEarthQuake.Maps.Bonuses;
@@ -19,7 +20,7 @@ namespace TheEarthQuake.Players
     public class Player
     {
         private PlayerClass playerClass; // player class
-        private Bonus myBonus;
+        private PlayerBonuses myBonuses; // courrently bonuses
 
         private int positionI;    // player position in map fields coordinates
         private int positionJ;    // player position in map fields coordinates
@@ -72,7 +73,7 @@ namespace TheEarthQuake.Players
             positionX = x;
             positionY = y;
             this.playerClass = new PlayerClass();
-            myBonus = null;
+            myBonuses = null;
         }
 
 
@@ -163,9 +164,18 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                if (myBonus != null && myBonus.Type == TypeOfBonus.Speed)
+                if (myBonuses != null)
                 {
-                    return playerClass.BasicSpeed + myBonus.Modyfication;
+                    myBonuses.DeleteToOld();
+                    Bonus  SpeedB = myBonuses.Find(TypeOfBonus.Speed);
+                    if (SpeedB != null)
+                    {
+                        return playerClass.BasicSpeed + SpeedB.Modyfication;
+                    }
+                    else
+                    {
+                        return playerClass.BasicSpeed;
+                    }
                 }
                 else
                 {
@@ -420,8 +430,10 @@ namespace TheEarthQuake.Players
         /// <param name="bonus">Finded bonus</param>
         public void TakeBonus(Bonus bonus)
         {
-            myBonus = bonus;
+            myBonuses.Add(bonus);
             bonus.Activation(this);
+            
+            
             
         }
     }
