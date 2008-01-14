@@ -105,7 +105,7 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                return player.PlayerClass.BasicSpeed;
+                return player.Speed;
             }
         }
 

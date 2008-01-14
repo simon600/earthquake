@@ -111,7 +111,6 @@ namespace TheEarthQuake.Bonuses
         {
             start = DateTime.Now;
             end = DateTime.Now.AddYears(10);
-           // P.CurrentHealth = P.MaxHealth; // TUTAJ TO TRZEBA POPRAWIC
         }
     }
 
@@ -128,7 +127,6 @@ namespace TheEarthQuake.Bonuses
         {
             start = DateTime.Now;
             end = DateTime.Now.AddYears(10);
-            // Create 2 ducks !
         }
     }
 }

@@ -13,7 +13,7 @@ namespace TheEarthQuake.Players
     public class PlayerClass
     {
         private string name;      // player class name
-        private int basicSpeed;        // player speed
+        private int speed;        // player speed
         private int minePower;    // how strong player's mines are 
         private int mineRange;    // radius of mine explosion (in map fields)
         private int mineType;     // mine type 
@@ -40,7 +40,6 @@ namespace TheEarthQuake.Players
         /// </summary>
         public PlayerClass()
         {
-            basicSpeed = 300;
         }
 
         /// <summary>
@@ -93,16 +92,16 @@ namespace TheEarthQuake.Players
         /// <summary>
         /// Accessor for player's speed. Both get and set.
         /// </summary>
-        public int BasicSpeed
+        public int Speed
         {
             get
             {
-                return basicSpeed;
+                return speed;
             }
 
             set
             {
-                basicSpeed = value;
+                speed = value;
             }
         }
 

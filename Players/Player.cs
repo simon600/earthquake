@@ -164,25 +164,16 @@ namespace TheEarthQuake.Players
         {
             get
             {
-                if (myBonuses != null)
-                {
-                    myBonuses.DeleteToOld();
-                    Bonus  SpeedB = myBonuses.Find(TypeOfBonus.Speed);
-                    if (SpeedB != null)
-                    {
-                        return playerClass.BasicSpeed + SpeedB.Modyfication;
-                    }
-                    else
-                    {
-                        return playerClass.BasicSpeed;
-                    }
-                }
-                else
-                {
-                    return playerClass.BasicSpeed;
-                }
+                DeleteOldBonuses();
+                return playerClass.Speed;
+
+            }
+            set
+            {
+                playerClass.Speed = value;
             }
         }
+
         /// <summary>
         /// Accessor for class name. Both get and set.
         /// </summary>
@@ -444,7 +435,14 @@ namespace TheEarthQuake.Players
             //STUB!
         }
 
-
+        private void DeleteOldBonuses()
+        {
+            Bonus b;
+            while ((b = myBonuses.DeleteToOld()) != null)
+            {
+                DowngradePlayer(b);
+            }
+        }
 
         /// <summary>
         /// Modify a player who take bonus
@@ -454,9 +452,38 @@ namespace TheEarthQuake.Players
         {
             myBonuses.Add(bonus);
             bonus.Activation();
-            
-            
-            
+            UpgradePlayer(bonus);
+
+        }
+
+        private void UpgradePlayer(Bonus bonus)
+        {
+            switch (bonus.Type)
+            {
+                case TypeOfBonus.Health:
+                    CurrentHealth = MaxHealth;
+                    break;
+                case TypeOfBonus.Speed:
+                    Speed += bonus.Modyfication;
+                    break;
+                case TypeOfBonus.Kaczynski:
+                    //create duck
+                    break;
+            }
+        }
+
+        private void DowngradePlayer(Bonus bonus)
+        {
+            switch (bonus.Type)
+            {
+                case TypeOfBonus.Health:
+                    break;
+                case TypeOfBonus.Speed:
+                    Speed -= bonus.Modyfication;
+                    break;
+                case TypeOfBonus.Kaczynski:
+                    break;
+            }
         }
     }
 }

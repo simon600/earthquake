@@ -31,15 +31,30 @@ namespace TheEarthQuake.Players
             return null;
         }
 
-        internal void DeleteToOld()
+        internal Bonus DeleteToOld()
         {
-            foreach (Bonus B in bonuses)
+            Bonus toDelete = null;
+            
+            for (int i = 0; i < bonuses.Count; i++)
             {
-                if (B.End < DateTime.Now)
+                if (bonuses[i].End < DateTime.Now)
                 {
-                    bonuses.Remove(B);
+                    toDelete = bonuses[i];
+                    break;
                 }
+                
             }
+            if (toDelete != null)
+            {
+                bonuses.Remove(toDelete);
+                return toDelete;
+            }
+            return null;
+        }
+
+        private void RemoveBonus(Bonus B)
+        {
+            throw new Exception("The method or operation is not implemented.");
         }
     }
 }
