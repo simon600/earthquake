@@ -14,10 +14,12 @@ namespace TheEarthQuake.Maps.Bonuses
 
     public abstract class Bonus
     {
-        internal TypeOfBonus type;
-        internal int modyfication;
+        protected TypeOfBonus type;
+        protected int modyfication;
+        protected DateTime start;
+        protected DateTime end;
 
-
+        
         public TypeOfBonus Type
         {
             get
@@ -37,6 +39,44 @@ namespace TheEarthQuake.Maps.Bonuses
                 modyfication = value; 
             }
         }
+
+        public DateTime Start
+        {
+            get 
+            { 
+                return start; 
+            }
+            set 
+            { 
+                start = value; 
+            }
+        }
+
+
+        public DateTime End
+        {
+            get 
+            { 
+                return end; 
+            }
+            set
+            {
+                end = value; 
+            }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Bonus)
+            {
+                return this.Type == ((Bonus)obj).Type && this.Start == ((Bonus)obj).Start;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Acivate bonus
         /// </summary>
@@ -51,11 +91,13 @@ namespace TheEarthQuake.Maps.Bonuses
         {
             type = TypeOfBonus.Speed;
             modyfication = 300;
+            
         }
 
         public override void Activation(Player P)
         {
-            //nothing
+            start = DateTime.Now;
+            end = DateTime.Now.AddSeconds(10.0);
         }
     }
 
@@ -68,6 +110,8 @@ namespace TheEarthQuake.Maps.Bonuses
 
         public override void Activation(Player P)
         {
+            start = DateTime.Now;
+            end = DateTime.Now.AddYears(10);
             P.CurrentHealth = P.MaxHealth;
         }
     }
@@ -78,10 +122,13 @@ namespace TheEarthQuake.Maps.Bonuses
         {
             type = TypeOfBonus.Kaczynski;
             modyfication = -1;
+            end = DateTime.Now.AddYears(10); 
         }
 
         public override void Activation(Player P)
         {
+            start = DateTime.Now;
+            end = DateTime.Now.AddYears(10);
             // Create 2 ducks !
         }
     }

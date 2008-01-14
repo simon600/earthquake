@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerBonuses.cs" />
     <Compile Include="PlayerClass.cs" />
     <Compile Include="PlayerClasses.cs" />
     <Compile Include="PlayerWrapper.cs" />
