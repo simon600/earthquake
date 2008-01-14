@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TheEarthQuake.Players;
 using TheEarthQuake.Maps;
-using TheEarthQuake.Maps.Bonuses;
+using TheEarthQuake.Bonuses;
 
 namespace TheEarthQuake.Logic
 {

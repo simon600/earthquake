@@ -41,8 +41,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bonuses\Bonus.cs" />
-    <Compile Include="Bonuses\SampleBonus.cs" />
     <Compile Include="Fields\Field.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MapWrapper.cs" />
@@ -58,6 +56,12 @@
     <Compile Include="Tests\WaterTest.cs" />
     <Compile Include="Fields\Wall.cs" />
     <Compile Include="Fields\Water.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TheEarthQuake.Bonuses\TheEarthQuake.Bonuses.csproj">
+      <Project>{F36A769D-1A5D-4406-9650-17730A721B88}</Project>
+      <Name>TheEarthQuake.Bonuses</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

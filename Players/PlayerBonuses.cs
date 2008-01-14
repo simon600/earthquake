@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TheEarthQuake.Maps.Bonuses;
+using TheEarthQuake.Bonuses;
 
 namespace TheEarthQuake.Players
 {
