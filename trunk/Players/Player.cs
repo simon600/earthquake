@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using TheEarthQuake.Maps.Bonuses;
+using TheEarthQuake.Bonuses;
 
 /*
  *   TODO:
@@ -431,7 +431,7 @@ namespace TheEarthQuake.Players
         public void TakeBonus(Bonus bonus)
         {
             myBonuses.Add(bonus);
-            bonus.Activation(this);
+            bonus.Activation();
             
             
             

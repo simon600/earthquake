@@ -380,7 +380,7 @@ namespace TheEarthQuake.Maps
                 Type returnBonusType = bonusTypes[intGenerator.Next(bonusTypes.Length)];
                 
                 /*return new instance of a bonus*/
-                return returnBonusType.GetConstructors()[0].Invoke(new object[0]) as Maps.Bonuses.Bonus;
+                return returnBonusType.GetConstructors()[0].Invoke(new object[0]) as Bonuses.Bonus;
             }
             else
             {
