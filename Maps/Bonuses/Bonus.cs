@@ -78,7 +78,7 @@ namespace TheEarthQuake.Maps.Bonuses
         }
 
         /// <summary>
-        /// Acivate bonus
+        /// Activation bonus
         /// </summary>
         public abstract void Activation(Player P);
 
@@ -132,6 +132,4 @@ namespace TheEarthQuake.Maps.Bonuses
             // Create 2 ducks !
         }
     }
-
-
 }
