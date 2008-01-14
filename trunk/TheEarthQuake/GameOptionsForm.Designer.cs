@@ -33,13 +33,21 @@ namespace TheEarthQuake.GUI
             this.numSpeed = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbxSpecial = new System.Windows.Forms.TextBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbxBomb = new System.Windows.Forms.TextBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.tbxTop = new System.Windows.Forms.TextBox();
             this.tbxLeft = new System.Windows.Forms.TextBox();
             this.tbxDown = new System.Windows.Forms.TextBox();
             this.tbxRight = new System.Windows.Forms.TextBox();
             this.cbxPlayer = new System.Windows.Forms.ComboBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnReturn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -48,26 +56,18 @@ namespace TheEarthQuake.GUI
             this.label12 = new System.Windows.Forms.Label();
             this.numMusic = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbxSpecial = new System.Windows.Forms.TextBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSpeed)).BeginInit();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numSound)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMusic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSound)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMusic)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -97,7 +97,7 @@ namespace TheEarthQuake.GUI
             // 
             this.numSpeed.Location = new System.Drawing.Point(102, 24);
             this.numSpeed.Maximum = new decimal(new int[] {
-            10,
+            20,
             0,
             0,
             0});
@@ -149,6 +149,34 @@ namespace TheEarthQuake.GUI
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Sterowanie";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(74, 231);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(42, 13);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Special";
+            // 
+            // tbxSpecial
+            // 
+            this.tbxSpecial.Location = new System.Drawing.Point(62, 319);
+            this.tbxSpecial.Name = "tbxSpecial";
+            this.tbxSpecial.ReadOnly = true;
+            this.tbxSpecial.Size = new System.Drawing.Size(70, 20);
+            this.tbxSpecial.TabIndex = 22;
+            this.tbxSpecial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxSpecial_TextChanged);
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BackgroundImage = global::TheEarthQuake.GUI.Properties.Resources.detonator;
+            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox6.Location = new System.Drawing.Point(61, 247);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(71, 66);
+            this.pictureBox6.TabIndex = 23;
+            this.pictureBox6.TabStop = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -166,6 +194,16 @@ namespace TheEarthQuake.GUI
             this.tbxBomb.Size = new System.Drawing.Size(70, 20);
             this.tbxBomb.TabIndex = 13;
             this.tbxBomb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxBomb_TextChanged);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackgroundImage = global::TheEarthQuake.GUI.Properties.Resources.explosion;
+            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox5.Location = new System.Drawing.Point(253, 247);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(71, 66);
+            this.pictureBox5.TabIndex = 20;
+            this.pictureBox5.TabStop = false;
             // 
             // tbxTop
             // 
@@ -215,6 +253,46 @@ namespace TheEarthQuake.GUI
             this.cbxPlayer.Size = new System.Drawing.Size(260, 21);
             this.cbxPlayer.TabIndex = 0;
             this.cbxPlayer.SelectedIndexChanged += new System.EventHandler(this.cbxPlayer_SelectedIndexChanged);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackgroundImage = global::TheEarthQuake.GUI.Properties.Resources.right;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Location = new System.Drawing.Point(224, 117);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(97, 93);
+            this.pictureBox3.TabIndex = 18;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackgroundImage = global::TheEarthQuake.GUI.Properties.Resources.left;
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox4.Location = new System.Drawing.Point(61, 117);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(97, 93);
+            this.pictureBox4.TabIndex = 19;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::TheEarthQuake.GUI.Properties.Resources.up;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(145, 54);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(97, 93);
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = global::TheEarthQuake.GUI.Properties.Resources.down;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Location = new System.Drawing.Point(145, 179);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(97, 93);
+            this.pictureBox2.TabIndex = 17;
+            this.pictureBox2.TabStop = false;
             // 
             // btnReturn
             // 
@@ -313,84 +391,6 @@ namespace TheEarthQuake.GUI
             this.label13.TabIndex = 0;
             this.label13.Text = "Muzyka:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(74, 231);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 13);
-            this.label2.TabIndex = 24;
-            this.label2.Text = "Special";
-            // 
-            // tbxSpecial
-            // 
-            this.tbxSpecial.Location = new System.Drawing.Point(62, 319);
-            this.tbxSpecial.Name = "tbxSpecial";
-            this.tbxSpecial.ReadOnly = true;
-            this.tbxSpecial.Size = new System.Drawing.Size(70, 20);
-            this.tbxSpecial.TabIndex = 22;
-            this.tbxSpecial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxSpecial_TextChanged);
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.BackgroundImage = global::TheEarthQuake.GUI.Properties.Resources.detonator;
-            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox6.Location = new System.Drawing.Point(61, 247);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(71, 66);
-            this.pictureBox6.TabIndex = 23;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackgroundImage = global::TheEarthQuake.GUI.Properties.Resources.explosion;
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(253, 247);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(71, 66);
-            this.pictureBox5.TabIndex = 20;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackgroundImage = global::TheEarthQuake.GUI.Properties.Resources.right;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(224, 117);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(97, 93);
-            this.pictureBox3.TabIndex = 18;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackgroundImage = global::TheEarthQuake.GUI.Properties.Resources.left;
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(61, 117);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(97, 93);
-            this.pictureBox4.TabIndex = 19;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::TheEarthQuake.GUI.Properties.Resources.up;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(145, 54);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(97, 93);
-            this.pictureBox1.TabIndex = 16;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = global::TheEarthQuake.GUI.Properties.Resources.down;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(145, 179);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(97, 93);
-            this.pictureBox2.TabIndex = 17;
-            this.pictureBox2.TabStop = false;
-            // 
             // GameOptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -406,21 +406,22 @@ namespace TheEarthQuake.GUI
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Opcje gry";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GameOptionsForm_FormClosed);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSpeed)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numSound)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMusic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSound)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMusic)).EndInit();
             this.ResumeLayout(false);
 
         }

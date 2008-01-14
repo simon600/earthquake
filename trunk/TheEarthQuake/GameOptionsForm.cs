@@ -120,7 +120,7 @@ namespace TheEarthQuake.GUI
         }
 
         private void tbxDown_KeyDown(object sender, KeyEventArgs e)
-        {
+    {
             if (cbxPlayer.SelectedIndex == 0)
             {
                 controller.GameSettings.PlayerOneKeys.Down = e.KeyCode;
@@ -187,6 +187,11 @@ namespace TheEarthQuake.GUI
                 controller.GameSettings.PlayerTwoKeys.Special = e.KeyCode;
                 FillControllKeys(TheEarthQuake.Logic.Players.Player2);
             }
+        }
+
+        private void GameOptionsForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            controller.GameSettings.UpdateXML();
         }
 
         ///* method for handling key pressed events */
