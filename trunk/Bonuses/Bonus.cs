@@ -86,7 +86,7 @@ namespace TheEarthQuake.Bonuses
     public class SpeedBonus : Bonus
     {
 
-        SpeedBonus()
+        public SpeedBonus()
         {
             type = TypeOfBonus.Speed;
             modyfication = 300;
