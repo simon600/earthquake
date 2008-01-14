@@ -4,6 +4,7 @@
  */
 
 using System;
+using TheEarthQuake.Bonuses;
 
 namespace TheEarthQuake.Maps
 {
@@ -131,9 +132,9 @@ namespace TheEarthQuake.Maps
         /// </summary>
         /// <param name="i">row</param>
         /// <param name="j">column</param>
-        public Bonuses.Bonus GetBonusForPlayer(int i, int j)
+        public Bonus GetBonusForPlayer(int i, int j)
         {
-            Bonuses.Bonus bonus = this.fields[i, j].Bonus;            
+            Bonus bonus = this.fields[i, j].Bonus;            
             this.fields[i, j].Bonus = null;
             return bonus;            
         }
@@ -369,7 +370,7 @@ namespace TheEarthQuake.Maps
         /// Generates bonus of some type or null and returns it.
         /// </summary>
         /// <returns>some bonus as type Bonus or null</returns>
-        private Bonuses.Bonus GenerateBonus()
+        private Bonus GenerateBonus()
         {            
             float bonusPropability = 0.1f;
             Type[] bonusTypes = { Type.GetType("TheEarthQuake.Maps.Bonuses.SampleBonus") };  // types of bonuses in the game            
@@ -380,7 +381,7 @@ namespace TheEarthQuake.Maps
                 Type returnBonusType = bonusTypes[intGenerator.Next(bonusTypes.Length)];
                 
                 /*return new instance of a bonus*/
-                return returnBonusType.GetConstructors()[0].Invoke(new object[0]) as Bonuses.Bonus;
+                return returnBonusType.GetConstructors()[0].Invoke(new object[0]) as Bonus;
             }
             else
             {

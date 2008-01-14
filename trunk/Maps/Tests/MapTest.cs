@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+using TheEarthQuake.Bonuses;
 
 namespace TheEarthQuake.Maps.Tests
 {
@@ -116,7 +117,7 @@ namespace TheEarthQuake.Maps.Tests
 
             field.Bonus = new Bonuses.SampleBonus();
 
-            Bonuses.Bonus bonus = map.GetBonusForPlayer(0, 0);
+            Bonus bonus = map.GetBonusForPlayer(0, 0);
 
             Assert.IsNotNull(bonus);            
         }
