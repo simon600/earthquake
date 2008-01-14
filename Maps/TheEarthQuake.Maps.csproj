@@ -41,6 +41,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bombs\Bombs.cs" />
     <Compile Include="Fields\Field.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MapWrapper.cs" />

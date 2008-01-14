@@ -104,7 +104,7 @@ namespace TheEarthQuake.GUI
             }
 
 
-            // checking state of keys for PlayerOne actions
+            // checking state of keys for PlayerTwo actions
 
             if (this.IsKeyPressed(controllerWrapper.StateMachine.CurrentGameSettings.PlayerTwoKeys.Up))
             {
@@ -166,6 +166,7 @@ namespace TheEarthQuake.GUI
                 timeDifference = (tempTime - time);
                 stateMachine.CurrentFPS = 1000.0f / timeDifference.Milliseconds;
                 time = tempTime;
+                controllerWrapper.Tick();
             }
         }
     }
