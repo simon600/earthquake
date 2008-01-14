@@ -73,7 +73,7 @@ namespace TheEarthQuake.Players
             positionX = x;
             positionY = y;
             this.playerClass = new PlayerClass();
-            myBonuses = null;
+            myBonuses = new PlayerBonuses();
         }
 
 
