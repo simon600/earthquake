@@ -374,7 +374,7 @@ namespace TheEarthQuake.Maps
         {            
             float bonusPropability = 0.1f;
             Type[] bonusTypes = { Type.GetType("TheEarthQuake.Maps.Bonuses.SampleBonus") };  // types of bonuses in the game            
-
+            
             if (floatGenerator.NextDouble() < bonusPropability)
             {
                 /*get type of bonus to return*/
