@@ -4,6 +4,7 @@
  */
 
 using System;
+using TheEarthQuake.Bonuses;
 
 namespace TheEarthQuake.Maps
 
@@ -13,14 +14,14 @@ namespace TheEarthQuake.Maps
     /// </summary>
     public abstract class Field
     {
-        private Bonuses.Bonus bonus;       
+        private Bonus bonus;       
 
         /// <summary>
         /// Clones field to avoid direct access to fields.
         /// </summary>
         /// <returns></returns>
         public abstract Field clone();
-        public Bonuses.Bonus Bonus
+        public Bonus Bonus
         {
             get
             {
