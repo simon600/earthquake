@@ -82,10 +82,12 @@ namespace TheEarthQuake.Logic
         public void Player1Special()
         {
             /* should run state-machines method player1special */
+           
         }
         public void Player1SetUpBomb()
         {
             /* should run state-machines method player1setupbomb */
+            stateMachine.InsertBomb(Players.Player1);
         }
 
         public void MovePlayer2Up()
@@ -112,6 +114,7 @@ namespace TheEarthQuake.Logic
         public void Player2SetUpBomb()
         {
             /* should run state-machines method player1setupbomb */
+            stateMachine.InsertBomb(Players.Player2);
         }
 
         /// <summary>
@@ -128,6 +131,10 @@ namespace TheEarthQuake.Logic
              * engine rights to reading from the map. 
              */
             graphicsEngine.SetMapWrapper(stateMachine.GetMapWrapper());
+        }
+        public void Tick()
+        {
+            stateMachine.Tick();
         }
     }
 }

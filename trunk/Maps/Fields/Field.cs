@@ -32,5 +32,13 @@ namespace TheEarthQuake.Maps
                 this.bonus = value;
             }
         }
+
+        public bool HasBomb() { return false; }
+
+        public Bomb.Bomb GetBomb() { return null; }
+
+        public void InsertBomb(Bomb.Bomb b) { return; }
+
+        public void RemoveBomb() { return; }
     }
 }

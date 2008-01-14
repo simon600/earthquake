@@ -32,6 +32,8 @@ namespace TheEarthQuake.Logic
         private GameSettings gameSettings;
         private Player PlayerOne;                           // player 1 instance
         private Player PlayerTwo;                           // player 2 instance
+        private System.Collections.ArrayList bombs;
+
 
         /// <summary>
         /// Accessor to screen height. Only get.
@@ -415,6 +417,7 @@ namespace TheEarthQuake.Logic
         public void CreateGame()
         {
             map = new Maps.Map();
+            this.bombs = new System.Collections.ArrayList();
             PlayerOne = new Player(0, 0, Map.FieldSize/2, Map.FieldSize/2);
             PlayerTwo = new Player(Map.MapWidth - 1, 
                                    Map.MapHeight - 1,
@@ -477,5 +480,203 @@ namespace TheEarthQuake.Logic
                 player.TakeBonus(bonus);
             }
         }
+
+
+        public void InsertBomb(Players player)
+        {
+            Player playerInstance;
+            switch (player)
+            {
+                case (Players.Player1):
+                    playerInstance = PlayerOne;
+                    break;
+                case (Players.Player2):
+                    playerInstance = PlayerTwo;
+                    break;
+                default:
+                    throw new Exception("Illegal player in StateMachine.InsertBomb()");
+            }
+            if (!playerInstance.CanSetMine())
+            {
+                return;
+            }
+            Field field = this.map.Fields[playerInstance.PositionI, playerInstance.PositionJ];
+            if (field.HasBomb())
+            {
+                return;
+            }
+            Maps.Bomb.Bomb insertedBomb = new TheEarthQuake.Maps.Bomb.Bomb
+            (
+                playerInstance.PositionX, playerInstance.PositionY,
+                playerInstance.PositionI, playerInstance.PositionJ
+            );
+            field.InsertBomb(insertedBomb);
+            this.bombs.Add(insertedBomb);
+            playerInstance.SetMine();
+        }
+
+        private bool checkBombTouch(Maps.Bomb.Bomb b, Player p)
+        {   //trzeba sprawdzic czy player i bomba leza na tej samej lini, oddalone o niewiecej niz 5 (TU TEZ ZHARDCOROWANE!!)
+            //oraz ze po drodze wszystko jest pathem
+            if (b.IPos != p.PositionI && b.JPos != p.PositionJ)
+            { //nie leza na jednej linii
+                return false;
+            }
+            if (!(Math.Abs(b.IPos - p.PositionI) < 6 && Math.Abs(b.JPos - p.PositionJ) < 6))
+            { //leza na jednej linii, ale za daleko
+                return false;
+            }
+            bool noRigid = true;
+            if (b.IPos == p.PositionI)
+            {//leza na tej samej wsp. i; wiec sprawdzamy wszystkie pola na j po drodze
+                for (int k = 0; k < 4 && Math.Abs(b.JPos - p.PositionJ) > k; ++k)
+                {
+                    if (p.PositionJ > b.JPos)
+                    {
+                        if (!(map.Fields[b.IPos, b.JPos + k] is Maps.Path))
+                        {
+                            noRigid = false;
+                        }
+                    }
+                    else
+                    {
+                        if (!(map.Fields[b.IPos, b.JPos - k] is Maps.Path))
+                        {
+                            noRigid = false;
+                        }
+                    }
+                };
+                return noRigid;
+            }
+            //leza na tej samej j; sprawdzamy pola na i po drodze
+            noRigid = true;
+            for (int k = 0; k < 4 && Math.Abs(b.IPos - p.PositionI) > k; ++k)
+            {
+                if (p.PositionI > b.IPos)
+                {
+                    if (!(map.Fields[b.IPos + k, b.JPos] is Maps.Path))
+                    {
+                        noRigid = false;
+                    }
+                }
+                else
+                {
+                    if (!(map.Fields[b.IPos - k, b.JPos] is Maps.Path))
+                    {
+                        noRigid = false;
+                    }
+                }
+            };
+            return noRigid;
+        }
+
+        private void BlowWalls(int i, int j)
+        {
+            bool cut = true;
+            //i -
+            for (int k = 1; cut && k < 6; ++k)
+            {
+                if (i - k < 0)
+                {
+                    break;
+                }
+
+                if (!(this.map.Fields[i - k, j] is Maps.Path))
+                {
+                    if (this.map.Fields[i - k, j] is Maps.NonPersistentWall)
+                    {//kruszymy sciane
+                        this.map.Fields[i - k, j] = new Maps.Path(this.map.Fields[i - k, j]);
+                    }
+                    cut = false;
+                }
+            }
+            cut = true;
+            //i +
+            for (int k = 1; cut && k < 6; ++k)
+            {
+                if (i + k >= this.map.MapWidth)
+                {
+                    break;
+                }
+                if (!(this.map.Fields[i + k, j] is Maps.Path))
+                {
+                    if (this.map.Fields[i + k, j] is Maps.NonPersistentWall)
+                    {//kruszymy sciane
+                        this.map.Fields[i + k, j] = new Maps.Path(this.map.Fields[i + k, j]);
+                    }
+                    cut = false;
+                }
+            }
+            cut = true;
+            // j -
+            for (int k = 1; cut && k < 6; ++k)
+            {
+                if (j - k < 0)
+                {
+                    break;
+                }
+                if (!(this.map.Fields[i, j - k] is Maps.Path))
+                {
+                    if (cut && this.map.Fields[i, j - k] is Maps.NonPersistentWall)
+                    {//kruszymy sciane
+                        this.map.Fields[i, j - k] = new Maps.Path(this.map.Fields[i, j - k]);
+                    }
+                    cut = false;
+                }
+            }
+            cut = true;
+            //j +
+            for (int k = 1; cut && k < 6; ++k)
+            {
+                if (j + k >= map.MapHeight)
+                {
+                    break;
+                }
+                if (!(this.map.Fields[i, j + k] is Maps.Path))
+                {
+                    if (cut && this.map.Fields[i, j + k] is Maps.NonPersistentWall)
+                    {//kruszymy sciane
+                        this.map.Fields[i, j + k] = new Maps.Path(this.map.Fields[i, j + k]);
+                    }
+                    cut = false;
+                }
+            }
+        }
+
+        public void Tick()
+        {
+            this.PlayerOne.tick();
+            this.PlayerTwo.tick();
+            System.Collections.IEnumerator bombaEnumerator = this.bombs.GetEnumerator();
+            while (bombaEnumerator.MoveNext())
+            {
+                Maps.Bomb.Bomb bomba = ((Maps.Bomb.Bomb)bombaEnumerator.Current);
+                bomba.tick();
+                if (bomba.state == Maps.Bomb.BombState.Blow && !bomba.Blown)
+                {
+                    //TU JEST ZHARDCOROWANE NA ILE POL SIE ROZCHODZI WYBUCH
+                    //bo zabraliscie z klasy player pole power; poza tym
+                    //pytalem jak ma wygladac animacja i nic - no to spoko; dla mnie BOMBA
+                    //wiec zaznaczam ze bomba jest wybuchnieta i niszcze pierwsza napotkana przeszkode, do tego
+                    //dodam playerowi stub TouchedByMine - ale niech go uzupelni osoba odpowiedzialna za player'a
+
+                    if (this.checkBombTouch(bomba, this.PlayerOne))
+                    {
+                        this.PlayerOne.TouchedByMine();
+                    }
+                    if (this.checkBombTouch(bomba, this.PlayerTwo))
+                    {
+                        this.PlayerTwo.TouchedByMine();
+                    }
+                    this.BlowWalls(bomba.IPos, bomba.JPos);
+                    bomba.Blown = true;
+                }
+                if (bomba.state == Maps.Bomb.BombState.ToRemove)
+                {
+                    this.map.Fields[bomba.IPos, bomba.JPos].RemoveBomb();
+                }
+            }
+        }
+
     }
 }

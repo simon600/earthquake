@@ -31,7 +31,7 @@ namespace TheEarthQuake.Players
         private static float baseStep = (float)0.1;       // base shift of the player pos. when moving
         private static float playerRadius = (float)16;    // border of the player, for collision detection.
 
-        
+        private int toNextMine = 0;
 
         /// <summary>
         /// Accessor for base shift of the player position. Only get.
@@ -420,6 +420,28 @@ namespace TheEarthQuake.Players
             {
                 playerClass.CurrentHealth = value;
             }
+        }
+
+        public void tick()
+        {
+            if (this.toNextMine > 0)
+            {
+                --this.toNextMine;
+            }
+        }
+
+        public bool CanSetMine()
+        {
+            return (this.toNextMine == 0);
+        }
+        public void SetMine()
+        {
+            this.toNextMine = 50;
+        }
+
+        public void TouchedByMine()
+        {
+            //STUB!
         }
 
 
