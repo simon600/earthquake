@@ -55,9 +55,15 @@ namespace TheEarthQuake.Players
                 pClass.CanShiftMines = Convert.ToBoolean(node.Attributes["CanShiftMines"].InnerText);
 
 
+                List<string> paths = new List<string>();
+
                 // read texture and logo path
-                XmlNode textureNode = node.SelectSingleNode("Texture");
-                pClass.TexturePath = textureNode.Attributes["Path"].InnerText;
+                foreach (XmlNode textureNode in node.SelectNodes("Texture"))
+                {
+                    paths.Add(textureNode.Attributes["Path"].InnerText);
+                }
+
+                pClass.TexturePaths = paths.ToArray();
 
                 XmlNode logoNode = node.SelectSingleNode("Logo");
                 pClass.LogoPath = logoNode.Attributes["Path"].InnerText;

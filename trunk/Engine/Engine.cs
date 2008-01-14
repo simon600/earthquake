@@ -29,6 +29,9 @@ namespace TheEarthQuake.Engine
         private OpenGLTexture2D[] waterTextures;//holds textures for water tiles
         private bool preview;                   //true iff draw functions will be use to draw only map preview
 
+        private OpenGLTexture2D playerOneTexture;
+        private OpenGLTexture2D playerTwoTexture;
+
         /// <summary>
         /// Constructor - loads textures and sets some default values
         /// </summary>
@@ -131,6 +134,29 @@ namespace TheEarthQuake.Engine
         {
             this.player1Wrapper = player1;
             this.player2Wrapper = player2;
+
+            if (player1.PlayerClass.Name == player2.PlayerClass.Name)
+            {
+                int count = player1.PlayerClass.TexturePaths.Length;
+                int pos = GetRand(count);
+
+                playerOneTexture = new OpenGLTexture2D(@player1.PlayerClass.TexturePaths[pos]);
+                playerTwoTexture = new OpenGLTexture2D(@player1.PlayerClass.TexturePaths[(pos + 1) % count]);
+            }
+            else
+            {
+                int count = player1.PlayerClass.TexturePaths.Length;
+                playerOneTexture = new OpenGLTexture2D(@player1.PlayerClass.TexturePaths[GetRand(count)]);
+
+                count = player2.PlayerClass.TexturePaths.Length;
+                playerTwoTexture = new OpenGLTexture2D(@player1.PlayerClass.TexturePaths[GetRand(count)]);
+            }
+        }
+
+        private int GetRand(int max)
+        {
+            Random r = new Random();
+            return r.Next(max);
         }
 
         /// <summary>
@@ -394,18 +420,37 @@ namespace TheEarthQuake.Engine
 
             GL.glPushMatrix();
             GL.glTranslatef(-width / 2, height / 2, 0.0f);
-            GL.glColor3f(1.0f, 1.0f, 0.0f);
-            GL.glBegin(GL.GL_QUADS);
-            GL.glVertex2f(x1 - radius, -(y1 - radius));
-            GL.glVertex2f(x1 + radius, -(y1 - radius));
-            GL.glVertex2f(x1 + radius, -(y1 + radius));
-            GL.glVertex2f(x1 - radius, -(y1 + radius));
+            //GL.glColor3f(1.0f, 1.0f, 0.0f);
 
+
+            playerOneTexture.Bind();
+            GL.glBegin(GL.GL_QUADS);
+            GL.glTexCoord2f(0.0f, 1.0f);
+            GL.glVertex2f(x1 - radius, -(y1 - radius));
+            GL.glTexCoord2f(1.0f, 1.0f);
+            GL.glVertex2f(x1 + radius, -(y1 - radius));
+            GL.glTexCoord2f(1.0f, 0.0f);
+            GL.glVertex2f(x1 + radius, -(y1 + radius));
+            GL.glTexCoord2f(0.0f, 0.0f);
+            GL.glVertex2f(x1 - radius, -(y1 + radius));
+            GL.glEnd();
+
+
+
+
+            playerTwoTexture.Bind();
+            GL.glBegin(GL.GL_QUADS);
+            GL.glTexCoord2f(0.0f, 1.0f);
             GL.glVertex2f(x2 - radius, -(y2 - radius));
+            GL.glTexCoord2f(1.0f, 1.0f);
             GL.glVertex2f(x2 + radius, -(y2 - radius));
+            GL.glTexCoord2f(1.0f, 0.0f);
             GL.glVertex2f(x2 + radius, -(y2 + radius));
+            GL.glTexCoord2f(0.0f, 0.0f);
             GL.glVertex2f(x2 - radius, -(y2 + radius));
             GL.glEnd();
+
+
             GL.glPopMatrix();
         }
 
