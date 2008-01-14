@@ -337,7 +337,7 @@ namespace TheEarthQuake.Maps
                 fields[wallRow, wallColumn] = new NonPersistentWall();
 
                 /*set's bonus for a filed with some propability*/
-                //fields[wallRow, wallColumn].Bonus = GenerateBonus();
+                fields[wallRow, wallColumn].Bonus = GenerateBonus();
             }            
         }
 
@@ -373,15 +373,19 @@ namespace TheEarthQuake.Maps
         private Bonus GenerateBonus()
         {            
             float bonusPropability = 0.1f;
-            Type[] bonusTypes = { Type.GetType("TheEarthQuake.Maps.Bonuses.SampleBonus") };  // types of bonuses in the game            
             
             if (floatGenerator.NextDouble() < bonusPropability)
             {
-                /*get type of bonus to return*/
-                Type returnBonusType = bonusTypes[intGenerator.Next(bonusTypes.Length)];
-                
-                /*return new instance of a bonus*/
-                return returnBonusType.GetConstructors()[0].Invoke(new object[0]) as Bonus;
+                int numberOfBonuses = 2;
+                switch(intGenerator.Next(numberOfBonuses))
+                {
+                    case 0:
+                        return new HealthBonus();
+                    case 1:
+                        return new SpeedBonus();
+                    default :
+                        return null;
+                };
             }
             else
             {
