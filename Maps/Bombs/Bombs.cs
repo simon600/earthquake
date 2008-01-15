@@ -2,7 +2,9 @@ using TheEarthQuake.Maps;
 
 namespace TheEarthQuake.Maps.Bomb
 {
-
+    /// <summary>
+    /// Enumerator for bomb state
+    /// </summary>
     public enum BombState
     {
         Waiting,
@@ -10,20 +12,25 @@ namespace TheEarthQuake.Maps.Bomb
         ToRemove
     }
 
-
+    /// <summary>
+    /// Class representing bomb
+    /// </summary>
     public class Bomb
     {
-        private const int bombWaitingDelayFactor = 300;
-        private const int bombBlowingDelayFactor = 50;
+        private const int bombWaitingDelayFactor = 300; //waiting time delay
+        private const int bombBlowingDelayFactor = 50;  //blowing time delay
 
-        private int counter;
-        private BombState _state;
-        private float xPos;
+        private int counter;        //for changing states
+        private BombState _state;   //state
+        private float xPos;         //positions (both discrete and real coords)
         private float yPos;
         private int iPos;
         private int jPos;
-        private bool blown;
+        private bool blown;         
 
+        /// <summary>
+        /// Gets bomb state
+        /// </summary>
         public BombState state
         {
             get
@@ -32,6 +39,9 @@ namespace TheEarthQuake.Maps.Bomb
             }
         }
 
+        /// <summary>
+        /// Gets x position
+        /// </summary>
         public float XPos
         {
             get
@@ -40,6 +50,9 @@ namespace TheEarthQuake.Maps.Bomb
             }
         }
 
+        /// <summary>
+        /// Gets y position
+        /// </summary>
         public float YPos
         {
             get
@@ -48,6 +61,9 @@ namespace TheEarthQuake.Maps.Bomb
             }
         }
 
+        /// <summary>
+        /// Gets dicrete i position
+        /// </summary>
         public int IPos
         {
             get
@@ -56,6 +72,9 @@ namespace TheEarthQuake.Maps.Bomb
             }
         }
 
+        /// <summary>
+        /// Gets discrete j position
+        /// </summary>
         public int JPos
         {
             get
@@ -64,6 +83,9 @@ namespace TheEarthQuake.Maps.Bomb
             }
         }
 
+        /// <summary>
+        /// Gets and sets blown value
+        /// </summary>
         public bool Blown
         {
             get
@@ -76,6 +98,14 @@ namespace TheEarthQuake.Maps.Bomb
             }
         }
 
+
+        /// <summary>
+        /// Constructor for bomb
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
         public Bomb(float x, float y, int i, int j)
         {
             this.counter = bombWaitingDelayFactor;
@@ -87,6 +117,18 @@ namespace TheEarthQuake.Maps.Bomb
             this.blown = false;
         }
 
+        /// <summary>
+        /// Returns true iff bomb is blowing
+        /// </summary>
+        /// <returns></returns>
+        public bool IsBlown()
+        {
+            return this.state == BombState.Blow;
+        }
+
+        /// <summary>
+        /// Changes bomb state
+        /// </summary>
         public void tick()
         {
             switch (this._state)
@@ -112,6 +154,11 @@ namespace TheEarthQuake.Maps.Bomb
                     throw new System.Exception("Illegal BombState (this._state) in Bomb.tick()");
             }
         }
+
+        /// <summary>
+        /// Bomb progress percenr
+        /// </summary>
+        /// <returns></returns>
         public float GetProgressFactor()
         {
             int full = 0;

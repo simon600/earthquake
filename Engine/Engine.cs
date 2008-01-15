@@ -387,7 +387,7 @@ namespace TheEarthQuake.Engine
                         GL.glEnd();
                     }
 
-                    if (field.HasBomb()) // na polu jest bomba, trza wiêc namalowaæ
+                    if (field.HasBomb() && !field.GetBomb().IsBlown()) // na polu jest bomba (ale nie w stanie wybuchu), trza wiêc namalowaæ
                     {
                         /* distance between bomb quad and field border */
                         GL.glEnable(GL.GL_BLEND);                        
