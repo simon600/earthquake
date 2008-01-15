@@ -27,6 +27,8 @@ namespace TheEarthQuake.Engine
         private float height;                   //window height
         private OpenGLTexture2D[] textures;     //holds textures for terain
         private OpenGLTexture2D[] waterTextures;//holds textures for water tiles
+        private OpenGLTexture2D[] bombTextures;
+        private OpenGLTexture2D[] bombMasks;
         private bool preview;                   //true iff draw functions will be use to draw only map preview
 
         private OpenGLTexture2D playerOneTexture;
@@ -52,6 +54,8 @@ namespace TheEarthQuake.Engine
             // initializes textures
             textures = new OpenGLTexture2D[3];
             waterTextures = new OpenGLTexture2D[20];
+            bombTextures = new OpenGLTexture2D[1];
+            bombMasks = new OpenGLTexture2D[1];
 
             textures[0] = new OpenGLTexture2D(@"..\..\..\textures\Stone.bmp");
             textures[1] = new OpenGLTexture2D(@"..\..\..\textures\Bricks.bmp");
@@ -76,7 +80,10 @@ namespace TheEarthQuake.Engine
             waterTextures[16] = new OpenGLTexture2D(@"..\..\..\textures\WaterCDownLeft.bmp");
             waterTextures[17] = new OpenGLTexture2D(@"..\..\..\textures\WaterCDownRight.bmp");
             waterTextures[18] = new OpenGLTexture2D(@"..\..\..\textures\WaterCUpRight.bmp");
-            waterTextures[19] = new OpenGLTexture2D(@"..\..\..\textures\WaterCUpLeft.bmp");            
+            waterTextures[19] = new OpenGLTexture2D(@"..\..\..\textures\WaterCUpLeft.bmp");
+
+            bombTextures[0] = new OpenGLTexture2D(@"..\..\..\textures\Bomb.bmp");
+            bombMasks[0] = new OpenGLTexture2D(@"..\..\..\textures\BombMask.bmp");     
         }
 
         /// <summary>
@@ -185,9 +192,10 @@ namespace TheEarthQuake.Engine
             GL.glShadeModel(GL.GL_SMOOTH);
             GL.glClearColor(0.0f, 1.0f, 0.0f, 0.5f);
             GL.glClearDepth(1.0f);		
-            GL.glEnable(GL.GL_DEPTH_TEST);
-            GL.glDepthFunc(GL.GL_LEQUAL);
-            GL.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
+            //GL.glEnable(GL.GL_DEPTH_TEST);
+            //GL.glDepthFunc(GL.GL_LEQUAL);
+            GL.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);            
+            
         }
 
         /// <summary>
@@ -210,7 +218,8 @@ namespace TheEarthQuake.Engine
         /// Draws a map.
         /// </summary>
         private void DrawMap()
-        {                        
+        {                
+            
             GL.glPushMatrix();
             GL.glTranslatef(-width / 2, height / 2, 0.0f);
             //stretch the whole map to the size of conrol where it is diplaying (only in preview)
@@ -232,7 +241,7 @@ namespace TheEarthQuake.Engine
                     }
                     else if (field is PersistentWall)
                     {
-                        textures[0].Bind();
+                        textures[0].Bind();                        
                     }
                     else if (field is Path)
                     {
@@ -378,22 +387,51 @@ namespace TheEarthQuake.Engine
                         GL.glEnd();
                     }
 
-                    if (field is Path && (field as Path).Bomb != null) // na polu jest bomba, trza wiêc namalowaæ
+                    if (field.HasBomb()) // na polu jest bomba, trza wiêc namalowaæ
                     {
                         /* distance between bomb quad and field border */
+                        GL.glEnable(GL.GL_BLEND);                        
+                        GL.glBlendFunc(GL.GL_DST_COLOR, GL.GL_ZERO);
+                        
                         float distanceFromEdge = (mapWrapper.FieldSize - mapWrapper.BombSize) / 2;
+                                                                        
+                        bombMasks[0].Bind();
 
                         GL.glBegin(GL.GL_QUADS);
+                        GL.glTexCoord2f(0.0f, 0.0f);
                         GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
                             -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                        GL.glTexCoord2f(1.0f, 0.0f);
                         GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
                             -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                        GL.glTexCoord2f(1.0f, 1.0f);
                         GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
                             -i * mapWrapper.FieldSize - distanceFromEdge);
                         GL.glTexCoord2f(0.0f, 1.0f);
                         GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
                             -i * mapWrapper.FieldSize - distanceFromEdge);
                         GL.glEnd();
+
+                        GL.glBlendFunc(GL.GL_ONE, GL.GL_ONE);
+
+                        bombTextures[0].Bind();
+
+                        GL.glBegin(GL.GL_QUADS);
+                        GL.glTexCoord2f(0.0f, 0.0f);
+                        GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                            -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                        GL.glTexCoord2f(1.0f, 0.0f);
+                        GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                            -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                        GL.glTexCoord2f(1.0f, 1.0f);
+                        GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                            -i * mapWrapper.FieldSize - distanceFromEdge);
+                        GL.glTexCoord2f(0.0f, 1.0f);
+                        GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                            -i * mapWrapper.FieldSize - distanceFromEdge);
+                        GL.glEnd();
+
+                        GL.glDisable(GL.GL_BLEND);
                     }
                 }
             }
