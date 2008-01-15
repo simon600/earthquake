@@ -104,7 +104,7 @@ namespace TheEarthQuake.Maps
              */
             fieldSize = 768.0f / mapHeight;      //sets fieldSize so that map's height is equal to screen's height
             bonusSize = fieldSize - 10;          //sets bonusSize so that it's a bit smaller then a field
-            bombSize = fieldSize - 15;           //sets bombSize so that it's a bit smaller then a field   
+            bombSize = fieldSize - 10;           //sets bombSize so that it's a bit smaller then a field   
 
             fields = new Field[mapHeight, mapWidth];
 

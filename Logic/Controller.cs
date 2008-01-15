@@ -135,6 +135,7 @@ namespace TheEarthQuake.Logic
         public void Tick()
         {
             stateMachine.Tick();
+            graphicsEngine.Tick();
         }
     }
 }
