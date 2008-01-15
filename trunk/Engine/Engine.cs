@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using CsGL.OpenGL;
 using TheEarthQuake.Maps;
 using TheEarthQuake.Players;
+using TheEarthQuake.Maps.Bomb;
 
 namespace TheEarthQuake.Engine
 {
@@ -29,10 +30,16 @@ namespace TheEarthQuake.Engine
         private OpenGLTexture2D[] waterTextures;//holds textures for water tiles
         private OpenGLTexture2D[] bombTextures;
         private OpenGLTexture2D[] bombMasks;
+        private OpenGLTexture2D[] blowTextures;
+        private OpenGLTexture2D[] blowMasks;
         private bool preview;                   //true iff draw functions will be use to draw only map preview
 
         private OpenGLTexture2D playerOneTexture;
         private OpenGLTexture2D playerTwoTexture;
+
+        private int cycleIterator;  // used for iterating textures        
+        private int iteratorIterator; // when it reaches certain value, other iterators iterate
+        
 
         /// <summary>
         /// Constructor - loads textures and sets some default values
@@ -43,6 +50,8 @@ namespace TheEarthQuake.Engine
             player1Wrapper = null;
             player2Wrapper = null;
             this.preview = false;
+            this.cycleIterator = 0;
+            this.iteratorIterator = 0;
            
             /*
              * You can change the values of width and height 
@@ -54,8 +63,10 @@ namespace TheEarthQuake.Engine
             // initializes textures
             textures = new OpenGLTexture2D[3];
             waterTextures = new OpenGLTexture2D[20];
-            bombTextures = new OpenGLTexture2D[1];
-            bombMasks = new OpenGLTexture2D[1];
+            bombTextures = new OpenGLTexture2D[3];
+            bombMasks = new OpenGLTexture2D[3];
+            blowTextures = new OpenGLTexture2D[5];
+            blowMasks = new OpenGLTexture2D[5];
 
             textures[0] = new OpenGLTexture2D(@"..\..\..\textures\Stone.bmp");
             textures[1] = new OpenGLTexture2D(@"..\..\..\textures\Bricks.bmp");
@@ -82,8 +93,23 @@ namespace TheEarthQuake.Engine
             waterTextures[18] = new OpenGLTexture2D(@"..\..\..\textures\WaterCUpRight.bmp");
             waterTextures[19] = new OpenGLTexture2D(@"..\..\..\textures\WaterCUpLeft.bmp");
 
-            bombTextures[0] = new OpenGLTexture2D(@"..\..\..\textures\Bomb.bmp");
-            bombMasks[0] = new OpenGLTexture2D(@"..\..\..\textures\BombMask.bmp");     
+            bombTextures[0] = new OpenGLTexture2D(@"..\..\..\textures\Bomb1.bmp");
+            bombTextures[1] = new OpenGLTexture2D(@"..\..\..\textures\Bomb2.bmp");
+            bombTextures[2] = new OpenGLTexture2D(@"..\..\..\textures\Bomb3.bmp");
+            bombMasks[0] = new OpenGLTexture2D(@"..\..\..\textures\BombMask1.bmp");
+            bombMasks[1] = new OpenGLTexture2D(@"..\..\..\textures\BombMask2.bmp");
+            bombMasks[2] = new OpenGLTexture2D(@"..\..\..\textures\BombMask3.bmp");
+
+            blowTextures[0] = new OpenGLTexture2D(@"..\..\..\textures\Blow1.bmp");
+            blowTextures[1] = new OpenGLTexture2D(@"..\..\..\textures\Blow2.bmp");
+            blowTextures[2] = new OpenGLTexture2D(@"..\..\..\textures\Blow3.bmp");
+            blowTextures[3] = new OpenGLTexture2D(@"..\..\..\textures\Blow4.bmp");
+            blowTextures[4] = blowTextures[3];
+
+            blowMasks[0] = new OpenGLTexture2D(@"..\..\..\textures\BlowMask1.bmp");
+            blowMasks[1] = new OpenGLTexture2D(@"..\..\..\textures\BlowMask2.bmp");
+            blowMasks[2] = new OpenGLTexture2D(@"..\..\..\textures\BlowMask3.bmp");
+            blowMasks[3] = blowMasks[2];
         }
 
         /// <summary>
@@ -166,6 +192,19 @@ namespace TheEarthQuake.Engine
             return r.Next(max);
         }
 
+        /// <summary>
+        /// Do some things every tick of the program.
+        /// </summary>
+        public void Tick()
+        {
+            iteratorIterator++;
+            if (iteratorIterator > 7)
+            {
+                cycleIterator = (cycleIterator + 1) % 100;
+                iteratorIterator = 0;
+            }
+            
+        }
         /// <summary>
         /// This function is called every time a frame is drawn
         /// </summary>
@@ -387,51 +426,9 @@ namespace TheEarthQuake.Engine
                         GL.glEnd();
                     }
 
-                    if (field.HasBomb() && !field.GetBomb().IsBlown()) // na polu jest bomba (ale nie w stanie wybuchu), trza wiêc namalowaæ
+                    if (field.HasBomb()) // na polu jest bomba (ale nie w stanie wybuchu), trza wiêc namalowaæ
                     {
-                        /* distance between bomb quad and field border */
-                        GL.glEnable(GL.GL_BLEND);                        
-                        GL.glBlendFunc(GL.GL_DST_COLOR, GL.GL_ZERO);
-                        
-                        float distanceFromEdge = (mapWrapper.FieldSize - mapWrapper.BombSize) / 2;
-                                                                        
-                        bombMasks[0].Bind();
-
-                        GL.glBegin(GL.GL_QUADS);
-                        GL.glTexCoord2f(0.0f, 0.0f);
-                        GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
-                            -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
-                        GL.glTexCoord2f(1.0f, 0.0f);
-                        GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
-                            -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
-                        GL.glTexCoord2f(1.0f, 1.0f);
-                        GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
-                            -i * mapWrapper.FieldSize - distanceFromEdge);
-                        GL.glTexCoord2f(0.0f, 1.0f);
-                        GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
-                            -i * mapWrapper.FieldSize - distanceFromEdge);
-                        GL.glEnd();
-
-                        GL.glBlendFunc(GL.GL_ONE, GL.GL_ONE);
-
-                        bombTextures[0].Bind();
-
-                        GL.glBegin(GL.GL_QUADS);
-                        GL.glTexCoord2f(0.0f, 0.0f);
-                        GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
-                            -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
-                        GL.glTexCoord2f(1.0f, 0.0f);
-                        GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
-                            -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
-                        GL.glTexCoord2f(1.0f, 1.0f);
-                        GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
-                            -i * mapWrapper.FieldSize - distanceFromEdge);
-                        GL.glTexCoord2f(0.0f, 1.0f);
-                        GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
-                            -i * mapWrapper.FieldSize - distanceFromEdge);
-                        GL.glEnd();
-
-                        GL.glDisable(GL.GL_BLEND);
+                        DrawBomb(i, j, field.GetBomb());                        
                     }
                 }
             }
@@ -508,6 +505,99 @@ namespace TheEarthQuake.Engine
             GL.glEnd();
             GL.glPopMatrix();
             //tu bêdzie rysunek
+        }
+
+        private void DrawBomb(int i, int j, Bomb bomb) {
+            /* distance between bomb quad and field border */                    
+            float distanceFromEdge = (mapWrapper.FieldSize - mapWrapper.BombSize) / 2;
+
+            GL.glEnable(GL.GL_BLEND);
+
+            if (bomb.state == BombState.Waiting)
+            {
+                GL.glBlendFunc(GL.GL_DST_COLOR, GL.GL_ZERO);
+
+                bombMasks[cycleIterator % 3].Bind();
+
+                GL.glBegin(GL.GL_QUADS);
+                GL.glTexCoord2f(0.0f, 0.0f);
+                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                GL.glTexCoord2f(1.0f, 0.0f);
+                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                GL.glTexCoord2f(1.0f, 1.0f);
+                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                    -i * mapWrapper.FieldSize - distanceFromEdge);
+                GL.glTexCoord2f(0.0f, 1.0f);
+                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                    -i * mapWrapper.FieldSize - distanceFromEdge);
+                GL.glEnd();
+
+                GL.glBlendFunc(GL.GL_ONE, GL.GL_ONE);
+
+                bombTextures[cycleIterator % 3].Bind();
+
+                GL.glBegin(GL.GL_QUADS);
+                GL.glTexCoord2f(0.0f, 0.0f);
+                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                GL.glTexCoord2f(1.0f, 0.0f);
+                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                GL.glTexCoord2f(1.0f, 1.0f);
+                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                    -i * mapWrapper.FieldSize - distanceFromEdge);
+                GL.glTexCoord2f(0.0f, 1.0f);
+                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                    -i * mapWrapper.FieldSize - distanceFromEdge);
+                GL.glEnd();
+            }
+            else if (bomb.state == BombState.Blow)
+            {                
+                GL.glBlendFunc(GL.GL_DST_COLOR, GL.GL_ZERO);
+
+                /* finding adequate texture index */
+                int textureIndex = (int)Math.Floor(4 * bomb.GetProgressFactor() / 100);
+
+                blowMasks[textureIndex].Bind();
+
+                GL.glBegin(GL.GL_QUADS);
+                GL.glTexCoord2f(0.0f, 0.0f);
+                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                GL.glTexCoord2f(1.0f, 0.0f);
+                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                GL.glTexCoord2f(1.0f, 1.0f);
+                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                    -i * mapWrapper.FieldSize - distanceFromEdge);
+                GL.glTexCoord2f(0.0f, 1.0f);
+                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                    -i * mapWrapper.FieldSize - distanceFromEdge);
+                GL.glEnd();
+
+                GL.glBlendFunc(GL.GL_ONE, GL.GL_ONE);
+
+                blowTextures[textureIndex].Bind();
+
+                GL.glBegin(GL.GL_QUADS);
+                GL.glTexCoord2f(0.0f, 0.0f);
+                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                GL.glTexCoord2f(1.0f, 0.0f);
+                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                GL.glTexCoord2f(1.0f, 1.0f);
+                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                    -i * mapWrapper.FieldSize - distanceFromEdge);
+                GL.glTexCoord2f(0.0f, 1.0f);
+                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                    -i * mapWrapper.FieldSize - distanceFromEdge);
+                GL.glEnd();                
+            }
+
+            GL.glDisable(GL.GL_BLEND);
         }
     }
 }
