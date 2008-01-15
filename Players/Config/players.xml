@@ -8,16 +8,16 @@
   </Class>
 
   <Class Name="SpeedMan" Speed="800" MinePower="40" MineRange="30" MineType="3" MaxHealth="1000" simultanousMines="1" mineDetonationTimeOffset="30" CanThrow="False" CanWalkMines="True" CanShiftMines="False">
-    <Texture Path="..\..\..\textures\Players\strongman_black.bmp" />
-    <Texture Path="..\..\..\textures\Players\strongman_red.bmp" />
-    <Texture Path="..\..\..\textures\Players\strongman_green.bmp" />
+    <Texture Path="..\..\..\textures\Players\speedman_black.bmp" />
+    <Texture Path="..\..\..\textures\Players\speedman_red.bmp" />
+    <Texture Path="..\..\..\textures\Players\speedman_green.bmp" />
     <Logo Path="..\..\..\Players\Config\speedman.jpg" />
   </Class>
 
   <Class Name="MindMan" Speed="300" MinePower="40" MineRange="30" MineType="3" MaxHealth="400" simultanousMines="3" mineDetonationTimeOffset="10"  CanThrow="True" CanWalkMines="True" CanShiftMines="True">
-    <Texture Path="..\..\..\textures\Players\strongman_black.bmp" />
-    <Texture Path="..\..\..\textures\Players\strongman_green.bmp" />
-    <Texture Path="..\..\..\textures\Players\strongman_red.bmp" />
+    <Texture Path="..\..\..\textures\Players\mindman_black.bmp" />
+    <Texture Path="..\..\..\textures\Players\mindman_green.bmp" />
+    <Texture Path="..\..\..\textures\Players\mindman_red.bmp" />
     <Logo Path="..\..\..\Players\Config\mindman.jpg" />
   </Class>
 </Classes>
