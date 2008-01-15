@@ -24,6 +24,7 @@ namespace TheEarthQuake.GUI
 
         private GameFormControllerWrapper controllerWrapper;
         private bool isActive;
+        private int iterator;  // after reaching fps value makes controlWrapper tick
 
         /// <summary>
         /// Game form constructor
@@ -38,6 +39,7 @@ namespace TheEarthQuake.GUI
             // solution feel free to modify code :).
             CheckForIllegalCrossThreadCalls = false;
             this.controllerWrapper = controllerWrapper;
+            this.iterator = 0;
 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(1024, 768);
@@ -185,6 +187,7 @@ namespace TheEarthQuake.GUI
             DateTime time = DateTime.Now; // used to count fps
             DateTime tempTime; // used to count fps
             TimeSpan timeDifference; // used to count fps
+            
 
 
             //it should depend of the fps (because loop speed is depend of machine speed)
@@ -200,7 +203,13 @@ namespace TheEarthQuake.GUI
                 timeDifference = (tempTime - time);
                 stateMachine.CurrentFPS = 1000.0f / timeDifference.Milliseconds;
                 time = tempTime;
-                controllerWrapper.Tick();
+                iterator++;
+
+                if (iterator * 10 >= stateMachine.CurrentFPS )
+                {
+                    controllerWrapper.Tick();
+                    iterator = 0;
+                }
             }
         }
     }
