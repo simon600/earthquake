@@ -580,8 +580,7 @@ namespace TheEarthQuake.Logic
                 {
                     break;
                 }
-
-                if (!(this.map.Fields[i - k, j] is Maps.Path))
+                if (!(this.map.Fields[i - k, j] is Maps.Path) && !(this.map.Fields[i - k, j] is Maps.Water))
                 {
                     if (this.map.Fields[i - k, j] is Maps.NonPersistentWall)
                     {//kruszymy sciane
@@ -602,7 +601,7 @@ namespace TheEarthQuake.Logic
                 {
                     break;
                 }
-                if (!(this.map.Fields[i + k, j] is Maps.Path))
+                if (!(this.map.Fields[i + k, j] is Maps.Path) && !(this.map.Fields[i + k, j] is Maps.Water))
                 {
                     if (this.map.Fields[i + k, j] is Maps.NonPersistentWall)
                     {//kruszymy sciane
@@ -619,7 +618,7 @@ namespace TheEarthQuake.Logic
                 {
                     break;
                 }
-                if (!(this.map.Fields[i, j - k] is Maps.Path))
+                if (!(this.map.Fields[i, j - k] is Maps.Path) && !(this.map.Fields[i, j - k] is Maps.Water))
                 {
                     if (cut && this.map.Fields[i, j - k] is Maps.NonPersistentWall)
                     {//kruszymy sciane
@@ -636,7 +635,7 @@ namespace TheEarthQuake.Logic
                 {
                     break;
                 }
-                if (!(this.map.Fields[i, j + k] is Maps.Path))
+                if (!(this.map.Fields[i, j + k] is Maps.Path) && !(this.map.Fields[i, j + k] is Maps.Water))
                 {
                     if (cut && this.map.Fields[i, j + k] is Maps.NonPersistentWall)
                     {//kruszymy sciane
