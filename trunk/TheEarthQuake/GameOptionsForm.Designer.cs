@@ -29,6 +29,7 @@ namespace TheEarthQuake.GUI
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.cbxBonusesOn = new System.Windows.Forms.CheckBox();
             this.numSpeed = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@ namespace TheEarthQuake.GUI
             this.label12 = new System.Windows.Forms.Label();
             this.numMusic = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSpeed)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -84,6 +84,15 @@ namespace TheEarthQuake.GUI
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Gra";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(157, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(15, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "%";
+            // 
             // cbxBonusesOn
             // 
             this.cbxBonusesOn.AutoSize = true;
@@ -104,7 +113,7 @@ namespace TheEarthQuake.GUI
             0});
             this.numSpeed.Location = new System.Drawing.Point(102, 24);
             this.numSpeed.Maximum = new decimal(new int[] {
-            200,
+            150,
             0,
             0,
             0});
@@ -397,15 +406,6 @@ namespace TheEarthQuake.GUI
             this.label13.Size = new System.Drawing.Size(47, 13);
             this.label13.TabIndex = 0;
             this.label13.Text = "Muzyka:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(157, 26);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(15, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "%";
             // 
             // GameOptionsForm
             // 
