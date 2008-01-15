@@ -525,6 +525,7 @@ namespace TheEarthQuake.Logic
                 playerInstance.PositionI, playerInstance.PositionJ
             );
             this.map.InsertBomb(playerInstance.PositionI, playerInstance.PositionJ, insertedBomb);
+            this.RemoveBlownBombs();
             this.bombs.Add(insertedBomb);
             playerInstance.SetMine();
         }
@@ -671,6 +672,33 @@ namespace TheEarthQuake.Logic
                     }
                     cut = false;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Method which removes all blown which needs to be remove.
+        /// </summary>
+        private void RemoveBlownBombs()
+        {
+            List<int> indexes = new List<int>();    //collects indexes of bombs to remove
+            int i = 0;
+
+            System.Collections.IEnumerator bombaEnumerator = this.bombs.GetEnumerator();
+            while (bombaEnumerator.MoveNext())
+            {
+                Maps.Bomb.Bomb bomba = ((Maps.Bomb.Bomb)bombaEnumerator.Current);
+                if (bomba.state == Maps.Bomb.BombState.ToRemove)
+                {
+                    indexes.Add(i);
+                    i++;
+                }
+            }
+            indexes.Sort();
+            i = 0; //after removing bombs list is shorter, so we need to update counter
+            foreach (int el in indexes)
+            {
+                this.bombs.RemoveAt(el - i);
+                i++;
             }
         }
 
