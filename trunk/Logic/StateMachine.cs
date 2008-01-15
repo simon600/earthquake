@@ -146,7 +146,7 @@ namespace TheEarthQuake.Logic
                             /* we calculate the shift to the left */
 
                             //centerDx = -player.Speed * gameSettings.GameSpeed / currentFPS * Player.BaseStep;
-                            centerDx = -2;
+                            centerDx = -2 * ((float)gameSettings.GameSpeed /(float)100);
 
                             /* we calculate the border of the neighbouring field
                                on the left to check if player collides */
@@ -223,7 +223,7 @@ namespace TheEarthQuake.Logic
                             /* we calculate the shift to the right */
 
                            // centerDx = player.Speed * gameSettings.GameSpeed / currentFPS * Player.BaseStep;
-                            centerDx = 2;
+                            centerDx = 2 * ((float)gameSettings.GameSpeed / (float)100);
 
                             /* we calculate the border of the neighbouring field
                              * on the right to check if player collides */
@@ -290,7 +290,7 @@ namespace TheEarthQuake.Logic
                             /* we calculate the shift to the up */
 
                            // centerDy = -player.Speed * gameSettings.GameSpeed / currentFPS * Player.BaseStep;
-                            centerDy = -2;
+                            centerDy = -2 * ((float)gameSettings.GameSpeed / (float)100);
 
                             /* we calculate the border of the neighbouring field
                              * on the up to check if player collides */
@@ -357,7 +357,7 @@ namespace TheEarthQuake.Logic
                             /* we calculate the shift to the down */
 
                          //   centerDy = player.Speed * gameSettings.GameSpeed / currentFPS * Player.BaseStep;
-                            centerDy = 2;
+                            centerDy = 2 * ((float)gameSettings.GameSpeed / (float)100);
 
                             /* we calculate the border of the neighbouring field
                              * on the down to check if player collides */

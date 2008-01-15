@@ -56,6 +56,7 @@ namespace TheEarthQuake.GUI
             this.label12 = new System.Windows.Forms.Label();
             this.numMusic = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSpeed)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -72,6 +73,7 @@ namespace TheEarthQuake.GUI
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.cbxBonusesOn);
             this.groupBox2.Controls.Add(this.numSpeed);
             this.groupBox2.Controls.Add(this.label3);
@@ -95,14 +97,19 @@ namespace TheEarthQuake.GUI
             // 
             // numSpeed
             // 
+            this.numSpeed.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.numSpeed.Location = new System.Drawing.Point(102, 24);
             this.numSpeed.Maximum = new decimal(new int[] {
-            20,
+            200,
             0,
             0,
             0});
             this.numSpeed.Minimum = new decimal(new int[] {
-            1,
+            10,
             0,
             0,
             0});
@@ -110,7 +117,7 @@ namespace TheEarthQuake.GUI
             this.numSpeed.Size = new System.Drawing.Size(53, 20);
             this.numSpeed.TabIndex = 5;
             this.numSpeed.Value = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
@@ -391,6 +398,15 @@ namespace TheEarthQuake.GUI
             this.label13.TabIndex = 0;
             this.label13.Text = "Muzyka:";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(157, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(15, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "%";
+            // 
             // GameOptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -456,5 +472,6 @@ namespace TheEarthQuake.GUI
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbxSpecial;
         private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -3,7 +3,7 @@
   <Music>30</Music>
   <Sound>40</Sound>
   <BonusesOn>True</BonusesOn>
-  <GameSpeed>7</GameSpeed>
+  <GameSpeed>100</GameSpeed>
   <Controlls>
     <PlayerOne>
       <Up>87</Up>

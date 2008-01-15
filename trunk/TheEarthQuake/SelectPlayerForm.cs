@@ -181,9 +181,9 @@ namespace TheEarthQuake.GUI
                 player2ClassesPanel.Controls.Add(panel);
             }
 
-            speedProgressBar.Maximum = 1000;
+            speedProgressBar.Maximum = 3;
             speedProgressBar.Minimum = 0;
-            speedProgressBar2.Maximum = 1000;
+            speedProgressBar2.Maximum = 3;
             speedProgressBar2.Minimum = 0;
 
             powerProgressBar.Maximum = 100;
