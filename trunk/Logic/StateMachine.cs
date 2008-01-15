@@ -97,6 +97,15 @@ namespace TheEarthQuake.Logic
         }
 
         /// <summary>
+        /// State machine constructor. 
+        /// </summary>
+        public StateMachine()
+        {
+            this.map = new Maps.Map();
+            this.gameSettings = new GameSettings();
+        }
+
+        /// <summary>
         /// Method responsible for moving player. Called by controller.
         /// </summary>
         public void MovePlayer(Players playerId, Directions direction)
@@ -456,16 +465,7 @@ namespace TheEarthQuake.Logic
         {
             return new PlayerWrapper(this.PlayerTwo);
         }
-
-        /// <summary>
-        /// State machine constructor. 
-        /// </summary>
-        public StateMachine()
-        {
-            this.map = new Maps.Map();
-            this.gameSettings = new GameSettings();
-        }
-
+        
         /// <summary>
         /// Checks if player get's bonus
         /// </summary>
@@ -481,7 +481,10 @@ namespace TheEarthQuake.Logic
             }
         }
 
-
+        /// <summary>
+        /// Place bomb on field with player.
+        /// </summary>
+        /// <param name="player">Player to place bomb</param>
         public void InsertBomb(Players player)
         {
             Player playerInstance;
@@ -500,6 +503,7 @@ namespace TheEarthQuake.Logic
             {
                 return;
             }
+            //field to set bomb
             Field field = this.map.Fields[playerInstance.PositionI, playerInstance.PositionJ];
             if (field.HasBomb())
             {
@@ -515,8 +519,15 @@ namespace TheEarthQuake.Logic
             playerInstance.SetMine();
         }
 
+        /// <summary>
+        /// Checks whether player was blown by bomb.
+        /// </summary>
+        /// <param name="b">Bomb which blows</param>
+        /// <param name="p">Player to blow up</param>
+        /// <returns></returns>
         private bool checkBombTouch(Maps.Bomb.Bomb b, Player p)
-        {   //trzeba sprawdzic czy player i bomba leza na tej samej lini, oddalone o niewiecej niz 5 (TU TEZ ZHARDCOROWANE!!)
+        {   
+            //trzeba sprawdzic czy player i bomba leza na tej samej lini, oddalone o niewiecej niz 5 (TU TEZ ZHARDCOROWANE!!)
             //oraz ze po drodze wszystko jest pathem
             if (b.IPos != p.PositionI && b.JPos != p.PositionJ)
             { //nie leza na jednej linii
@@ -526,21 +537,22 @@ namespace TheEarthQuake.Logic
             { //leza na jednej linii, ale za daleko
                 return false;
             }
-            bool noRigid = true;
+            bool noRigid = true;    
             if (b.IPos == p.PositionI)
             {//leza na tej samej wsp. i; wiec sprawdzamy wszystkie pola na j po drodze
                 for (int k = 0; k < 4 && Math.Abs(b.JPos - p.PositionJ) > k; ++k)
                 {
                     if (p.PositionJ > b.JPos)
                     {
-                        if (!(map.Fields[b.IPos, b.JPos + k] is Maps.Path))
+                        //trafiamy w pole ktore nie jest sciezka ani woda (wiec wybuch dalej sie nie rozchodzi)
+                        if (!(map.Fields[b.IPos, b.JPos + k] is Maps.Path) && !(map.Fields[b.IPos, b.JPos + k] is Maps.Water))
                         {
                             noRigid = false;
                         }
                     }
                     else
                     {
-                        if (!(map.Fields[b.IPos, b.JPos - k] is Maps.Path))
+                        if (!(map.Fields[b.IPos, b.JPos - k] is Maps.Path) && !(map.Fields[b.IPos, b.JPos - k] is Maps.Water))
                         {
                             noRigid = false;
                         }
@@ -554,14 +566,14 @@ namespace TheEarthQuake.Logic
             {
                 if (p.PositionI > b.IPos)
                 {
-                    if (!(map.Fields[b.IPos + k, b.JPos] is Maps.Path))
+                    if (!(map.Fields[b.IPos + k, b.JPos] is Maps.Path) && !(map.Fields[b.IPos + k, b.JPos] is Maps.Water))
                     {
                         noRigid = false;
                     }
                 }
                 else
                 {
-                    if (!(map.Fields[b.IPos - k, b.JPos] is Maps.Path))
+                    if (!(map.Fields[b.IPos - k, b.JPos] is Maps.Path) && !(map.Fields[b.IPos - k, b.JPos] is Maps.Water))
                     {
                         noRigid = false;
                     }
@@ -570,9 +582,14 @@ namespace TheEarthQuake.Logic
             return noRigid;
         }
 
+        /// <summary>
+        /// Blows bomb placed on position (i, j)
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
         private void BlowWalls(int i, int j)
         {
-            bool cut = true;
+            bool cut = true; //odciecie wybuchu
             //i -
             for (int k = 1; cut && k < 6; ++k)
             {
@@ -580,6 +597,7 @@ namespace TheEarthQuake.Logic
                 {
                     break;
                 }
+                //przechodzi przez sciezki i wode
                 if (!(this.map.Fields[i - k, j] is Maps.Path) && !(this.map.Fields[i - k, j] is Maps.Water))
                 {
                     if (this.map.Fields[i - k, j] is Maps.NonPersistentWall)
@@ -646,8 +664,12 @@ namespace TheEarthQuake.Logic
             }
         }
 
+        /// <summary>
+        /// Allow machine to change its state.
+        /// </summary>
         public void Tick()
         {
+            //ticks players
             this.PlayerOne.tick();
             this.PlayerTwo.tick();
             System.Collections.IEnumerator bombaEnumerator = this.bombs.GetEnumerator();
