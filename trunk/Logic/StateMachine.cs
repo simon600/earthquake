@@ -184,7 +184,7 @@ namespace TheEarthQuake.Logic
                                    player's border to touch the fields edge. */
 
                                 Maps.Field field = Map.GetField(player.PositionI, player.PositionJ - 1);
-                                if (!(field is Maps.Path))
+                                if (!(field is Maps.Path) || field.HasBomb())
                                 {
                                     player.PositionX = leftFieldBorder + Player.PlayerRadius;
                                     /* we check if field contains a bonus to get */
@@ -261,7 +261,7 @@ namespace TheEarthQuake.Logic
                                  player's border to touch the fields edge. */
 
                                 Maps.Field field = Map.GetField(player.PositionI, player.PositionJ + 1);
-                                if (!(field is Maps.Path))
+                                if (!(field is Maps.Path) || field.HasBomb())
                                 {
                                     player.PositionX = rightFieldBorder - Player.PlayerRadius;
                                     return;
@@ -328,7 +328,7 @@ namespace TheEarthQuake.Logic
                                  player's border to touch the fields edge. */
 
                                 Maps.Field field = Map.GetField(player.PositionI - 1, player.PositionJ);
-                                if (!(field is Maps.Path))
+                                if (!(field is Maps.Path) || field.HasBomb())
                                 {
                                     player.PositionY = upFieldBorder + Player.PlayerRadius;
                                     return;
@@ -395,7 +395,7 @@ namespace TheEarthQuake.Logic
                                  player's border to touch the fields edge. */
 
                                 Maps.Field field = Map.GetField(player.PositionI + 1, player.PositionJ);
-                                if (!(field is Maps.Path))
+                                if (!(field is Maps.Path) || field.HasBomb())
                                 {
                                     player.PositionY = downFieldBorder - Player.PlayerRadius;
                                     return;
