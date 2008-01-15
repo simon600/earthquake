@@ -120,7 +120,6 @@ namespace TheEarthQuake.Bonuses
         {
             type = TypeOfBonus.Kaczynski;
             modyfication = -1;
-            end = DateTime.Now.AddYears(10); 
         }
 
         public override void Activation()
