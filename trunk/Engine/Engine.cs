@@ -12,6 +12,7 @@ using CsGL.OpenGL;
 using TheEarthQuake.Maps;
 using TheEarthQuake.Players;
 using TheEarthQuake.Maps.Bomb;
+using System.Collections.Generic;
 
 namespace TheEarthQuake.Engine
 {
@@ -32,6 +33,8 @@ namespace TheEarthQuake.Engine
         private OpenGLTexture2D[] bombMasks;
         private OpenGLTexture2D[] blowTextures;
         private OpenGLTexture2D[] blowMasks;
+        private OpenGLTexture2D flame;
+        private OpenGLTexture2D flameMask;
         private bool preview;                   //true iff draw functions will be use to draw only map preview
 
         private OpenGLTexture2D playerOneTexture;
@@ -39,7 +42,8 @@ namespace TheEarthQuake.Engine
 
         private int cycleIterator;  // used for iterating textures        
         private int iteratorIterator; // when it reaches certain value, other iterators iterate
-        
+
+        private List<Bomb> drawingBombsList; //lista bomb do narysowania;
 
         /// <summary>
         /// Constructor - loads textures and sets some default values
@@ -52,6 +56,7 @@ namespace TheEarthQuake.Engine
             this.preview = false;
             this.cycleIterator = 0;
             this.iteratorIterator = 0;
+            this.drawingBombsList = new List<Bomb>();
            
             /*
              * You can change the values of width and height 
@@ -110,6 +115,9 @@ namespace TheEarthQuake.Engine
             blowMasks[1] = new OpenGLTexture2D(@"..\..\..\textures\BlowMask2.bmp");
             blowMasks[2] = new OpenGLTexture2D(@"..\..\..\textures\BlowMask3.bmp");
             blowMasks[3] = blowMasks[2];
+
+            flame = new OpenGLTexture2D(@"..\..\..\textures\flame.bmp");
+            flameMask = new OpenGLTexture2D(@"..\..\..\textures\flameMask.bmp");
         }
 
         /// <summary>
@@ -218,6 +226,7 @@ namespace TheEarthQuake.Engine
             //we just want to draw map preview, so we don't touch players
             if (!preview)
             {
+                DrawBombs();
                 DrawPlayers();
             }
         }
@@ -231,8 +240,8 @@ namespace TheEarthQuake.Engine
             GL.glShadeModel(GL.GL_SMOOTH);
             GL.glClearColor(0.0f, 1.0f, 0.0f, 0.5f);
             GL.glClearDepth(1.0f);		
-            //GL.glEnable(GL.GL_DEPTH_TEST);
-            //GL.glDepthFunc(GL.GL_LEQUAL);
+            GL.glEnable(GL.GL_DEPTH_TEST);
+            GL.glDepthFunc(GL.GL_LEQUAL);
             GL.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);            
             
         }
@@ -428,7 +437,7 @@ namespace TheEarthQuake.Engine
 
                     if (field.HasBomb()) // na polu jest bomba (ale nie w stanie wybuchu), trza wiêc namalowaæ
                     {
-                        DrawBomb(i, j, field.GetBomb());                        
+                        drawingBombsList.Add(field.GetBomb());                        
                     }
                 }
             }
@@ -507,97 +516,329 @@ namespace TheEarthQuake.Engine
             //tu bêdzie rysunek
         }
 
-        private void DrawBomb(int i, int j, Bomb bomb) {
-            /* distance between bomb quad and field border */                    
-            float distanceFromEdge = (mapWrapper.FieldSize - mapWrapper.BombSize) / 2;
+        private void DrawBombs() {
+            /* distance between bomb quad and field border */
+            GL.glPushMatrix();
+            GL.glTranslatef(-width / 2, height / 2, 0.0f);
 
-            GL.glEnable(GL.GL_BLEND);
-
-            if (bomb.state == BombState.Waiting)
+            foreach (Bomb bomb in drawingBombsList)
             {
-                GL.glBlendFunc(GL.GL_DST_COLOR, GL.GL_ZERO);
+                int i = bomb.IPos;
+                int j = bomb.JPos;
+                float distanceFromEdge = (mapWrapper.FieldSize - mapWrapper.BombSize) / 2;
 
-                bombMasks[cycleIterator % 3].Bind();
+                GL.glEnable(GL.GL_BLEND);
+                GL.glDisable(GL.GL_DEPTH_TEST);
 
-                GL.glBegin(GL.GL_QUADS);
-                GL.glTexCoord2f(0.0f, 0.0f);
-                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
-                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
-                GL.glTexCoord2f(1.0f, 0.0f);
-                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
-                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
-                GL.glTexCoord2f(1.0f, 1.0f);
-                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
-                    -i * mapWrapper.FieldSize - distanceFromEdge);
-                GL.glTexCoord2f(0.0f, 1.0f);
-                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
-                    -i * mapWrapper.FieldSize - distanceFromEdge);
-                GL.glEnd();
+                if (bomb.state == BombState.Waiting)
+                {
+                    GL.glBlendFunc(GL.GL_DST_COLOR, GL.GL_ZERO);
 
-                GL.glBlendFunc(GL.GL_ONE, GL.GL_ONE);
+                    bombMasks[cycleIterator % 3].Bind();
 
-                bombTextures[cycleIterator % 3].Bind();
+                    GL.glBegin(GL.GL_QUADS);
+                    GL.glTexCoord2f(0.0f, 0.0f);
+                    GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                        -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                    GL.glTexCoord2f(1.0f, 0.0f);
+                    GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                        -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                    GL.glTexCoord2f(1.0f, 1.0f);
+                    GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                        -i * mapWrapper.FieldSize - distanceFromEdge);
+                    GL.glTexCoord2f(0.0f, 1.0f);
+                    GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                        -i * mapWrapper.FieldSize - distanceFromEdge);
+                    GL.glEnd();
 
-                GL.glBegin(GL.GL_QUADS);
-                GL.glTexCoord2f(0.0f, 0.0f);
-                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
-                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
-                GL.glTexCoord2f(1.0f, 0.0f);
-                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
-                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
-                GL.glTexCoord2f(1.0f, 1.0f);
-                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
-                    -i * mapWrapper.FieldSize - distanceFromEdge);
-                GL.glTexCoord2f(0.0f, 1.0f);
-                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
-                    -i * mapWrapper.FieldSize - distanceFromEdge);
-                GL.glEnd();
+                    GL.glBlendFunc(GL.GL_ONE, GL.GL_ONE);
+
+                    bombTextures[cycleIterator % 3].Bind();
+
+                    GL.glBegin(GL.GL_QUADS);
+                    GL.glTexCoord2f(0.0f, 0.0f);
+                    GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                        -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                    GL.glTexCoord2f(1.0f, 0.0f);
+                    GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                        -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
+                    GL.glTexCoord2f(1.0f, 1.0f);
+                    GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                        -i * mapWrapper.FieldSize - distanceFromEdge);
+                    GL.glTexCoord2f(0.0f, 1.0f);
+                    GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
+                        -i * mapWrapper.FieldSize - distanceFromEdge);
+                    GL.glEnd();
+                }
+                else if (bomb.state == BombState.Blow)
+                {
+                    /* How far fire reaches. */
+                    float upRange =
+                        Math.Min(mapWrapper.FieldSize * GetBombUpRange(i, j),
+                        5.0f * mapWrapper.FieldSize * bomb.GetProgressFactor() / 100.0f);
+                    float downRange =
+                        Math.Min(mapWrapper.FieldSize * GetBombDownRange(i, j),
+                        5.0f * mapWrapper.FieldSize * bomb.GetProgressFactor() / 100.0f);
+
+                    float leftRange =
+                        Math.Min(mapWrapper.FieldSize * GetBombLeftRange(i, j),
+                        5.0f * mapWrapper.FieldSize * bomb.GetProgressFactor() / 100.0f);
+                    float rightRange =
+                        Math.Min(mapWrapper.FieldSize * GetBombRightRange(i, j),
+                        5.0f * mapWrapper.FieldSize * bomb.GetProgressFactor() / 100.0f);
+
+
+                    /* drawing flame */
+
+
+                    GL.glBlendFunc(GL.GL_DST_COLOR, GL.GL_ZERO);
+                    flameMask.Bind();
+
+                    GL.glBegin(GL.GL_QUADS);
+
+                    GL.glTexCoord2f(0.0f, 0.0f);
+                    GL.glVertex2f(j * mapWrapper.FieldSize - leftRange,
+                        -(i + 1) * mapWrapper.FieldSize);
+                    GL.glTexCoord2f(1.0f, 0.0f);
+                    GL.glVertex2f((j + 1) * mapWrapper.FieldSize,
+                        -(i + 1) * mapWrapper.FieldSize);
+                    GL.glTexCoord2f(1.0f, 1.0f);
+                    GL.glVertex2f((j + 1) * mapWrapper.FieldSize,
+                        -i * mapWrapper.FieldSize);
+                    GL.glTexCoord2f(0.0f, 1.0f);
+                    GL.glVertex2f(j * mapWrapper.FieldSize - leftRange,
+                        -i * mapWrapper.FieldSize);
+
+                    GL.glTexCoord2f(0.0f, 0.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize,
+                        -(i + 1) * mapWrapper.FieldSize, 0.0f);
+                    GL.glTexCoord2f(1.0f, 0.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize + rightRange,
+                        -(i + 1) * mapWrapper.FieldSize, 0.0f);
+                    GL.glTexCoord2f(1.0f, 1.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize + rightRange,
+                        -i * mapWrapper.FieldSize, 0.0f);
+                    GL.glTexCoord2f(0.0f, 1.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize,
+                        -i * mapWrapper.FieldSize, 0.0f);
+
+                    GL.glTexCoord2f(1.0f, 0.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize,
+                        -(i + 1) * mapWrapper.FieldSize - downRange, 0.0f);
+                    GL.glTexCoord2f(1.0f, 1.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize,
+                        -(i + 1) * mapWrapper.FieldSize - downRange, 0.0f);
+                    GL.glTexCoord2f(0.0f, 1.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize,
+                        -i * mapWrapper.FieldSize, 0.0f);
+                    GL.glTexCoord2f(0.0f, 0.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize,
+                        -i * mapWrapper.FieldSize, 0.0f);
+
+                    GL.glTexCoord2f(0.0f, 1.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize,
+                        -(i + 1) * mapWrapper.FieldSize, 0.0f);
+                    GL.glTexCoord2f(0.0f, 0.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize,
+                        -(i + 1) * mapWrapper.FieldSize, 0.0f);
+                    GL.glTexCoord2f(1.0f, 0.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize,
+                        -i * mapWrapper.FieldSize + upRange, 0.0f);
+                    GL.glTexCoord2f(1.0f, 1.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize,
+                        -i * mapWrapper.FieldSize + upRange, 0.0f);
+                    GL.glEnd();
+
+                    GL.glBlendFunc(GL.GL_ONE, GL.GL_ONE);
+                    flame.Bind();
+
+                    GL.glBegin(GL.GL_QUADS);
+
+                    GL.glTexCoord2f(0.0f, 0.0f);
+                    GL.glVertex2f(j * mapWrapper.FieldSize - leftRange,
+                        -(i + 1) * mapWrapper.FieldSize);
+                    GL.glTexCoord2f(1.0f, 0.0f);
+                    GL.glVertex2f((j + 1) * mapWrapper.FieldSize,
+                        -(i + 1) * mapWrapper.FieldSize);
+                    GL.glTexCoord2f(1.0f, 1.0f);
+                    GL.glVertex2f((j + 1) * mapWrapper.FieldSize,
+                        -i * mapWrapper.FieldSize);
+                    GL.glTexCoord2f(0.0f, 1.0f);
+                    GL.glVertex2f(j * mapWrapper.FieldSize - leftRange,
+                        -i * mapWrapper.FieldSize);
+
+                    GL.glTexCoord2f(0.0f, 0.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize,
+                        -(i + 1) * mapWrapper.FieldSize, 0.0f);
+                    GL.glTexCoord2f(1.0f, 0.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize + rightRange,
+                        -(i + 1) * mapWrapper.FieldSize, 0.0f);
+                    GL.glTexCoord2f(1.0f, 1.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize + rightRange,
+                        -i * mapWrapper.FieldSize, 0.0f);
+                    GL.glTexCoord2f(0.0f, 1.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize,
+                        -i * mapWrapper.FieldSize, 0.0f);
+
+                    GL.glTexCoord2f(1.0f, 0.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize,
+                        -(i + 1) * mapWrapper.FieldSize - downRange, 0.0f);
+                    GL.glTexCoord2f(1.0f, 1.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize,
+                        -(i + 1) * mapWrapper.FieldSize - downRange, 0.0f);
+                    GL.glTexCoord2f(0.0f, 1.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize,
+                        -i * mapWrapper.FieldSize, 0.0f);
+                    GL.glTexCoord2f(0.0f, 0.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize,
+                        -i * mapWrapper.FieldSize, 0.0f);
+
+                    GL.glTexCoord2f(0.0f, 1.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize,
+                        -(i + 1) * mapWrapper.FieldSize, 0.0f);
+                    GL.glTexCoord2f(0.0f, 0.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize,
+                        -(i + 1) * mapWrapper.FieldSize, 0.0f);
+                    GL.glTexCoord2f(1.0f, 0.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize,
+                        -i * mapWrapper.FieldSize + upRange, 0.0f);
+                    GL.glTexCoord2f(1.0f, 1.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize,
+                        -i * mapWrapper.FieldSize + upRange, 0.0f);                    
+
+                    GL.glEnd();
+
+
+                    /* drwawing the other efect */
+
+                    GL.glBlendFunc(GL.GL_DST_COLOR, GL.GL_ZERO);
+
+                    /* finding adequate texture index */
+                    int textureIndex = (int)Math.Floor(4 * bomb.GetProgressFactor() / 100);
+
+                    blowMasks[textureIndex].Bind();
+
+                    GL.glBegin(GL.GL_QUADS);
+                    GL.glTexCoord2f(0.0f, 0.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize + distanceFromEdge,
+                        -(i + 1) * mapWrapper.FieldSize + distanceFromEdge, 0.1f);
+                    GL.glTexCoord2f(1.0f, 0.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                        -(i + 1) * mapWrapper.FieldSize + distanceFromEdge, 0.1f);
+                    GL.glTexCoord2f(1.0f, 1.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                        -i * mapWrapper.FieldSize - distanceFromEdge, 0.1f);
+                    GL.glTexCoord2f(0.0f, 1.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize + distanceFromEdge,
+                        -i * mapWrapper.FieldSize - distanceFromEdge, 0.1f);
+                    GL.glEnd();
+
+                    GL.glBlendFunc(GL.GL_ONE, GL.GL_ONE);
+
+                    blowTextures[textureIndex].Bind();
+
+                    GL.glBegin(GL.GL_QUADS);
+                    GL.glTexCoord2f(0.0f, 0.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize + distanceFromEdge,
+                        -(i + 1) * mapWrapper.FieldSize + distanceFromEdge, 0.1f);
+                    GL.glTexCoord2f(1.0f, 0.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                        -(i + 1) * mapWrapper.FieldSize + distanceFromEdge, 0.1f);
+                    GL.glTexCoord2f(1.0f, 1.0f);
+                    GL.glVertex3f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
+                        -i * mapWrapper.FieldSize - distanceFromEdge, 0.1f);
+                    GL.glTexCoord2f(0.0f, 1.0f);
+                    GL.glVertex3f(j * mapWrapper.FieldSize + distanceFromEdge,
+                        -i * mapWrapper.FieldSize - distanceFromEdge, 0.1f);
+                    GL.glEnd();
+
+                }
+
+                GL.glDisable(GL.GL_BLEND);
+                GL.glEnable(GL.GL_DEPTH_TEST);
             }
-            else if (bomb.state == BombState.Blow)
-            {                
-                GL.glBlendFunc(GL.GL_DST_COLOR, GL.GL_ZERO);
+            drawingBombsList.Clear();
+            GL.glPopMatrix();
+        }
 
-                /* finding adequate texture index */
-                int textureIndex = (int)Math.Floor(4 * bomb.GetProgressFactor() / 100);
-
-                blowMasks[textureIndex].Bind();
-
-                GL.glBegin(GL.GL_QUADS);
-                GL.glTexCoord2f(0.0f, 0.0f);
-                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
-                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
-                GL.glTexCoord2f(1.0f, 0.0f);
-                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
-                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
-                GL.glTexCoord2f(1.0f, 1.0f);
-                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
-                    -i * mapWrapper.FieldSize - distanceFromEdge);
-                GL.glTexCoord2f(0.0f, 1.0f);
-                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
-                    -i * mapWrapper.FieldSize - distanceFromEdge);
-                GL.glEnd();
-
-                GL.glBlendFunc(GL.GL_ONE, GL.GL_ONE);
-
-                blowTextures[textureIndex].Bind();
-
-                GL.glBegin(GL.GL_QUADS);
-                GL.glTexCoord2f(0.0f, 0.0f);
-                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
-                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
-                GL.glTexCoord2f(1.0f, 0.0f);
-                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
-                    -(i + 1) * mapWrapper.FieldSize + distanceFromEdge);
-                GL.glTexCoord2f(1.0f, 1.0f);
-                GL.glVertex2f((j + 1) * mapWrapper.FieldSize - distanceFromEdge,
-                    -i * mapWrapper.FieldSize - distanceFromEdge);
-                GL.glTexCoord2f(0.0f, 1.0f);
-                GL.glVertex2f(j * mapWrapper.FieldSize + distanceFromEdge,
-                    -i * mapWrapper.FieldSize - distanceFromEdge);
-                GL.glEnd();                
+        /// <summary>
+        /// Return how far up bomb's flame reach
+        /// </summary>
+        /// <param name="i">vertical position of a bomb</param>
+        /// <param name="j">horizontal position of a bomb</param>
+        /// <returns>range</returns>
+        private int GetBombUpRange(int i, int j)
+        {
+            int k = 0;
+            for (k = 0; k < 6; k++)
+            {
+                if (i - k < 0 || mapWrapper.GetField(i-k, j) is PersistentWall
+                    || mapWrapper.GetField(i-k, j) is NonPersistentWall)
+                {
+                    break;
+                }
             }
+            return Math.Max(k-1,0);
+        }
 
-            GL.glDisable(GL.GL_BLEND);
+        /// <summary>
+        /// Return how far to the left bomb's flame reach
+        /// </summary>
+        /// <param name="i">vertical position of a bomb</param>
+        /// <param name="j">horizontal position of a bomb</param>
+        /// <returns>range</returns>
+        private int GetBombLeftRange(int i, int j)
+        {
+            int k = 0;
+            for (k = 0; k < 6; k++)
+            {
+                if (j - k < 0 || mapWrapper.GetField(i, j - k) is PersistentWall
+                    || mapWrapper.GetField(i, j - k) is NonPersistentWall)
+                {
+                    break;
+                }
+            }
+            return Math.Max(k - 1, 0);
+        }
+
+        /// <summary>
+        /// Return how far down bomb's flame reach
+        /// </summary>
+        /// <param name="i">vertical position of a bomb</param>
+        /// <param name="j">horizontal position of a bomb</param>
+        /// <returns>range</returns>
+        private int GetBombDownRange(int i, int j)
+        {
+            int k = 0;
+            for (k = 0; k < 6; k++)
+            {
+                if (i + k >= mapWrapper.MapHeight || mapWrapper.GetField(i + k, j) is PersistentWall
+                    || mapWrapper.GetField(i + k, j) is NonPersistentWall)
+                {
+                    break;
+                }
+            }
+            return Math.Max(k - 1, 0);
+        }
+
+        /// <summary>
+        /// Return how far to the right bomb's flame reach
+        /// </summary>
+        /// <param name="i">vertical position of a bomb</param>
+        /// <param name="j">horizontal position of a bomb</param>
+        /// <returns>range</returns>
+        private int GetBombRightRange(int i, int j)
+        {
+            int k = 0;
+            for (k = 0; k < 6; k++)
+            {
+                if (j + k >= mapWrapper.MapWidth || mapWrapper.GetField(i, j + k) is PersistentWall
+                    || mapWrapper.GetField(i, j + k) is NonPersistentWall)
+                {
+                    break;
+                }
+            }
+            return Math.Max(k - 1, 0);
         }
     }
 }
