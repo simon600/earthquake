@@ -13,22 +13,30 @@ using System.Runtime.InteropServices;
 
 namespace TheEarthQuake.GUI
 {
+    /// <summary>
+    /// Form for displaying game.
+    /// </summary>
     public partial class GameForm : Form
     {
         private Engine.Engine engine;
         private Logic.StateMachine stateMachine;
         private Thread thrOpenGL;   //thread needed to display scene and modify the state
 
-        GameFormControllerWrapper controllerWrapper;
+        private GameFormControllerWrapper controllerWrapper;
+        private bool isActive;
 
+        /// <summary>
+        /// Game form constructor
+        /// </summary>
+        /// <param name="controllerWrapper"></param>
         public GameForm(GameFormControllerWrapper controllerWrapper)
         {
             InitializeComponent();
+            this.isActive = true;
             // Next line is needed to avoid some faults with thread
             // (delete it to check what happens). If you know better
             // solution feel free to modify code :).
             CheckForIllegalCrossThreadCalls = false;
-
             this.controllerWrapper = controllerWrapper;
 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -60,15 +68,40 @@ namespace TheEarthQuake.GUI
         [DllImport("user32.dll", CharSet=CharSet.Auto, ExactSpelling=true, CallingConvention=CallingConvention.Winapi)]
 		public static extern short GetKeyState(int keyCode);
 
-        /* checking, if wheter given key is pressed or not */
+        /// <summary>
+        /// Checking, if wheter given key is pressed or not */
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         private bool IsKeyPressed(Keys key)
         {
             const ushort keyDownBit = 0x80;
             return ((GetKeyState((short)key) & keyDownBit) == keyDownBit);
         }
 
+        /// <summary>
+        /// Sets false to isActive when form is deactivated
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnDeactivate(EventArgs e)
+        {
+            base.OnDeactivate(e);
+            this.isActive = false;
+        }
 
-        /* checking the keyboard state for pressed keys */
+        /// <summary>
+        /// Sets true to isActive when form is activated.
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+            this.isActive = true;
+        }
+
+        /// <summary>
+        /// Checking the keyboard state for pressed keys
+        /// </summary>
         private void ProcessKeyboard()
         {
             // checking state of keys for PlayerOne actions
@@ -158,7 +191,8 @@ namespace TheEarthQuake.GUI
 
             while(true) // infinity loop for rendering
             { 
-                this.ProcessKeyboard();
+                if(this.isActive)
+                    this.ProcessKeyboard();
                 this.engine.Refresh();
 
                 /* counting fps */
