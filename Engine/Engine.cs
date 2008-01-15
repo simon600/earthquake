@@ -190,7 +190,7 @@ namespace TheEarthQuake.Engine
                 playerOneTexture = new OpenGLTexture2D(@player1.PlayerClass.TexturePaths[GetRand(count)]);
 
                 count = player2.PlayerClass.TexturePaths.Length;
-                playerTwoTexture = new OpenGLTexture2D(@player1.PlayerClass.TexturePaths[GetRand(count)]);
+                playerTwoTexture = new OpenGLTexture2D(@player2.PlayerClass.TexturePaths[GetRand(count)]);
             }
         }
 
