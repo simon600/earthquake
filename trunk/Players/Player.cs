@@ -449,7 +449,7 @@ namespace TheEarthQuake.Players
         /// </summary>
         /// <param name="bonus">Finded bonus</param>
         public void TakeBonus(Bonus bonus)
-        d{
+        {
             myBonuses.Add(bonus);
             bonus.Activation();
             UpgradePlayer(bonus);
