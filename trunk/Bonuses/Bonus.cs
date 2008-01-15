@@ -104,6 +104,7 @@ namespace TheEarthQuake.Bonuses
     {
         public HealthBonus()
         {
+            type = TypeOfBonus.Health;
             modyfication = 1000;
         }
 
