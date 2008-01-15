@@ -39,11 +39,16 @@ namespace TheEarthQuake.Engine
 
         private OpenGLTexture2D playerOneTexture;
         private OpenGLTexture2D playerTwoTexture;
+        private OpenGLTexture2D playerOneTextureMask;
+        private OpenGLTexture2D playerTwoTextureMask;
+
 
         private int cycleIterator;  // used for iterating textures        
         private int iteratorIterator; // when it reaches certain value, other iterators iterate
 
         private List<Bomb> drawingBombsList; //lista bomb do narysowania;
+
+        private static Random rand = new Random();
 
         /// <summary>
         /// Constructor - loads textures and sets some default values
@@ -179,25 +184,26 @@ namespace TheEarthQuake.Engine
             if (player1.PlayerClass.Name == player2.PlayerClass.Name)
             {
                 int count = player1.PlayerClass.TexturePaths.Length;
-                int pos = GetRand(count);
+                int pos = rand.Next(count);
 
                 playerOneTexture = new OpenGLTexture2D(@player1.PlayerClass.TexturePaths[pos]);
+                playerOneTextureMask = new OpenGLTexture2D(@player1.PlayerClass.TexturePaths[pos] + ".mask.bmp");
                 playerTwoTexture = new OpenGLTexture2D(@player1.PlayerClass.TexturePaths[(pos + 1) % count]);
+                playerTwoTextureMask = new OpenGLTexture2D(@player1.PlayerClass.TexturePaths[(pos + 1) % count] + ".mask.bmp");
             }
             else
             {
                 int count = player1.PlayerClass.TexturePaths.Length;
-                playerOneTexture = new OpenGLTexture2D(@player1.PlayerClass.TexturePaths[GetRand(count)]);
+                int pos = rand.Next(count);
+                playerOneTexture = new OpenGLTexture2D(@player1.PlayerClass.TexturePaths[pos]);
+                playerOneTextureMask = new OpenGLTexture2D(@player1.PlayerClass.TexturePaths[pos] + ".mask.bmp");
 
                 count = player2.PlayerClass.TexturePaths.Length;
-                playerTwoTexture = new OpenGLTexture2D(@player2.PlayerClass.TexturePaths[GetRand(count)]);
-            }
-        }
+                pos = rand.Next(count);
+                playerTwoTexture = new OpenGLTexture2D(@player2.PlayerClass.TexturePaths[pos]);
+                playerTwoTextureMask = new OpenGLTexture2D(@player2.PlayerClass.TexturePaths[pos] + ".mask.bmp");
 
-        private int GetRand(int max)
-        {
-            Random r = new Random();
-            return r.Next(max);
+            }
         }
 
         /// <summary>
@@ -464,9 +470,27 @@ namespace TheEarthQuake.Engine
 
             GL.glPushMatrix();
             GL.glTranslatef(-width / 2, height / 2, 0.0f);
-            //GL.glColor3f(1.0f, 1.0f, 0.0f);
+            GL.glEnable(GL.GL_BLEND);
 
 
+            /** player one **/
+
+            /* player one mask */
+            GL.glBlendFunc(GL.GL_DST_COLOR, GL.GL_ZERO);
+            playerOneTextureMask.Bind();
+            GL.glBegin(GL.GL_QUADS);
+            GL.glTexCoord2f(0.0f, 1.0f);
+            GL.glVertex2f(x1 - radius, -(y1 - radius));
+            GL.glTexCoord2f(1.0f, 1.0f);
+            GL.glVertex2f(x1 + radius, -(y1 - radius));
+            GL.glTexCoord2f(1.0f, 0.0f);
+            GL.glVertex2f(x1 + radius, -(y1 + radius));
+            GL.glTexCoord2f(0.0f, 0.0f);
+            GL.glVertex2f(x1 - radius, -(y1 + radius));
+            GL.glEnd();
+
+            /* player one texture */
+            GL.glBlendFunc(GL.GL_ONE, GL.GL_ONE);
             playerOneTexture.Bind();
             GL.glBegin(GL.GL_QUADS);
             GL.glTexCoord2f(0.0f, 1.0f);
@@ -480,8 +504,24 @@ namespace TheEarthQuake.Engine
             GL.glEnd();
 
 
+            /** player two **/
 
+            /* player two mask */
+            GL.glBlendFunc(GL.GL_DST_COLOR, GL.GL_ZERO);
+            playerTwoTextureMask.Bind();
+            GL.glBegin(GL.GL_QUADS);
+            GL.glTexCoord2f(0.0f, 1.0f);
+            GL.glVertex2f(x2 - radius, -(y2 - radius));
+            GL.glTexCoord2f(1.0f, 1.0f);
+            GL.glVertex2f(x2 + radius, -(y2 - radius));
+            GL.glTexCoord2f(1.0f, 0.0f);
+            GL.glVertex2f(x2 + radius, -(y2 + radius));
+            GL.glTexCoord2f(0.0f, 0.0f);
+            GL.glVertex2f(x2 - radius, -(y2 + radius));
+            GL.glEnd();
 
+            /* player two texture */
+            GL.glBlendFunc(GL.GL_ONE, GL.GL_ONE);
             playerTwoTexture.Bind();
             GL.glBegin(GL.GL_QUADS);
             GL.glTexCoord2f(0.0f, 1.0f);
@@ -494,6 +534,8 @@ namespace TheEarthQuake.Engine
             GL.glVertex2f(x2 - radius, -(y2 + radius));
             GL.glEnd();
 
+
+            GL.glDisable(GL.GL_BLEND);
 
             GL.glPopMatrix();
         }
