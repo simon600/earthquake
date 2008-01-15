@@ -134,290 +134,300 @@ namespace TheEarthQuake.Logic
 
             float wallTunnelDistance = Map.FieldSize * 0.3f;
 
-            switch (direction)  
-            {                   
-                /* we wish to move player to the left */
+            for (int i = 0; i < player.Speed ; i++)
+            {
+                switch (direction)
+                {
+                    /* we wish to move player to the left */
 
-                case(Directions.Left):
-                    #region
-                    {
-                        /* we calculate the shift to the left */
-
-                        centerDx = -player.Speed * gameSettings.GameSpeed / currentFPS * Player.BaseStep;
-                        
-                        /* we calculate the border of the neighbouring field
-                           on the left to check if player collides */
-
-                        float leftFieldBorder = player.PositionJ * map.FieldSize;
-                        
-                        /* if player's border crosses the left field's border... */
-
-                        if (player.PositionX + centerDx - Player.PlayerRadius < leftFieldBorder)
+                    case (Directions.Left):
+                        #region
                         {
-                            /* if the left border is on the neighbouring field,
-                               forbid the movement */
+                            /* we calculate the shift to the left */
 
-                            if (player.PositionY - Player.PlayerRadius < player.PositionI * Map.FieldSize)
-                                return;
+                            //centerDx = -player.Speed * gameSettings.GameSpeed / currentFPS * Player.BaseStep;
+                            centerDx = -2;
 
-                            /* if the right border is on the neighbouring field,
-                               forbid the movement */
+                            /* we calculate the border of the neighbouring field
+                               on the left to check if player collides */
 
-                            if (player.PositionY + Player.PlayerRadius > (player.PositionI + 1) * Map.FieldSize)
-                                return;
-                            
-                            /* we hold the case, when we reach the map edge:
-                             * move player's border to the touch the map edge */
-                            
-                            if (player.PositionJ == 0)
+                            float leftFieldBorder = player.PositionJ * map.FieldSize;
+
+                            /* if player's border crosses the left field's border... */
+
+                            if (player.PositionX + centerDx - Player.PlayerRadius < leftFieldBorder)
                             {
-                                player.PositionX = Player.PlayerRadius;
-                                return;
-                            }
-                            
-                            /* we hold the case when we are not on the edge of 
-                               the map - neighbouring field exists. We check if 
-                               player is able to enter the field; if not, we move 
-                               player's border to touch the fields edge. */
+                                /* if the left border is on the neighbouring field,
+                                   forbid the movement */
 
-                            Maps.Field field = Map.GetField(player.PositionI, player.PositionJ - 1);
-                            if (!(field is Maps.Path))
-                            {
-                                player.PositionX = leftFieldBorder + Player.PlayerRadius;
-                                /* we check if field contains a bonus to get */
-                                if (field.Bonus != null)
+                                if (player.PositionY - Player.PlayerRadius < player.PositionI * Map.FieldSize)
+                                    return;
+
+                                /* if the right border is on the neighbouring field,
+                                   forbid the movement */
+
+                                if (player.PositionY + Player.PlayerRadius > (player.PositionI + 1) * Map.FieldSize)
+                                    return;
+
+                                /* we hold the case, when we reach the map edge:
+                                 * move player's border to the touch the map edge */
+
+                                if (player.PositionJ == 0)
                                 {
-                                    // player gets the bonus
-                                    field.Bonus = null;
-                                    // here goes code to handle bonus event
+                                    player.PositionX = Player.PlayerRadius;
+                                    return;
                                 }
-                                return;
+
+                                /* we hold the case when we are not on the edge of 
+                                   the map - neighbouring field exists. We check if 
+                                   player is able to enter the field; if not, we move 
+                                   player's border to touch the fields edge. */
+
+                                Maps.Field field = Map.GetField(player.PositionI, player.PositionJ - 1);
+                                if (!(field is Maps.Path))
+                                {
+                                    player.PositionX = leftFieldBorder + Player.PlayerRadius;
+                                    /* we check if field contains a bonus to get */
+                                    if (field.Bonus != null)
+                                    {
+                                        // player gets the bonus
+                                        field.Bonus = null;
+                                        // here goes code to handle bonus event
+                                    }
+                                    return;
+                                }
+
+                                /* if we're not outta here yet, we can enter the 
+                                   neighbouring field, we have to update the i,j 
+                                   coordinates, if necessary */
+
+                                if (player.PositionX + centerDx < leftFieldBorder)
+                                {
+                                    player.PositionJ = player.PositionJ - 1;
+                                }
                             }
 
-                            /* if we're not outta here yet, we can enter the 
-                               neighbouring field, we have to update the i,j 
-                               coordinates, if necessary */
+                            /* anyhow, we have to update the position in 
+                               floating coordinates */
 
-                            if (player.PositionX + centerDx < leftFieldBorder)
-                            {
-                                player.PositionJ = player.PositionJ - 1;
-                            }
+                            player.PositionX = player.PositionX + centerDx;
+
+
                         }
 
-                        /* anyhow, we have to update the position in 
-                           floating coordinates */
-
-                        player.PositionX = player.PositionX + centerDx;
-
-
-                    }
-
-                    #endregion
-                    break;
-                case (Directions.Right):
-                    #region
-                    {                      
-                        /* we calculate the shift to the right */
-
-                        centerDx = player.Speed * gameSettings.GameSpeed / currentFPS * Player.BaseStep;
-
-                        /* we calculate the border of the neighbouring field
-                         * on the right to check if player collides */
-
-                        float rightFieldBorder = (player.PositionJ + 1) * map.FieldSize;
-
-                        /* if player's border crosses the right field's border... */
-
-                        if (player.PositionX + centerDx + Player.PlayerRadius > rightFieldBorder)
+                        #endregion
+                        break;
+                    case (Directions.Right):
+                        #region
                         {
-                            /* if the left border is on the neighbouring field,
-                               forbid the movement */
+                            /* we calculate the shift to the right */
 
-                            if (player.PositionY - Player.PlayerRadius < player.PositionI * Map.FieldSize)
-                                return;
+                           // centerDx = player.Speed * gameSettings.GameSpeed / currentFPS * Player.BaseStep;
+                            centerDx = 2;
 
-                            /* if the right border is on the neighbouring field,
-                               forbid the movement */
+                            /* we calculate the border of the neighbouring field
+                             * on the right to check if player collides */
 
-                            if (player.PositionY + Player.PlayerRadius > (player.PositionI + 1) * Map.FieldSize)
-                                return;
-                            
-                            /* we hold the case, when we reach the map edge:
-                             * move player's border to the touch the map edge */
+                            float rightFieldBorder = (player.PositionJ + 1) * map.FieldSize;
 
-                            if (player.PositionJ == Map.MapWidth - 1)
+                            /* if player's border crosses the right field's border... */
+
+                            if (player.PositionX + centerDx + Player.PlayerRadius > rightFieldBorder)
                             {
-                                player.PositionX = Map.MapWidth * Map.FieldSize - Player.PlayerRadius;
-                                return;
+                                /* if the left border is on the neighbouring field,
+                                   forbid the movement */
+
+                                if (player.PositionY - Player.PlayerRadius < player.PositionI * Map.FieldSize)
+                                    return;
+
+                                /* if the right border is on the neighbouring field,
+                                   forbid the movement */
+
+                                if (player.PositionY + Player.PlayerRadius > (player.PositionI + 1) * Map.FieldSize)
+                                    return;
+
+                                /* we hold the case, when we reach the map edge:
+                                 * move player's border to the touch the map edge */
+
+                                if (player.PositionJ == Map.MapWidth - 1)
+                                {
+                                    player.PositionX = Map.MapWidth * Map.FieldSize - Player.PlayerRadius;
+                                    return;
+                                }
+
+                                /* we hold the case when we are not on the edge of 
+                                 the map - neighbouring field exists. We check if 
+                                 player is able to enter the field; if not, we move 
+                                 player's border to touch the fields edge. */
+
+                                Maps.Field field = Map.GetField(player.PositionI, player.PositionJ + 1);
+                                if (!(field is Maps.Path))
+                                {
+                                    player.PositionX = rightFieldBorder - Player.PlayerRadius;
+                                    return;
+                                }
+
+                                /* if we're not outta here yet, we can enter the 
+                                   neighbouring field, we have to update the i,j 
+                                   coordinates, if necessary */
+
+                                if (player.PositionX + centerDx > rightFieldBorder)
+                                {
+                                    player.PositionJ = player.PositionJ + 1;
+                                }
                             }
 
-                            /* we hold the case when we are not on the edge of 
-                             the map - neighbouring field exists. We check if 
-                             player is able to enter the field; if not, we move 
-                             player's border to touch the fields edge. */
+                            /* anyhow, we have to update the position in 
+                               floating coordinates */
 
-                            Maps.Field field = Map.GetField(player.PositionI, player.PositionJ + 1);
-                            if (!(field is Maps.Path))
-                            {
-                                player.PositionX = rightFieldBorder - Player.PlayerRadius;
-                                return;
-                            }
-
-						    /* if we're not outta here yet, we can enter the 
-						       neighbouring field, we have to update the i,j 
-						       coordinates, if necessary */
-
-						    if (player.PositionX + centerDx > rightFieldBorder)
-						    {
-							    player.PositionJ = player.PositionJ + 1;
-						    }
-					    }
-
-					    /* anyhow, we have to update the position in 
-					       floating coordinates */
-
-					    player.PositionX = player.PositionX + centerDx;
-                    }
-                    #endregion
-                    break;
-                case (Directions.Up):
-                    #region
-                    {
-                         /* we calculate the shift to the up */
-
-                        centerDy = -player.Speed * gameSettings.GameSpeed / currentFPS * Player.BaseStep;
-
-                        /* we calculate the border of the neighbouring field
-                         * on the up to check if player collides */
-
-                        float upFieldBorder = player.PositionI * map.FieldSize;
-
-                        /* if player's border crosses the up field's border... */
-
-                        if (player.PositionY + centerDy - Player.PlayerRadius < upFieldBorder)
-                        {
-                            /* if the left border is on the neighbouring field,
-                               forbid the movement */
-
-                            if (player.PositionX - Player.PlayerRadius < player.PositionJ * Map.FieldSize)
-                                return;
-
-                            /* if the right border is on the neighbouring field,
-                              forbid the movement */
-
-                            if (player.PositionX + Player.PlayerRadius > (player.PositionJ + 1) * Map.FieldSize)
-                                return;
-
-                            /* we hold the case, when we reach the map edge:
-                             * move player's border to the touch the map edge */
-
-                            if (player.PositionI == 0)
-                            {
-                                player.PositionY = Player.PlayerRadius;
-                                return;
-                            }
-
-                            /* we hold the case when we are not on the edge of 
-                             the map - neighbouring field exists. We check if 
-                             player is able to enter the field; if not, we move 
-                             player's border to touch the fields edge. */
-
-                            Maps.Field field = Map.GetField(player.PositionI - 1, player.PositionJ);
-                            if (!(field is Maps.Path))
-                            {
-                                player.PositionY = upFieldBorder + Player.PlayerRadius;
-                                return;
-                            }
-
-                            /* if we're not outta here yet, we can enter the 
-                               neighbouring field, we have to update the i,j 
-                               coordinates, if necessary */
-
-                            if (player.PositionY + centerDy < upFieldBorder)
-                            {
-                                player.PositionI = player.PositionI - 1;
-                            }
+                            player.PositionX = player.PositionX + centerDx;
                         }
-
-                        /* anyhow, we have to update the position in 
-                           floating coordinates */
-
-                        player.PositionY = player.PositionY + centerDy;
-                    }
-                    #endregion
-                    break;
-                case (Directions.Down):
-                    #region
-                    {
-                        /* we calculate the shift to the down */
-
-                        centerDy = player.Speed * gameSettings.GameSpeed / currentFPS * Player.BaseStep;
-
-                        /* we calculate the border of the neighbouring field
-                         * on the down to check if player collides */
-
-                        float downFieldBorder = (player.PositionI + 1) * map.FieldSize;
-
-                        /* if player's border crosses the down field's border... */
-
-                        if (player.PositionY + centerDy + Player.PlayerRadius > downFieldBorder)
+                        #endregion
+                        break;
+                    case (Directions.Up):
+                        #region
                         {
-                            /* if the left border is on the neighbouring field,
-                                forbid the movement */
+                            /* we calculate the shift to the up */
 
-                            if (player.PositionX - Player.PlayerRadius < player.PositionJ * Map.FieldSize)
-                                return;
+                           // centerDy = -player.Speed * gameSettings.GameSpeed / currentFPS * Player.BaseStep;
+                            centerDy = -2;
 
-                            /* if the right border is on the neighbouring field,
-                              forbid the movement */
+                            /* we calculate the border of the neighbouring field
+                             * on the up to check if player collides */
 
-                            if (player.PositionX + Player.PlayerRadius > (player.PositionJ + 1) * Map.FieldSize)
-                                return;
-                            
-                            /* we hold the case, when we reach the map edge:
-                             * move player's border to the touch the map edge */
+                            float upFieldBorder = player.PositionI * map.FieldSize;
 
-                            if (player.PositionI == Map.MapHeight - 1)
+                            /* if player's border crosses the up field's border... */
+
+                            if (player.PositionY + centerDy - Player.PlayerRadius < upFieldBorder)
                             {
-                                player.PositionY = Map.MapHeight * Map.FieldSize - Player.PlayerRadius;
-                                return;
+                                /* if the left border is on the neighbouring field,
+                                   forbid the movement */
+
+                                if (player.PositionX - Player.PlayerRadius < player.PositionJ * Map.FieldSize)
+                                    return;
+
+                                /* if the right border is on the neighbouring field,
+                                  forbid the movement */
+
+                                if (player.PositionX + Player.PlayerRadius > (player.PositionJ + 1) * Map.FieldSize)
+                                    return;
+
+                                /* we hold the case, when we reach the map edge:
+                                 * move player's border to the touch the map edge */
+
+                                if (player.PositionI == 0)
+                                {
+                                    player.PositionY = Player.PlayerRadius;
+                                    return;
+                                }
+
+                                /* we hold the case when we are not on the edge of 
+                                 the map - neighbouring field exists. We check if 
+                                 player is able to enter the field; if not, we move 
+                                 player's border to touch the fields edge. */
+
+                                Maps.Field field = Map.GetField(player.PositionI - 1, player.PositionJ);
+                                if (!(field is Maps.Path))
+                                {
+                                    player.PositionY = upFieldBorder + Player.PlayerRadius;
+                                    return;
+                                }
+
+                                /* if we're not outta here yet, we can enter the 
+                                   neighbouring field, we have to update the i,j 
+                                   coordinates, if necessary */
+
+                                if (player.PositionY + centerDy < upFieldBorder)
+                                {
+                                    player.PositionI = player.PositionI - 1;
+                                }
                             }
 
-                            /* we hold the case when we are not on the edge of 
-                             the map - neighbouring field exists. We check if 
-                             player is able to enter the field; if not, we move 
-                             player's border to touch the fields edge. */
+                            /* anyhow, we have to update the position in 
+                               floating coordinates */
 
-                            Maps.Field field = Map.GetField(player.PositionI + 1, player.PositionJ);
-                            if (!(field is Maps.Path))
-                            {
-                                player.PositionY = downFieldBorder - Player.PlayerRadius;                                
-                                return;
-                            }
-
-                            /* if we're not outta here yet, we can enter the 
-                               neighbouring field, we have to update the i,j 
-                               coordinates, if necessary */
-
-                            if (player.PositionY + centerDy > downFieldBorder)
-                            {
-                                player.PositionI = player.PositionI + 1;
-                            }
+                            player.PositionY = player.PositionY + centerDy;
                         }
+                        #endregion
+                        break;
+                    case (Directions.Down):
+                        #region
+                        {
+                            /* we calculate the shift to the down */
 
-                        /* anyhow, we have to update the position in 
-                           floating coordinates */
+                         //   centerDy = player.Speed * gameSettings.GameSpeed / currentFPS * Player.BaseStep;
+                            centerDy = 2;
 
-                        player.PositionY = player.PositionY + centerDy;
-                    }
-                    #endregion
-                    break;
-                default:
-                    throw new Exception("Illegal direction in StateMachine.MovePlayer()");
+                            /* we calculate the border of the neighbouring field
+                             * on the down to check if player collides */
+
+                            float downFieldBorder = (player.PositionI + 1) * map.FieldSize;
+
+                            /* if player's border crosses the down field's border... */
+
+                            if (player.PositionY + centerDy + Player.PlayerRadius > downFieldBorder)
+                            {
+                                /* if the left border is on the neighbouring field,
+                                    forbid the movement */
+
+                                if (player.PositionX - Player.PlayerRadius < player.PositionJ * Map.FieldSize)
+                                    return;
+
+                                /* if the right border is on the neighbouring field,
+                                  forbid the movement */
+
+                                if (player.PositionX + Player.PlayerRadius > (player.PositionJ + 1) * Map.FieldSize)
+                                    return;
+
+                                /* we hold the case, when we reach the map edge:
+                                 * move player's border to the touch the map edge */
+
+                                if (player.PositionI == Map.MapHeight - 1)
+                                {
+                                    player.PositionY = Map.MapHeight * Map.FieldSize - Player.PlayerRadius;
+                                    return;
+                                }
+
+                                /* we hold the case when we are not on the edge of 
+                                 the map - neighbouring field exists. We check if 
+                                 player is able to enter the field; if not, we move 
+                                 player's border to touch the fields edge. */
+
+                                Maps.Field field = Map.GetField(player.PositionI + 1, player.PositionJ);
+                                if (!(field is Maps.Path))
+                                {
+                                    player.PositionY = downFieldBorder - Player.PlayerRadius;
+                                    return;
+                                }
+
+                                /* if we're not outta here yet, we can enter the 
+                                   neighbouring field, we have to update the i,j 
+                                   coordinates, if necessary */
+
+                                if (player.PositionY + centerDy > downFieldBorder)
+                                {
+                                    player.PositionI = player.PositionI + 1;
+                                }
+                            }
+
+                            /* anyhow, we have to update the position in 
+                               floating coordinates */
+
+                            player.PositionY = player.PositionY + centerDy;
+                        }
+                        #endregion
+                        break;
+                    default:
+                        throw new Exception("Illegal direction in StateMachine.MovePlayer()");
+                }
+
+                /* check if player got bonus */
+                CheckForBonuses(player);
+                
             }
 
-            /* check if player got bonus */
-            CheckForBonuses(player);
+            
         }
 
         /// <summary>
