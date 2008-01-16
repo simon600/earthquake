@@ -201,9 +201,9 @@ namespace TheEarthQuake.GUI
             healthProgressBar2.Maximum = 3000;
             healthProgressBar2.Minimum = 0;
 
-            numberOfMineProgressBar.Maximum = 3;
+            numberOfMineProgressBar.Maximum = 10;
             numberOfMineProgressBar.Minimum = 0;
-            numberOfMineProgressBar2.Maximum = 3;
+            numberOfMineProgressBar2.Maximum = 10;
             numberOfMineProgressBar2.Minimum = 0;
 
 

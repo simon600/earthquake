@@ -17,7 +17,7 @@ namespace TheEarthQuake.Maps.Bomb
     /// </summary>
     public class Bomb
     {
-        private const int bombWaitingDelayFactor = 30; //waiting time delay
+        private int bombWaitingDelayFactor; //waiting time delay
         private const int bombBlowingDelayFactor = 5;  //blowing time delay
 
         private int counter;        //for changing states
@@ -27,7 +27,7 @@ namespace TheEarthQuake.Maps.Bomb
         private int iPos;
         private int jPos;
         private bool blown;
-        private Players insertBy;
+        private TheEarthQuake.Players.Player insertBy;
 
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace TheEarthQuake.Maps.Bomb
         /// <summary>
         /// Gets and sets who put bomb
         /// </summary>
-        public Players InsertBy
+        public TheEarthQuake.Players.Player InsertBy
         {
             get
             {
@@ -122,8 +122,9 @@ namespace TheEarthQuake.Maps.Bomb
         /// <param name="y"></param>
         /// <param name="i"></param>
         /// <param name="j"></param>
-        public Bomb(float x, float y, int i, int j,Players P)
+        public Bomb(float x, float y, int i, int j, TheEarthQuake.Players.Player P)
         {
+            this.bombWaitingDelayFactor = P.MineDetonationTimeOffset;
             this.counter = bombWaitingDelayFactor;
             this.xPos = x;
             this.yPos = y;
@@ -132,6 +133,8 @@ namespace TheEarthQuake.Maps.Bomb
             this._state = BombState.Waiting;
             this.blown = false;
             this.insertBy = P;
+
+
         }
 
         /// <summary>

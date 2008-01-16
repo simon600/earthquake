@@ -523,7 +523,7 @@ namespace TheEarthQuake.Logic
             (
                 playerInstance.PositionX, playerInstance.PositionY,
                 playerInstance.PositionI, playerInstance.PositionJ,
-                player
+                playerInstance
             );
             this.map.InsertBomb(playerInstance.PositionI, playerInstance.PositionJ, insertedBomb);
             this.RemoveBlownBombs();
@@ -738,19 +738,19 @@ namespace TheEarthQuake.Logic
                     bomba.Blown = true;
 
                     // bomba wybucha trzeba powzolic zawodnikowi stawiac o jedna wiecej bombe
-                    Player P;
-                    switch (bomba.InsertBy)
-                    {
-                        case (Maps.Players.Player1):
-                            P = PlayerOne;
-                            break;
-                        case (Maps.Players.Player2):
-                            P = PlayerTwo;
-                            break;
-                        default:
-                            throw new Exception("Illegal player in StateMachine.RemoveBlownBombs()");
-                    }
-                    P.PlayerClass.NumberOfTriggeredMines--;
+                    //Player P;
+                    //switch (bomba.InsertBy)
+                    //{
+                    //    case (Maps.Players.Player1):
+                    //        P = PlayerOne;
+                    //        break;
+                    //    case (Maps.Players.Player2):
+                    //        P = PlayerTwo;
+                    //        break;
+                    //    default:
+                    //        throw new Exception("Illegal player in StateMachine.RemoveBlownBombs()");
+                    //}
+                    bomba.InsertBy.PlayerClass.NumberOfTriggeredMines--;
 
                 }
                 if (bomba.state == Maps.Bomb.BombState.ToRemove)
