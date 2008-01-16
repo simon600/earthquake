@@ -8,6 +8,16 @@ using TheEarthQuake.Bonuses;
 
 namespace TheEarthQuake.Maps
 {
+
+    /// <summary>
+    /// Defines the player we manipulate.
+    /// </summary>
+    public enum Players
+    {
+        Player1,
+        Player2
+    };
+
     /// <summary>
     /// Represents map with container of fields. Map generator is provided
     /// in constructor.

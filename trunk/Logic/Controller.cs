@@ -64,19 +64,19 @@ namespace TheEarthQuake.Logic
 
         public void MovePlayer1Up()
         {
-            this.stateMachine.MovePlayer(Players.Player1, Directions.Up);
+            this.stateMachine.MovePlayer(Maps.Players.Player1, Directions.Up);
         }
         public void MovePlayer1Down()
         {
-            this.stateMachine.MovePlayer(Players.Player1, Directions.Down);
+            this.stateMachine.MovePlayer(Maps.Players.Player1, Directions.Down);
         }
         public void MovePlayer1Left()
         {
-            this.stateMachine.MovePlayer(Players.Player1, Directions.Left);
+            this.stateMachine.MovePlayer(Maps.Players.Player1, Directions.Left);
         }
         public void MovePlayer1Right()
         {
-            this.stateMachine.MovePlayer(Players.Player1, Directions.Right);
+            this.stateMachine.MovePlayer(Maps.Players.Player1, Directions.Right);
         }
 
         public void Player1Special()
@@ -87,24 +87,24 @@ namespace TheEarthQuake.Logic
         public void Player1SetUpBomb()
         {
             /* should run state-machines method player1setupbomb */
-            stateMachine.InsertBomb(Players.Player1);
+            stateMachine.InsertBomb(Maps.Players.Player1);
         }
 
         public void MovePlayer2Up()
         {
-            this.stateMachine.MovePlayer(Players.Player2, Directions.Up);
+            this.stateMachine.MovePlayer(Maps.Players.Player2, Directions.Up);
         }
         public void MovePlayer2Down()
         {
-            this.stateMachine.MovePlayer(Players.Player2, Directions.Down);
+            this.stateMachine.MovePlayer(Maps.Players.Player2, Directions.Down);
         }
         public void MovePlayer2Left()
         {
-            this.stateMachine.MovePlayer(Players.Player2, Directions.Left);
+            this.stateMachine.MovePlayer(Maps.Players.Player2, Directions.Left);
         }
         public void MovePlayer2Right()
         {
-            this.stateMachine.MovePlayer(Players.Player2, Directions.Right);
+            this.stateMachine.MovePlayer(Maps.Players.Player2, Directions.Right);
         }
 
         public void Player2Special()
@@ -114,7 +114,7 @@ namespace TheEarthQuake.Logic
         public void Player2SetUpBomb()
         {
             /* should run state-machines method player1setupbomb */
-            stateMachine.InsertBomb(Players.Player2);
+            stateMachine.InsertBomb(Maps.Players.Player2);
         }
 
         /// <summary>

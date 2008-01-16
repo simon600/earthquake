@@ -26,7 +26,9 @@ namespace TheEarthQuake.Maps.Bomb
         private float yPos;
         private int iPos;
         private int jPos;
-        private bool blown;         
+        private bool blown;
+        private Players insertBy;
+
 
         /// <summary>
         /// Gets bomb state
@@ -97,6 +99,20 @@ namespace TheEarthQuake.Maps.Bomb
                 this.blown = value;
             }
         }
+        /// <summary>
+        /// Gets and sets who put bomb
+        /// </summary>
+        public Players InsertBy
+        {
+            get
+            {
+                return insertBy;
+            }
+            set
+            {
+                insertBy = value;
+            }
+        }
 
 
         /// <summary>
@@ -106,7 +122,7 @@ namespace TheEarthQuake.Maps.Bomb
         /// <param name="y"></param>
         /// <param name="i"></param>
         /// <param name="j"></param>
-        public Bomb(float x, float y, int i, int j)
+        public Bomb(float x, float y, int i, int j,Players P)
         {
             this.counter = bombWaitingDelayFactor;
             this.xPos = x;
@@ -115,6 +131,7 @@ namespace TheEarthQuake.Maps.Bomb
             this.jPos = j;
             this._state = BombState.Waiting;
             this.blown = false;
+            this.insertBy = P;
         }
 
         /// <summary>

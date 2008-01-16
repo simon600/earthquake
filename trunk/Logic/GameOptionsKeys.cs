@@ -14,9 +14,9 @@ namespace TheEarthQuake.Logic
         private Keys bomb;
         private Keys special;
 
-        public GameControllKeys(Players player)
+        public GameControllKeys(Maps.Players player)
         {
-            if (player == Players.Player1)
+            if (player == Maps.Players.Player1)
             {
                 up = Keys.W;
                 left = Keys.A;
@@ -26,7 +26,7 @@ namespace TheEarthQuake.Logic
                 special = Keys.X;
             }
 
-            if (player == Players.Player2)
+            if (player == Maps.Players.Player2)
             {
                 up = Keys.I;
                 left = Keys.J;

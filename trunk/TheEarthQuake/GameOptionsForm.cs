@@ -46,9 +46,9 @@ namespace TheEarthQuake.GUI
             cbxBonusesOn.Checked = controller.GameSettings.BonusesOn;
         }
 
-        public void FillControllKeys(TheEarthQuake.Logic.Players player)
+        public void FillControllKeys(TheEarthQuake.Maps.Players player)
         {
-            if (player == TheEarthQuake.Logic.Players.Player1)
+            if (player == TheEarthQuake.Maps.Players.Player1)
             {
                 tbxTop.Text = controller.GameSettings.PlayerOneKeys.Up.ToString();
                 tbxDown.Text = controller.GameSettings.PlayerOneKeys.Down.ToString();
@@ -58,7 +58,7 @@ namespace TheEarthQuake.GUI
                 tbxSpecial.Text = controller.GameSettings.PlayerOneKeys.Special.ToString(); 
             }
 
-            if (player == TheEarthQuake.Logic.Players.Player2)
+            if (player == TheEarthQuake.Maps.Players.Player2)
             {
                 tbxTop.Text = controller.GameSettings.PlayerTwoKeys.Up.ToString();
                 tbxDown.Text = controller.GameSettings.PlayerTwoKeys.Down.ToString();
@@ -95,12 +95,12 @@ namespace TheEarthQuake.GUI
             {
                 if (cbxPlayer.SelectedIndex == 0)
                 {
-                    FillControllKeys(TheEarthQuake.Logic.Players.Player1);
+                    FillControllKeys(TheEarthQuake.Maps.Players.Player1);
                 }
 
                 if (cbxPlayer.SelectedIndex == 1)
                 {
-                    FillControllKeys(TheEarthQuake.Logic.Players.Player2);
+                    FillControllKeys(TheEarthQuake.Maps.Players.Player2);
                 }
             }
         }
@@ -110,12 +110,12 @@ namespace TheEarthQuake.GUI
             if (cbxPlayer.SelectedIndex == 0)
             {
                 controller.GameSettings.PlayerOneKeys.Up = e.KeyCode;
-                FillControllKeys(TheEarthQuake.Logic.Players.Player1);
+                FillControllKeys(TheEarthQuake.Maps.Players.Player1);
             }
             else
             {
                 controller.GameSettings.PlayerTwoKeys.Up = e.KeyCode;
-                FillControllKeys(TheEarthQuake.Logic.Players.Player2);
+                FillControllKeys(TheEarthQuake.Maps.Players.Player2);
             }
         }
 
@@ -124,12 +124,12 @@ namespace TheEarthQuake.GUI
             if (cbxPlayer.SelectedIndex == 0)
             {
                 controller.GameSettings.PlayerOneKeys.Down = e.KeyCode;
-                FillControllKeys(TheEarthQuake.Logic.Players.Player1);
+                FillControllKeys(TheEarthQuake.Maps.Players.Player1);
             }
             else
             {
                 controller.GameSettings.PlayerTwoKeys.Down = e.KeyCode;
-                FillControllKeys(TheEarthQuake.Logic.Players.Player2);
+                FillControllKeys(TheEarthQuake.Maps.Players.Player2);
             }
         }
 
@@ -138,12 +138,12 @@ namespace TheEarthQuake.GUI
             if (cbxPlayer.SelectedIndex == 0)
             {
                 controller.GameSettings.PlayerOneKeys.Right = e.KeyCode;
-                FillControllKeys(TheEarthQuake.Logic.Players.Player1);
+                FillControllKeys(TheEarthQuake.Maps.Players.Player1);
             }
             else
             {
                 controller.GameSettings.PlayerTwoKeys.Right = e.KeyCode;
-                FillControllKeys(TheEarthQuake.Logic.Players.Player2);
+                FillControllKeys(TheEarthQuake.Maps.Players.Player2);
             }     
         }
 
@@ -152,12 +152,12 @@ namespace TheEarthQuake.GUI
             if (cbxPlayer.SelectedIndex == 0)
             {
                 controller.GameSettings.PlayerOneKeys.Left = e.KeyCode;
-                FillControllKeys(TheEarthQuake.Logic.Players.Player1);
+                FillControllKeys(TheEarthQuake.Maps.Players.Player1);
             }
             else
             {
                 controller.GameSettings.PlayerTwoKeys.Left = e.KeyCode;
-                FillControllKeys(TheEarthQuake.Logic.Players.Player2);
+                FillControllKeys(TheEarthQuake.Maps.Players.Player2);
             }
         }
 
@@ -166,12 +166,12 @@ namespace TheEarthQuake.GUI
             if (cbxPlayer.SelectedIndex == 0)
             {
                 controller.GameSettings.PlayerOneKeys.Bomb = e.KeyCode;
-                FillControllKeys(TheEarthQuake.Logic.Players.Player1);
+                FillControllKeys(TheEarthQuake.Maps.Players.Player1);
             }
             else
             {
                 controller.GameSettings.PlayerTwoKeys.Bomb = e.KeyCode;
-                FillControllKeys(TheEarthQuake.Logic.Players.Player2);
+                FillControllKeys(TheEarthQuake.Maps.Players.Player2);
             }
         }
 
@@ -180,12 +180,12 @@ namespace TheEarthQuake.GUI
             if (cbxPlayer.SelectedIndex == 0)
             {
                 controller.GameSettings.PlayerOneKeys.Special = e.KeyCode;
-                FillControllKeys(TheEarthQuake.Logic.Players.Player1);
+                FillControllKeys(TheEarthQuake.Maps.Players.Player1);
             }
             else
             {
                 controller.GameSettings.PlayerTwoKeys.Special = e.KeyCode;
-                FillControllKeys(TheEarthQuake.Logic.Players.Player2);
+                FillControllKeys(TheEarthQuake.Maps.Players.Player2);
             }
         }
 

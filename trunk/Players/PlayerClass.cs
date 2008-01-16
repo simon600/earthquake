@@ -41,6 +41,7 @@ namespace TheEarthQuake.Players
         /// </summary>
         public PlayerClass()
         {
+            numberOfTriggeredMines = 0;
         }
 
         /// <summary>

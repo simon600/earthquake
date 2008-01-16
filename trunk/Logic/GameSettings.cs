@@ -36,8 +36,8 @@ namespace TheEarthQuake.Logic
 
         public GameSettings()
         {
-            playerOneKeys = new GameControllKeys(Players.Player1);
-            playerTwoKeys = new GameControllKeys(Players.Player2);
+            playerOneKeys = new GameControllKeys(Maps.Players.Player1);
+            playerTwoKeys = new GameControllKeys(Maps.Players.Player2);
             LoadFromXML();
         }
 

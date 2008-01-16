@@ -423,11 +423,12 @@ namespace TheEarthQuake.Players
 
         public bool CanSetMine()
         {
-            return (this.toNextMine == 0);
+            return (this.toNextMine == 0 &&  playerClass.NumberOfTriggeredMines < playerClass.MaxBomb);
         }
         public void SetMine()
         {
-            this.toNextMine = 50;
+            this.toNextMine = 30;
+            PlayerClass.NumberOfTriggeredMines++;
         }
 
         public void TouchedByMine()

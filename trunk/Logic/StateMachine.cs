@@ -7,10 +7,7 @@ using TheEarthQuake.Bonuses;
 
 namespace TheEarthQuake.Logic
 {
-    /// <summary>
-    /// Defines the player we manipulate.
-    /// </summary>
-    public enum Players {Player1, Player2};
+    
     
     /// <summary>
     /// Directions pool.
@@ -108,15 +105,15 @@ namespace TheEarthQuake.Logic
         /// <summary>
         /// Method responsible for moving player. Called by controller.
         /// </summary>
-        public void MovePlayer(Players playerId, Directions direction)
+        public void MovePlayer(Maps.Players playerId, Directions direction)
         {            
             Player player = null;
             switch (playerId)
-            { 
-                case (Players.Player1):
+            {
+                case (Maps.Players.Player1):
                     player = PlayerOne;
                     break;
-                case (Players.Player2):
+                case (Maps.Players.Player2):
                     player = PlayerTwo;
                     break;
                 default:
@@ -495,15 +492,15 @@ namespace TheEarthQuake.Logic
         /// Place bomb on field with player.
         /// </summary>
         /// <param name="player">Player to place bomb</param>
-        public void InsertBomb(Players player)
+        public void InsertBomb(Maps.Players player)
         {
             Player playerInstance;
             switch (player)
             {
-                case (Players.Player1):
+                case (Maps.Players.Player1):
                     playerInstance = PlayerOne;
                     break;
-                case (Players.Player2):
+                case (Maps.Players.Player2):
                     playerInstance = PlayerTwo;
                     break;
                 default:
@@ -519,10 +516,14 @@ namespace TheEarthQuake.Logic
             {
                 return;
             }
+            
+
+
             Maps.Bomb.Bomb insertedBomb = new TheEarthQuake.Maps.Bomb.Bomb
             (
                 playerInstance.PositionX, playerInstance.PositionY,
-                playerInstance.PositionI, playerInstance.PositionJ
+                playerInstance.PositionI, playerInstance.PositionJ,
+                player
             );
             this.map.InsertBomb(playerInstance.PositionI, playerInstance.PositionJ, insertedBomb);
             this.RemoveBlownBombs();
@@ -689,6 +690,8 @@ namespace TheEarthQuake.Logic
                 Maps.Bomb.Bomb bomba = ((Maps.Bomb.Bomb)bombaEnumerator.Current);
                 if (bomba.state == Maps.Bomb.BombState.ToRemove)
                 {
+                    
+
                     indexes.Add(i);
                     i++;
                 }
@@ -733,6 +736,21 @@ namespace TheEarthQuake.Logic
                     }
                     this.BlowWalls(bomba.IPos, bomba.JPos);
                     bomba.Blown = true;
+
+                    Player P;
+                    switch (bomba.InsertBy)
+                    {
+                        case (Maps.Players.Player1):
+                            P = PlayerOne;
+                            break;
+                        case (Maps.Players.Player2):
+                            P = PlayerTwo;
+                            break;
+                        default:
+                            throw new Exception("Illegal player in StateMachine.RemoveBlownBombs()");
+                    }
+                    P.PlayerClass.NumberOfTriggeredMines--;
+
                 }
                 if (bomba.state == Maps.Bomb.BombState.ToRemove)
                 {
