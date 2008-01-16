@@ -52,10 +52,6 @@
       <Project>{F36A769D-1A5D-4406-9650-17730A721B88}</Project>
       <Name>TheEarthQuake.Bonuses</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Maps\TheEarthQuake.Maps.csproj">
-      <Project>{3B33AD3B-FAAB-4EE5-884E-4348F6688E09}</Project>
-      <Name>TheEarthQuake.Maps</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

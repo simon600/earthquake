@@ -35,10 +35,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TheEarthQuake.Players, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Players\bin\Debug\TheEarthQuake.Players.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bombs\Bombs.cs" />
@@ -62,6 +58,10 @@
     <ProjectReference Include="..\Bonuses\TheEarthQuake.Bonuses.csproj">
       <Project>{F36A769D-1A5D-4406-9650-17730A721B88}</Project>
       <Name>TheEarthQuake.Bonuses</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Players\TheEarthQuake.Players.csproj">
+      <Project>{F80F26CF-17EB-4293-B96F-7DD725A5D1FA}</Project>
+      <Name>TheEarthQuake.Players</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

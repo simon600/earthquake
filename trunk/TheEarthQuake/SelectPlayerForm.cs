@@ -191,9 +191,9 @@ namespace TheEarthQuake.GUI
             powerProgressBar2.Maximum = 100;
             powerProgressBar2.Minimum = 0;
 
-            rangeProgressBar.Maximum = 100;
+            rangeProgressBar.Maximum = 150;
             rangeProgressBar.Minimum = 0;
-            rangeProgressBar2.Maximum = 100;
+            rangeProgressBar2.Maximum = 150;
             rangeProgressBar2.Minimum = 0;
 
             healthProgressBar.Maximum = 3000;

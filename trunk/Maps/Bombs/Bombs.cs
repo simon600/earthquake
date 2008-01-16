@@ -1,4 +1,5 @@
 using TheEarthQuake.Maps;
+using TheEarthQuake;
 
 namespace TheEarthQuake.Maps.Bomb
 {
