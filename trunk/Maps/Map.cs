@@ -400,7 +400,7 @@ namespace TheEarthQuake.Maps
         /// <returns>some bonus as type Bonus or null</returns>
         private Bonus GenerateBonus()
         {            
-            float bonusPropability = 0.1f;
+            float bonusPropability = 0.05f;
             
             if (floatGenerator.NextDouble() < bonusPropability)
             {
@@ -408,7 +408,7 @@ namespace TheEarthQuake.Maps
                 switch(intGenerator.Next(numberOfBonuses))
                 {
                     case 0:
-                        return new HealthBonus();
+                        return new SpeedBonus();
                     case 1:
                         return new SpeedBonus();
                     default :
