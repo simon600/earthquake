@@ -737,6 +737,7 @@ namespace TheEarthQuake.Logic
                     this.BlowWalls(bomba.IPos, bomba.JPos);
                     bomba.Blown = true;
 
+                    // bomba wybucha trzeba powzolic zawodnikowi stawiac o jedna wiecej bombe
                     Player P;
                     switch (bomba.InsertBy)
                     {
