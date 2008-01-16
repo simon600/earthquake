@@ -67,7 +67,7 @@ namespace TheEarthQuake.Engine
              * You can change the values of width and height 
              * using setters (in StatesMachine); default values are:
              */
-            width = 1024;
+            width = 768;
             height = 768;
             
             // initializes textures

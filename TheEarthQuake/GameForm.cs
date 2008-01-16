@@ -42,7 +42,7 @@ namespace TheEarthQuake.GUI
             this.iterator = 0;
 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.ClientSize = new System.Drawing.Size(768, 768);
             this.Name = "EarthQuake";
             this.Text = "EarthQuake";
 
