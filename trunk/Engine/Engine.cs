@@ -212,7 +212,7 @@ namespace TheEarthQuake.Engine
         public void Tick()
         {
             iteratorIterator++;
-            if (iteratorIterator > 7)
+            if (iteratorIterator > 3)
             {
                 cycleIterator = (cycleIterator + 1) % 100;
                 iteratorIterator = 0;

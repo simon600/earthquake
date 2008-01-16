@@ -17,7 +17,7 @@ namespace TheEarthQuake.Maps.Bomb
     /// </summary>
     public class Bomb
     {
-        private const int bombWaitingDelayFactor = 150; //waiting time delay
+        private const int bombWaitingDelayFactor = 30; //waiting time delay
         private const int bombBlowingDelayFactor = 5;  //blowing time delay
 
         private int counter;        //for changing states
