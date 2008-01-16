@@ -427,7 +427,7 @@ namespace TheEarthQuake.Players
         }
         public void SetMine()
         {
-            this.toNextMine = 30;
+            this.toNextMine = 10;
             PlayerClass.NumberOfTriggeredMines++;
         }
 
