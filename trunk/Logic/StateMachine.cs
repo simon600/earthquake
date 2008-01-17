@@ -14,6 +14,8 @@ namespace TheEarthQuake.Logic
     /// </summary>
     public enum Directions {Left, Right, Up, Down};
 
+    public enum GameStates{Playing, CountDown, Removal};
+
     /// <summary>
     /// State machine class. It is responsible for
     /// changin program state, for player collisions, 
@@ -30,7 +32,10 @@ namespace TheEarthQuake.Logic
         private Player PlayerOne;                           // player 1 instance
         private Player PlayerTwo;                           // player 2 instance
         private System.Collections.ArrayList bombs;
+        private GameStates state;
+        private int counter;
 
+        public string Winer;
 
         /// <summary>
         /// Accessor to screen height. Only get.
@@ -100,6 +105,9 @@ namespace TheEarthQuake.Logic
         {
             this.map = new Maps.Map();
             this.gameSettings = new GameSettings();
+            this.Winer = "";
+            this.state = GameStates.Playing;
+            this.counter = 20;
         }
 
         /// <summary>
@@ -708,56 +716,78 @@ namespace TheEarthQuake.Logic
         /// <summary>
         /// Allow machine to change its state.
         /// </summary>
-        public void Tick()
+        public bool Tick()
         {
-            //ticks players
-            this.PlayerOne.tick();
-            this.PlayerTwo.tick();
-            System.Collections.IEnumerator bombaEnumerator = this.bombs.GetEnumerator();
-            while (bombaEnumerator.MoveNext())
+            if (this.state == GameStates.Playing || this.state == GameStates.CountDown)
             {
-                Maps.Bomb.Bomb bomba = ((Maps.Bomb.Bomb)bombaEnumerator.Current);
-                bomba.tick();
-                if (bomba.state == Maps.Bomb.BombState.Blow && !bomba.Blown)
+                //ticks players
+                this.PlayerOne.tick();
+                this.PlayerTwo.tick();
+                System.Collections.IEnumerator bombaEnumerator = this.bombs.GetEnumerator();
+                while (bombaEnumerator.MoveNext())
                 {
-                    //TU JEST ZHARDCOROWANE NA ILE POL SIE ROZCHODZI WYBUCH
-                    //bo zabraliscie z klasy player pole power; poza tym
-                    //pytalem jak ma wygladac animacja i nic - no to spoko; dla mnie BOMBA
-                    //wiec zaznaczam ze bomba jest wybuchnieta i niszcze pierwsza napotkana przeszkode, do tego
-                    //dodam playerowi stub TouchedByMine - ale niech go uzupelni osoba odpowiedzialna za player'a
-
-                    if (this.checkBombTouch(bomba, this.PlayerOne))
+                    Maps.Bomb.Bomb bomba = ((Maps.Bomb.Bomb)bombaEnumerator.Current);
+                    bomba.tick();
+                    if (bomba.state == Maps.Bomb.BombState.Blow && !bomba.Blown)
                     {
-                        this.PlayerOne.TouchedByMine();
+                        //TU JEST ZHARDCOROWANE NA ILE POL SIE ROZCHODZI WYBUCH
+                        //bo zabraliscie z klasy player pole power; poza tym
+                        //pytalem jak ma wygladac animacja i nic - no to spoko; dla mnie BOMBA
+                        //wiec zaznaczam ze bomba jest wybuchnieta i niszcze pierwsza napotkana przeszkode, do tego
+                        //dodam playerowi stub TouchedByMine - ale niech go uzupelni osoba odpowiedzialna za player'a
+
+                        if (this.state == GameStates.Playing && this.checkBombTouch(bomba, this.PlayerOne))
+                        {
+                            this.Winer = "Player Two";
+                            this.state = GameStates.CountDown;
+                            //seems no more needed:
+                            //this.PlayerOne.TouchedByMine();
+                        }
+                        if (this.state == GameStates.Playing && this.checkBombTouch(bomba, this.PlayerTwo))
+                        {
+                            this.state = GameStates.CountDown;
+                            this.Winer = "Player One";
+                            //seems no more needed:
+                            //this.PlayerTwo.TouchedByMine();
+                        }
+                        this.BlowWalls(bomba.IPos, bomba.JPos);
+                        bomba.Blown = true;
+
+                        // bomba wybucha trzeba powzolic zawodnikowi stawiac o jedna wiecej bombe
+                        //Player P;
+                        //switch (bomba.InsertBy)
+                        //{
+                        //    case (Maps.Players.Player1):
+                        //        P = PlayerOne;
+                        //        break;
+                        //    case (Maps.Players.Player2):
+                        //        P = PlayerTwo;
+                        //        break;
+                        //    default:
+                        //        throw new Exception("Illegal player in StateMachine.RemoveBlownBombs()");
+                        //}
+                        bomba.InsertBy.PlayerClass.NumberOfTriggeredMines--;
+
                     }
-                    if (this.checkBombTouch(bomba, this.PlayerTwo))
+                    if (bomba.state == Maps.Bomb.BombState.ToRemove)
                     {
-                        this.PlayerTwo.TouchedByMine();
+                        this.map.Fields[bomba.IPos, bomba.JPos].RemoveBomb();
                     }
-                    this.BlowWalls(bomba.IPos, bomba.JPos);
-                    bomba.Blown = true;
-
-                    // bomba wybucha trzeba powzolic zawodnikowi stawiac o jedna wiecej bombe
-                    //Player P;
-                    //switch (bomba.InsertBy)
-                    //{
-                    //    case (Maps.Players.Player1):
-                    //        P = PlayerOne;
-                    //        break;
-                    //    case (Maps.Players.Player2):
-                    //        P = PlayerTwo;
-                    //        break;
-                    //    default:
-                    //        throw new Exception("Illegal player in StateMachine.RemoveBlownBombs()");
-                    //}
-                    bomba.InsertBy.PlayerClass.NumberOfTriggeredMines--;
-
-                }
-                if (bomba.state == Maps.Bomb.BombState.ToRemove)
-                {
-                    this.map.Fields[bomba.IPos, bomba.JPos].RemoveBomb();
                 }
             }
+            if (this.state == GameStates.CountDown)
+            {
+                this.counter--;
+                if (this.counter == 0)
+                {
+                    this.state = GameStates.Removal;
+                }
+            }
+            if(this.state == GameStates.Removal)
+            {
+                return true;
+            }
+            return false;
         }
 
     }

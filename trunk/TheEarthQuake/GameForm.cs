@@ -207,7 +207,14 @@ namespace TheEarthQuake.GUI
 
                 if (iterator * 10 >= stateMachine.CurrentFPS )
                 {
-                    controllerWrapper.Tick();
+                    if (controllerWrapper.Tick())
+                    {
+                        WinMsg win = new WinMsg();
+                        win.SetText("Winer is: " + stateMachine.Winer + ";;");
+                        win.ShowDialog();
+                        win.Dispose();
+                        this.Close();
+                    }
                     iterator = 0;
                 }
             }
