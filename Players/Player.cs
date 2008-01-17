@@ -431,10 +431,12 @@ namespace TheEarthQuake.Players
             PlayerClass.NumberOfTriggeredMines++;
         }
 
+        /*
+         * seems no more needed!
         public void TouchedByMine()
         {
             //STUB!
-        }
+        }*/
 
         private void DeleteOldBonuses()
         {

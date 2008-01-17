@@ -132,10 +132,11 @@ namespace TheEarthQuake.Logic
              */
             graphicsEngine.SetMapWrapper(stateMachine.GetMapWrapper());
         }
-        public void Tick()
+        public bool Tick()
         {
-            stateMachine.Tick();
+            bool ret = stateMachine.Tick();
             graphicsEngine.Tick();
+            return ret;
         }
     }
 }

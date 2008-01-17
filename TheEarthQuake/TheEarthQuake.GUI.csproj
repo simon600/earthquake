@@ -116,10 +116,20 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="WinMsg.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WinMsg.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WinMsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinMsg.Designer.cs">
+      <DependentUpon>WinMsg.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

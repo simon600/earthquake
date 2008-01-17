@@ -83,9 +83,9 @@ namespace TheEarthQuake.Logic
             this.controller.Player2SetUpBomb();
         }
 
-        public void Tick()
+        public bool Tick()
         {
-            this.controller.Tick();
+            return this.controller.Tick();
         }
     }
 }
