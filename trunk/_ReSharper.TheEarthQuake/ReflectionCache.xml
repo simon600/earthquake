@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Assemblies Version="805306377">
+  <Assembly Name="csgl, Version=1.4.1.0, Culture=neutral" Image="d3e4f48c-821b-4050-b609-faa573eb01ed" Timestamp="633359291542453498" />
+  <Assembly Name="nunit.framework, Version=2.4.6.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" Image="20af111f-4503-4100-9311-0eb93dc17972" Timestamp="633359291542523498" />
+</Assemblies>
